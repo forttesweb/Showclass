@@ -1,0 +1,74 @@
+<style>
+    button.btn.btnlogin.btn-lg {
+        color: #fff;
+    }
+</style>
+<div class="d-flex justify-content-center login">
+
+    <div class="card text-center cardlogin" style="width: 500px;">
+
+        <div class="card-body">
+
+
+            <h2 class="text-dark">Insira seu e-mail !</h2>
+
+            <br>
+            <br>
+            {{status}}
+
+            <form method="post" id="formsenha">
+
+                <div class="form-group text-start">
+                    <label>E-mail</label>
+                    <input type="email" class="form-control" name="email" placeholder="email@teste.com" required
+                        autofocus>
+                </div>
+
+                <button type="submit" class="btn btnlogin btn-lg mt-5">Enviar</button>
+
+            </form>
+
+            <span id="mensagem"></span>
+
+            <hr class="hrform">
+
+            <a href="{{URL}}/account/login" class="textregister">Fazer login</a>
+
+            <br>
+
+            
+
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script>
+    $("#formsenha").submit(function () {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '{{URL}}/account/recuperar-senha',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+
+            success: function (data) {
+
+                $("#mensagem").text("Foi enviada um e-mail com um link para recuperação de senha para seu e-mail.");
+
+                this.reset();
+
+            },
+
+            cache: false,
+            contentType: false,
+            processData: false,
+
+        });
+
+    });
+</script>

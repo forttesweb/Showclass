@@ -1,0 +1,64 @@
+<style>
+    ul.list-group.list-group-flush {
+        border: none;
+        width: 100%;
+    }
+
+    li.list-group-item {
+        background-color: #fafafa !important;
+        border: none;
+    }
+
+    li.list-group-item svg {
+        margin-right: 10px;
+    }
+
+    span.price {
+        color: #1B134B;
+        line-height: 120%;
+        letter-spacing: 0.035em;
+        font-weight: 700;
+        /* font-size: 50px; */
+    }
+
+    big.numprice {
+        font-size: 60px;
+        font-weight: 700;
+    }
+
+    small.cifraoprice {
+        margin-top: -30px;
+        display: block;
+        margin-left: -20px;
+    }
+
+    small.periodprice {
+        font-size: 20px;
+    }
+
+    .ribbonfeatured {
+        background-color: #1A47BA;
+        color: #fff;
+        width: 80px;
+        border-radius: 50%;
+        height: 80px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        position: absolute;
+        right: 10px;
+        top: -20px;
+        font-weight: 600;
+    }
+</style>
+<section class="about mt-5">
+    <div class="container">
+        <div class="row text-center">
+            <h3 class="titulosection">Escolha o melhor plano para você</h3>
+            <h3>Quer vender rápido, anuncie na showclass e tenha destaque entre os outros!</h3>
+        </div>
+        {{planos}}
+    </div>
+</section>

@@ -1,0 +1,41 @@
+<style>
+    .card.home {
+        height: 100%;
+    }
+
+    
+
+    a.btn {
+        width: 90%;
+    }
+</style>
+<div class="col-md-12 mt-3">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- <img src="{{URL}}/resources/view/pages/assets/images/anuncio1.png" class="img-responsive p-2" alt="..."
+                    width="150"> -->
+                    <img src="{{URL}}/publico/lojas/{{foto}}" class="card-img-top p-2 fotoanuncio" width="150" alt="...">
+            </div>
+            <div class="col-md-6">
+                <div class="boxcontend">
+                    <h5 class="card-title anuncio">{{titulo}} {{vendido}} </h5>
+                    <small>{{categoria}}</small>
+                    <p class="card-text preco">
+                        <strong>R$ {{preco}}</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 p-2">
+                <div class="boxactions">
+                    <!-- <a class="btn btn-secondary mb-3" href="#" onclick="editarAnuncio('{{id}}')">Editar anúncio</a> -->
+                    <a class="btn btn-secondary mb-3" href="{{URL}}/editar_anuncio/{{id}}" >Editar anúncio</a>
+                    <a href="#" class="btn btn-warning mb-3" onclick="imagensAnuncio('{{id}}')" title='Inserir Imagens'>Imagens</a>
+                    <a class="btn btn-primary" href="{{URL}}/anuncio/{{nome_url}}/{{url}}">Ver anúncio</a>
+                    {{marcarvendido}}
+                    <a class="btn btn-danger mt-3" href="{{URL}}/account/deletar/{{url_anuncio}}">Excluir anúncio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

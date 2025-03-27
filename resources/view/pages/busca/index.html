@@ -1,0 +1,289 @@
+<style>
+    .categorias {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font-size: 16px;
+        font-weight: 400;
+        padding-left: 10px;
+        margin-top: 20px;
+    }
+
+    .form-check-input[type=radio] {
+        border-radius: 15%;
+        border: 1px solid #6B6B6B;
+    }
+
+    .form-check-input:checked {
+        background-color: #513ca3;
+        border-color: #513ca3;
+    }
+
+    .ordernar {
+        width: 15%;
+    }
+
+    img.card-img-top.p-2.fotoanuncio {
+        width: 288px;
+        height: 242px;
+        object-fit: fill;
+        max-width: 100%;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    h5.card-title.anuncio {
+        height: 50px;
+    }
+    @media screen and (max-width:768px) {
+        img.card-img-top.p-2.fotoanuncio {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+        }
+
+        .card.home {
+            min-height: auto;
+        }
+
+        h5.card-title.anuncio {
+            font-size: 16px;
+            height: 35px;
+            max-width: 190px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        p.card-text.preco {
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        a.btn.btnstore {
+            width: 100%;
+        }
+
+        .botaohome {
+            width: 90%;
+        }
+
+        .boxcategorias {
+            display: none;
+        }
+
+        .boxcategoriasmobile {
+            display: block;
+        }
+
+        .cardcategorias.ec__item {
+            display: flex;
+            justify-content: center;
+        }
+
+        img.img-responsive.imgcategorias {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .titlecategorias {
+            margin-top: 20px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        a.cardlink {
+            text-decoration: none;
+            color: #222222;
+            width: 70%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ec {
+            padding-top: 0;
+        }
+
+        .ec .ec__holder {
+            /* overflow: overlay; */
+            overflow-y: hidden;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            /* max-width: 100% !important; */
+        }
+
+        input.form-control.homesearch {
+            margin-bottom: 15px;
+        }
+
+        div#itensbusca {
+    margin-top: 35px;
+}
+    }
+</style>
+<div class="boxsearch d-flex align-items-center">
+    <form class="w-100 mx-auto" action="/busca">
+        <div class="row">
+            <div class="col-md-10">
+                <input name="term" type="text" class="form-control homesearch" placeholder="O que você está procurando?"
+                    aria-label="Search">
+                <!-- <img src="{{URL}}/resources/view/pages/assets/images/lupa.png" class="lupa"> -->
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-lg btn-primary buttonbusca" href="#">Buscar</button>
+            </div>
+        </div>
+        <!-- <a class="btn btn-primary">BUSCAR</a> -->
+    </form>
+</div>
+<section class="about mt-5">
+
+    <div class="container">
+        <div class="row pb-2">
+            <h1 class="titulosection">Principais resultados para "{{busca}}"</h1>
+        </div>
+        <!-- <div class="row pb-3 d-flex justify-content-end">
+            <div class="ordernar">
+                <h5>Ordernar por</h5>
+                <select class="form-select">
+                    <option value="Menor preço">Menor preço</option>
+                </select>
+            </div>
+
+        </div> -->
+        <div class="row">
+            <div class="col-md-2">
+                <h5>Filtrar por</h5>
+
+                <div class="categorias">
+                    {{items_categoria}}
+                    <!-- <div class="form-check">
+                        <input class="form-check-input" type="radio" value="automoveis" name="categoria"
+                            id="categoria1">
+                        <label class="form-check-label" for="categoria1">
+                            Automóveis
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="categoria" value="casa-e-decoracao"
+                            id="categoria2">
+                        <label class="form-check-label" for="categoria2">
+                            Casa e decoração
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="categoria" value="eletronicos"
+                            id="categoria3">
+                        <label class="form-check-label" for="categoria3">
+                            Eletrônicos
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="categoria" value="esporte-e-lazer"
+                            id="categoria4">
+                        <label class="form-check-label" for="categoria4">
+                            Esporte e Lazer
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="categoria" value="kids" id="categoria5">
+                        <label class="form-check-label" for="categoria5">
+                            Kids
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="categoria" value="moda-e-beleza"
+                            id="categoria6">
+                        <label class="form-check-label" for="categoria6">
+                            Moda e Beleza
+                        </label>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-md-10">
+
+                <div class="row" id="itensbusca">
+                    {{itens}}
+                    {{nada}}
+                </div>
+
+
+                {{pagination}}
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+    $('input[type=radio][name=categoria]').on('change', function () {
+
+        value = $(this).val();
+
+        window.location = '{{URL}}/busca?term=' + value;
+
+        // $("#itensbusca").html('');
+
+        // $.ajax({
+        //     url: '{{URL}}/busca?term=' + value,
+        //     cache: false,
+        //     method: "GET",
+        //     // dataType: "json",
+        //     success: function (data) {
+
+        //     }
+        // });
+
+    });
+
+    var query = location.search.slice(1);
+    var partes = query.split('&');
+    var data = {};
+    partes.forEach(function (parte) {
+        var chaveValor = parte.split('=');
+        var chave = chaveValor[0];
+        var valor = chaveValor[1];
+        data[chave] = valor;
+    });
+
+{{items_categoria2}}
+    // switch (data.term) {
+    //     case 'eletronicos':
+    //         $("#categoria3").attr('checked');
+    //     case 'eletronicos':
+    //         $("#categoria3").attr('checked', '');
+    //         break;
+    //     case 'kids':
+    //         $("#categoria5").attr('checked', '');
+    //         break;
+    //     case 'automoveis':
+    //         $("#categoria1").attr('checked', '');
+
+    //         break;
+    //     case 'casa-e-decoracao':
+    //         $("#categoria2").attr('checked', '');
+
+    //         break;
+    //     case 'esporte-e-lazer':
+    //         $("#categoria4").attr('checked', '');
+
+    //         break;
+    //     case 'moda-e-beleza':
+    //         $("#categoria6").attr('checked', '');
+
+    //         break;
+    // }
+</script>

@@ -1,0 +1,316 @@
+<style>
+    .S9gUrf-YoZ4jf {
+        display: flex;
+        justify-content: center;
+    }
+
+    form input[type=password] {
+        display: block;
+    }
+
+    form ul.helper-text {
+        display: block;
+        margin-top: 15px;
+        font-size: 12px;
+        line-height: 22px;
+        color: #808080;
+    }
+
+    form ul.helper-text li.valid {
+        color: #1AB23E;
+        text-decoration-line: line-through;
+    }
+
+    form.valid input {
+        border: 2px solid #1fd34a;
+    }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+
+<div class="d-flex justify-content-center login">
+
+    <div class="card mt-5 text-center cardlogin" style="width: 500px;">
+
+        <div class="card-body">
+
+            <img src="{{URL}}/resources/view/account/assets/images/nova-logo.png" class="img-responsive" width="64px">
+
+            <h3 class="titlelogin">Crie sua conta Showclass<br> gratuitamente!</h3>
+
+            <!-- <a>
+                <div id="g_id_onload"
+                    data-client_id="782758127217-8g475iqhal5rd82l860cgqaoe4sfbi55.apps.googleusercontent.com"
+                    data-login_uri="https://showclass.com.br/account/login_google" data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+                    data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+                </div>
+            </a>
+            <br>
+            <a>
+                <img src="{{URL}}/resources/view/account/assets/images/botaofacebook.png" class="img-responsive"
+                    width="60%">
+            </a> -->
+
+            <br>
+            <hr class="hrform">
+            <br>
+            {{status}}
+
+            <form method="post">
+
+                <div class="form-group text-start">
+                    <label>Nome</label>
+                    <input type="text" class="form-control" name="nome" placeholder="Ex: João" required autofocus>
+                </div>
+
+                <div class="form-group text-start my-3">
+                    <label>Sobrenome</label>
+                    <input type="text" class="form-control" name="sobrenome" placeholder="Ex: da Silva" required
+                        autofocus>
+                </div>
+
+                <div class="form-group text-start my-3">
+                    <label>E-mail</label>
+                    <input type="email" class="form-control" name="email" placeholder="email@teste.com" required>
+                </div>
+
+                <div class="form-group text-start my-3 d-flex flex-column">
+                    <label>Telefone</label><br>
+                    <input type="text" id="phone" class="form-control telefone" name="telefone"
+                        placeholder="(XX) XXXXX-XXXX" required>
+                </div>
+
+
+                <div class="form-group my-3 text-start">
+                    <label>Crie sua senha</label>
+                    <input type="password" class="form-control password" id="pass" name="senha" placeholder="*********"
+                        required>
+
+                    <ul class="helper-text">
+                        <li class="length">Precisa ter mais de 8 caracteres.</li>
+                        <li class="lowercase">Precisa conter letra minúscula.</li>
+                        <li class="uppercase">Precisa conter letra maiúscula.</li>
+                        <li class="special">Precisa conter um número ou caracter especial.</li>
+                    </ul>
+                </div>
+
+
+
+                <div class="form-group my-3 text-start">
+                    <label>Confirme sua senha</label>
+                    <input type="password" class="form-control" name="confirmar_senha" placeholder="*********" required>
+                </div>
+
+                <div class="form-group text-start">
+                    <label>Cnpj</label>
+                    <input type="text"
+                        onkeyup="document.getElementById('validation').innerHTML = validaCNPJ(this.value)"
+                        class="form-control cnpj" name="cnpj" placeholder="Ex: 00.000.000/0000-00" required>
+                    <p id="validation"></p>
+                </div>
+
+                <div class="form-group text-start my-3">
+                    <label>Nome empresa</label>
+                    <input type="text" class="form-control" name="nome_empresa" placeholder="Ex: Concessionária..."
+                        required autofocus>
+                </div>
+
+
+
+
+                <button type="submit" id="enviarcadastro" class="btn btnlogin btn-lg btn-danger">Enviar</button>
+
+            </form>
+
+            <hr class="hrform">
+
+            <a href="{{URL}}/account" class="textregister">Já possui um conta? <b>Entrar</b></a>
+
+            <br>
+
+
+        </div>
+        <!-- <a><small>Precisa de ajuda ?</small></a> -->
+    </div>
+
+</div>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function validaCNPJ(cnpj) {
+        var b = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+        var c = String(cnpj).replace(/[^\d]/g, '')
+
+        if (c.length !== 14) {
+            $("#validation").addClass("text-danger")
+            $("#enviarcadastro").attr("disabled", true)
+            return 'Digite um cnpj válido'
+        }
+
+        if (/0{14}/.test(c))
+        {
+            $("#validation").addClass("text-danger")
+            $("#enviarcadastro").attr("disabled", true)
+            return 'Digite um cnpj válido'
+        }
+
+        for (var i = 0, n = 0; i < 12; n += c[i] * b[++i]);
+        if (c[12] != (((n %= 11) < 2) ? 0 : 11 - n))
+        {
+            $("#validation").addClass("text-danger")
+            $("#enviarcadastro").attr("disabled", true)
+            return 'Digite um cnpj válido'
+        }
+
+        for (var i = 0, n = 0; i <= 12; n += c[i] * b[i++]);
+        if (c[13] != (((n %= 11) < 2) ? 0 : 11 - n)) {
+            $("#validation").addClass("text-danger")
+            $("#enviarcadastro").attr("disabled", true)
+            return 'Digite um cnpj válido'
+        } else {
+            $("#enviarcadastro").attr("disabled", false)
+            return ''
+        }
+
+
+
+    }
+    let password = document.querySelector('.password');
+
+    $(document).ready(function () {
+
+        $('.cnpj').mask('00.000.000/0000-00', { reverse: true });
+
+        $("input.telefone")
+            .mask("(99) 99999-9999")
+            .focusout(function (event) {
+                var target, phone, element;
+                target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+                phone = target.value.replace(/\D/g, '');
+                element = $(target);
+                element.unmask();
+                if (phone.length > 10) {
+                    element.mask("(99) 99999-9999");
+                } else {
+                    element.mask("(99) 9999-99999");
+                }
+            });
+    });
+
+    let helperText = {
+        charLength: document.querySelector('.helper-text .length'),
+        lowercase: document.querySelector('.helper-text .lowercase'),
+        uppercase: document.querySelector('.helper-text .uppercase'),
+        special: document.querySelector('.helper-text .special'),
+    }
+
+
+    password.addEventListener("keyup", function () {
+
+        patternTest(pattern.charLength(), helperText.charLength);
+
+
+        patternTest(pattern.lowercase(), helperText.lowercase);
+
+
+        patternTest(pattern.uppercase(), helperText.uppercase);
+
+
+        patternTest(pattern.special(), helperText.special);
+
+        if (
+            hasClass(helperText.charLength, "valid") &&
+            hasClass(helperText.lowercase, "valid") &&
+            hasClass(helperText.uppercase, "valid") &&
+            hasClass(helperText.special, "valid")
+        ) {
+            addClass(password.parentElement, "valid");
+        } else {
+            removeClass(password.parentElement, "valid");
+        }
+    })
+
+    let pattern = {
+        charLength: function () {
+            if (password.value.length >= 8) {
+                return true;
+            }
+        },
+        lowercase: function () {
+
+            let regex = /^(?=.*[a-z]).+$/;
+
+            if (regex.test(password.value)) {
+                return true;
+            }
+        },
+        uppercase: function () {
+
+            let regex = /^(?=.*[A-Z]).+$/;
+
+            if (regex.test(password.value)) {
+                return true;
+            }
+        },
+        special: function () {
+
+            let regex = /^(?=.*[0-9_\W]).+$/;
+
+            if (regex.test(password.value)) {
+                return true;
+            }
+        },
+    }
+
+    function removeClass(el, className) {
+        if (el.classList) el.classList.remove(className);
+        else
+            el.className = el.className.replace(
+                new RegExp(
+                    "(^|\\b)" + className.split(" ").join("|") + "(\\b|$)", "gi"
+                ),
+                " "
+            );
+    }
+    function hasClass(el, className) {
+        if (el.classList) {
+            console.log(el.classList);
+            return el.classList.contains(className);
+        } else {
+            new RegExp("(^| )" + className + "( |$)", "gi").test(el.className);
+
+        }
+    }
+
+    function patternTest(pattern, response) {
+        if (pattern) {
+            addClass(response, "valid");
+        } else {
+
+            removeClass(response, "valid");
+        }
+    }
+
+    function addClass(el, className) {
+        if (el.classList) {
+            el.classList.add(className);
+        } else {
+            el.className += " " + className;
+        }
+    }
+
+
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+<script>
+    const input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+        preferredCountries: ["br", "co", "in", "de"],
+    });
+</script>

@@ -1,0 +1,173 @@
+<style>
+    .modal-backdrop.show {
+        opacity: 0.7;
+    }
+
+    .offcanvas {
+        z-index: 9999;
+    }
+
+    .offcanvas.offcanvas-end {
+        width: 35%;
+    }
+</style>
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Planos
+                </h2>
+            </div>
+            <!-- Page title actions -->
+        </div>
+    </div>
+</div>
+
+<!-- <hr>
+<a href="{{URL}}/admin-panel/users/new">
+    <button type="button" class="btn btn-success">Cadastrar usuário</button>
+</a>
+<hr> -->
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            {{status}}
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-light table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Descrição</th>
+                                <th>Valor</th>
+                                <th style="width:300px">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{itens}}
+                        </tbody>
+                    </table>
+
+                    
+                </div>
+            </div>
+            {{pagination}}
+        </div>
+    </div>
+</div>
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEnd" aria-labelledby="offcanvasEndLabel">
+    <div class="offcanvas-header">
+        <h2 class="offcanvas-title" id="offcanvasEndLabel">
+            Recursos do plano
+            <br>
+        </h2>
+
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <form method="post" id="formtask">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Itens na loja</label>
+                            <input type="text" name="itens_loja" id="itens_loja" class="form-control" value="" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label>Descrição</label>
+                            <input type="text" name="descricao" id="descricao" class="form-control" value="" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label>Destaque itens na semana</label>
+                            <input type="text" name="destaque_items_semana" id="destaque_items_semana" class="form-control" value="" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label>Story por dia</label>
+                            <input type="text" name="story_dia" id="story_dia" class="form-control" value="" required>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <input type="hidden" name="id_plano" class="form-control" value="{{id_plano}}" required>
+                            <button type="subtmit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="mt-3" style="position: absolute;
+        bottom: 2%;">
+            <button id="fecharcanva" class="btn btn-primary" type="button" data-bs-dismiss="offcanvas">
+                Fechar
+            </button>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script>
+        function verTask(id) {
+            console.log(id);
+    
+            $.ajax({
+                url: "{{URL}}/admin-panel/planos/recursos/" + id,
+                method: "GET",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    console.log(data);
+                    var parsedJson = $.parseJSON(data);
+                    $('#itens_loja').val(parsedJson.itens_loja);
+                    $('#descricao').val(parsedJson.descricao);
+                    $('#destaque_items_semana').val(parsedJson.destaque_items_semana);
+                    $('#story_dia').val(parsedJson.story_dia);
+                    $('input[name="id_plano"]').val(id); // Define o ID do plano no formulário
+                }
+            });
+    
+            var secondoffcanvas = document.getElementById('offcanvasEnd');
+            var bsOffcanvas2 = new bootstrap.Offcanvas(secondoffcanvas);
+            bsOffcanvas2.show();
+        }
+    
+        // Evento para capturar o envio do formulário e realizar o update dos recursos do plano
+        $('#formtask').on('submit', function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+    
+            // Obtém o ID do plano
+            var idPlano = $('input[name="id_plano"]').val();
+    
+            // URL para a requisição de atualização de recursos
+            var url = "/admin-panel/planos/recursos/" + idPlano;
+            console.log($(this).serialize());
+            // Envia a requisição AJAX para atualizar os recursos do plano
+            console.log(url);
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: $(this).serialize(),
+                
+                success: function(response) {
+                    console.log("Recursos do plano atualizados com sucesso!");
+                    
+                    // Opcional: Fechar o offcanvas após a atualização
+                    var bsOffcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasEnd'));
+                    bsOffcanvas.hide();
+                    
+                    // Opcional: Exibir mensagem de sucesso ou atualizar a tabela
+                    alert("Recursos atualizados com sucesso!");
+                },
+                error: function(xhr, status, error) {
+                    console.log("Erro ao atualizar os recursos do plano:", error);
+                }
+            });
+        });
+    </script>
+    

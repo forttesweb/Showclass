@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="card p-5">
+            <h1>Excluir conta</h1>
+
+            <hr>
+
+            
+
+            <hr>
+
+            <form method="post">
+                <input name="id_user" type="hidden" value="{{id_user}}">
+                <div class="form-group">
+                    Você deseja realmente excluir a sua conta ?
+                </div>
+
+                <div class="form-group mt-3">
+                    <a href="{{URL}}/account">
+                        <button type="button" class="btn btn-warning">Voltar</button>
+                    </a>
+                    <button type="subtmit" class="btn btn-outline-danger">Excluir</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

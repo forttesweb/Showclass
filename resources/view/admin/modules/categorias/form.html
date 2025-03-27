@@ -1,0 +1,59 @@
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    {{title}}
+                </h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <div class="d-flex">
+
+                    <a href="{{URL}}/admin-panel/categorias" class="btn btn-info">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 5l0 14"></path>
+                            <path d="M5 12l14 0"></path>
+                        </svg>
+                        Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{{nome}}</h4>
+                </div>
+                <div class="card-body">
+                    {{status}}
+                    <form method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" name="nome" class="form-control" value="{{nome}}" required>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label>Imagem</label>
+                            <input type="file" name="imagem" class="form-control" value="{{imagem}}" required>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <button type="subtmit" class="btn btn-success">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

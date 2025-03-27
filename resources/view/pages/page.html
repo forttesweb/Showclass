@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="{{URL}}/publico/icons.woff2" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{{URL}}/resources/view/pages/assets/css/carousel.css" rel="stylesheet">
+    <link href="{{URL}}/resources/view/pages/assets/css/styles.css" rel="stylesheet">
+    <link href="{{URL}}/resources/view/pages/assets/css/slides.css" rel="stylesheet">
+    <!-- <script src="{{URL}}/js/socket.js"></script> -->
+    <!-- <link rel="stylesheet" href="{{URL}}/css/normalize.css"> -->
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel='stylesheet prefetch'
+        href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
+    <!-- <link rel="stylesheet" href="{{URL}}/css/style.css"> -->
+    <script type="text/javascript" src="{{URL}}/js/sockettest.js"></script>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{URL}}/resources/view/pages/assets/images/faviconnnnnn.png">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <title>{{title}}</title>
+
+    <script>
+        openSocket('{{token}}')
+    </script>
+    <!-- <script>
+        if (window.SharedWorker) {
+          const worker = new SharedWorker('{{URL}}/js/sockettest.js', '{{token}}');
+          worker.port.start();
+        } else {
+          console.error('SharedWorker não é suportado pelo navegador');
+        }
+      </script> -->
+    <style>
+        @font-face {
+            font-display: swap;
+            font-family: Webfont;
+            src: url({{URL}}/publico/icons.eot?h582318206dxsws3125sxsa) format("embedded-opentype")
+        }
+
+        @font-face {
+            font-display: swap;
+            font-family: Webfont;
+            src: url({{URL}}/publico/icons.eot?h582318206dxsws3125sxsa) format("embedded-opentype"),
+            url({{URL}}/publico/icons.woff2?h582318206dxsws3125sxsa) format("woff2"),
+            url({{URL}}/publico/icons.woff?h582318206dxsws3125sxsa) format("woff"),
+            url({{URL}}/publico/icons.ttf?h582318206dxsws3125sxsa) format("truetype"),
+            url({{URL}}/publico/icons.svg?h582318206dxsws3125sxsa#icons) format("svg")
+        }
+
+        i[class*=" icon-"]:before,
+        i[class^=icon-]:before {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-family: Webfont;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 0;
+            text-transform: none
+        }
+
+        i[class*=" icon-"]:before,
+        i[class^=icon-]:before {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-family: Webfont;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 0;
+            text-transform: none;
+        }
+
+        .icon-velocity:before {
+            content: "\f173";
+        }
+    </style>
+</head>
+
+<body>
+    {{header}}
+
+    <main>
+        {{content}}
+    </main>
+
+    {{footer}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script> -->
+
+
+</body>
+
+</html>

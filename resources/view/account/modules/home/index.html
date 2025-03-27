@@ -1,0 +1,1629 @@
+<style>
+    .modal-dialog.modal-dialog-centered {
+        width: 600px;
+        max-width: 100%;
+    }
+
+    div#listar-img {
+        display: flex;
+        gap: 15px;
+        /* flex-direction: row; */
+        max-width: 100%;
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+
+    .boximagensthumb {
+        width: 22%;
+    }
+
+    .boximagensthumb img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+    }
+
+    textarea {
+        background: #fafafa;
+        border: 1px solid #f2f2f2;
+        box-shadow: 0px 5px 6px rgb(0 0 0 / 25%);
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .menudesk {
+        display: block;
+    }
+
+    .menumobile {
+        display: none;
+    }
+
+    @media screen and (max-width:768px) {
+        .menudesk {
+            display: none;
+        }
+
+        .menumobile {
+            display: block;
+            width: 100%;
+            margin: auto;
+        }
+
+        .btn.btnlogin {
+            width: 100%;
+        }
+
+        .btndelete {
+            width: 100% !important;
+            margin-top: 30px;
+        }
+
+        .boxdeleteacc {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+    }
+
+    .boxcontend {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 0px 12px;
+    }
+
+    .boxactions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    /* ul.navbar-nav.ms-auto.mb-2.mb-lg-0 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+} */
+    .form-input img {
+        width: 100px;
+        height: 100px;
+        /* margin: 2px; */
+        opacity: 1;
+    }
+
+    .form-input label {
+        display: block;
+        width: 100px;
+        height: auto;
+        max-height: 100px;
+        background: #333;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .imgRemove {
+        position: relative;
+        bottom: 106px;
+        left: 66%;
+        background-color: transparent;
+        border: none;
+        font-size: 30px;
+        outline: none;
+    }
+
+    .form-input input {
+        display: none;
+    }
+
+    .image-upload-one {
+        grid-area: img-u-one;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-upload-two {
+        grid-area: img-u-two;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-upload-three {
+        grid-area: img-u-three;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-upload-four {
+        grid-area: img-u-four;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-upload-five {
+        grid-area: img-u-five;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-upload-six {
+        grid-area: img-u-six;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-upload-seven {
+        grid-area: img-u-seven;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-upload-eight {
+        grid-area: img-u-eight;
+        display: flex;
+        justify-content: center;
+    }
+
+    .imgRemove::after {
+        content: 'X';
+        /* content: ' \21BA'; */
+        color: #f00;
+        font-weight: 900;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .conteudo {
+        padding: 1rem 1.9rem;
+    }
+
+    .conteudo {
+        background: #fff;
+        box-shadow: 0 0 3px 0 #ccc;
+        width: 100%;
+        margin: auto;
+    }
+
+    .card-lg>.card-body {
+        padding: 2rem;
+    }
+</style>
+{{status}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+<div class="d-flex align-items-start boxperfil">
+    <div class="nav flex-column nav-pills menudesk" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <h4 class="titleperfil">MENU</h4>
+        <button class="nav-link perfil active" id="v-pills-home-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28" viewBox="0 0 44 44"
+                fill="none">
+                <path
+                    d="M22 22C18.975 22 16.3854 20.9229 14.2313 18.7687C12.0771 16.6146 11 14.025 11 11C11 7.975 12.0771 5.38542 14.2313 3.23125C16.3854 1.07708 18.975 0 22 0C25.025 0 27.6146 1.07708 29.7687 3.23125C31.9229 5.38542 33 7.975 33 11C33 14.025 31.9229 16.6146 29.7687 18.7687C27.6146 20.9229 25.025 22 22 22ZM0 44V36.3C0 34.7417 0.401501 33.3089 1.2045 32.0018C2.00567 30.6964 3.07083 29.7 4.4 29.0125C7.24167 27.5917 10.1292 26.5256 13.0625 25.8143C15.9958 25.1047 18.975 24.75 22 24.75C25.025 24.75 28.0042 25.1047 30.9375 25.8143C33.8708 26.5256 36.7583 27.5917 39.6 29.0125C40.9292 29.7 41.9943 30.6964 42.7955 32.0018C43.5985 33.3089 44 34.7417 44 36.3V44H0Z" />
+                <!-- fill="#1A47BA" /> -->
+            </svg>
+            Meu perfil</button>
+        <!-- <button class="nav-link perfil" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+            type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 48 46" fill="none">
+                <path
+                    d="M24 38.4923L35.4125 45.3948C37.5025 46.6598 40.06 44.7898 39.51 42.4248L36.485 29.4448L46.5775 20.6998C48.42 19.1048 47.43 16.0798 45.01 15.8873L31.7275 14.7598L26.53 2.49484C25.595 0.267344 22.405 0.267344 21.47 2.49484L16.2725 14.7323L2.99002 15.8598C0.570017 16.0523 -0.419984 19.0773 1.42252 20.6723L11.515 29.4173L8.49002 42.3973C7.94002 44.7623 10.4975 46.6323 12.5875 45.3673L24 38.4923Z" />
+            </svg>
+            Meu plano</button> -->
+        <button class="nav-link perfil" id="v-pills-messages-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+            aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 42 47" fill="none">
+                <path
+                    d="M3.5 46.75C2.72083 46.75 2.06725 46.486 1.53925 45.958C1.01308 45.4318 0.75 44.7792 0.75 44V2.75C0.75 1.97083 1.01308 1.31725 1.53925 0.78925C2.06725 0.263084 2.72083 0 3.5 0H23.2313C23.8729 0 24.4458 0.20625 24.95 0.61875C25.4542 1.03125 25.775 1.55833 25.9125 2.2L26.6 5.5H39.25C40.0292 5.5 40.6818 5.76308 41.208 6.28925C41.736 6.81725 42 7.47083 42 8.25V30.25C42 31.0292 41.736 31.6818 41.208 32.208C40.6818 32.736 40.0292 33 39.25 33H25.0187C24.3771 33 23.8042 32.7938 23.3 32.3812C22.7958 31.9687 22.475 31.4417 22.3375 30.8L21.65 27.5H6.25V44C6.25 44.7792 5.98692 45.4318 5.46075 45.958C4.93275 46.486 4.27917 46.75 3.5 46.75Z" />
+            </svg>
+            Meu anúncios</button>
+
+            <a href="{{URL}}/anunciar" class="nav-link perfil" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                <svg class="icon-anunciar" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Anunciar
+            </a>
+
+
+        <h4 class="titleperfil mt-5">MENU PROFISSIONAL</h4>
+
+        <button class="nav-link perfil" id="v-pills-home-public-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-home-public" type="button" role="tab" aria-controls="v-pills-home-public"
+            aria-selected="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28" viewBox="0 0 44 44"
+                fill="none">
+                <path
+                    d="M22 22C18.975 22 16.3854 20.9229 14.2313 18.7687C12.0771 16.6146 11 14.025 11 11C11 7.975 12.0771 5.38542 14.2313 3.23125C16.3854 1.07708 18.975 0 22 0C25.025 0 27.6146 1.07708 29.7687 3.23125C31.9229 5.38542 33 7.975 33 11C33 14.025 31.9229 16.6146 29.7687 18.7687C27.6146 20.9229 25.025 22 22 22ZM0 44V36.3C0 34.7417 0.401501 33.3089 1.2045 32.0018C2.00567 30.6964 3.07083 29.7 4.4 29.0125C7.24167 27.5917 10.1292 26.5256 13.0625 25.8143C15.9958 25.1047 18.975 24.75 22 24.75C25.025 24.75 28.0042 25.1047 30.9375 25.8143C33.8708 26.5256 36.7583 27.5917 39.6 29.0125C40.9292 29.7 41.9943 30.6964 42.7955 32.0018C43.5985 33.3089 44 34.7417 44 36.3V44H0Z" />
+                <!-- fill="#1A47BA" /> -->
+            </svg>
+            Perfil público
+        </button>
+        <button class="nav-link perfil" id="v-pills-home-storie-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-home-storie" type="button" role="tab" aria-controls="v-pills-home-storie"
+            aria-selected="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28" viewBox="0 0 44 44"
+                fill="none">
+                <path
+                    d="M22 22C18.975 22 16.3854 20.9229 14.2313 18.7687C12.0771 16.6146 11 14.025 11 11C11 7.975 12.0771 5.38542 14.2313 3.23125C16.3854 1.07708 18.975 0 22 0C25.025 0 27.6146 1.07708 29.7687 3.23125C31.9229 5.38542 33 7.975 33 11C33 14.025 31.9229 16.6146 29.7687 18.7687C27.6146 20.9229 25.025 22 22 22ZM0 44V36.3C0 34.7417 0.401501 33.3089 1.2045 32.0018C2.00567 30.6964 3.07083 29.7 4.4 29.0125C7.24167 27.5917 10.1292 26.5256 13.0625 25.8143C15.9958 25.1047 18.975 24.75 22 24.75C25.025 24.75 28.0042 25.1047 30.9375 25.8143C33.8708 26.5256 36.7583 27.5917 39.6 29.0125C40.9292 29.7 41.9943 30.6964 42.7955 32.0018C43.5985 33.3089 44 34.7417 44 36.3V44H0Z" />
+                <!-- fill="#1A47BA" /> -->
+            </svg>
+            Stories
+        </button>
+        <button class="nav-link perfil" id="v-pills-home-vendas-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-home-vendas" type="button" role="tab" aria-controls="v-pills-home-vendas"
+            aria-selected="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28" viewBox="0 0 60 60"
+                fill="none">
+                <path
+                    d="M34.2408 22.6031V22.6281V22.6031ZM9.67328 16.0481C8.57678 15.2054 7.73464 14.0759 7.23993 12.7845C6.74523 11.493 6.61723 10.09 6.87007 8.73033C7.12292 7.3707 7.74676 6.10745 8.67266 5.0802C9.59856 4.05295 10.7905 3.30171 12.1166 2.9095C13.4428 2.51729 14.8516 2.49939 16.1873 2.85778C17.523 3.21616 18.7336 3.93688 19.6853 4.94027C20.637 5.94366 21.2927 7.19065 21.58 8.54342C21.8673 9.89618 21.775 11.302 21.3133 12.6056" />
+                <path
+                    d="M34.2408 22.6031V22.6281M9.67328 16.0481C8.57678 15.2054 7.73464 14.0759 7.23993 12.7845C6.74523 11.493 6.61723 10.09 6.87007 8.73033C7.12292 7.3707 7.74676 6.10745 8.67266 5.0802C9.59856 4.05295 10.7905 3.30171 12.1166 2.9095C13.4428 2.51729 14.8516 2.49939 16.1873 2.85778C17.523 3.21616 18.7336 3.93688 19.6853 4.94027C20.637 5.94366 21.2927 7.19065 21.58 8.54342C21.8673 9.89618 21.775 11.302 21.3133 12.6056C17.3701 12.6056 12.7407 12.6056 9.67328 16.0481Z"
+                    stroke="#6B6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M40.0002 10V19.5075C43.0943 21.2978 45.4499 24.1311 46.6452 27.5H49.9977C50.6608 27.5 51.2966 27.7634 51.7655 28.2322C52.2343 28.7011 52.4977 29.337 52.4977 30V35C52.4977 35.663 52.2343 36.2989 51.7655 36.7678C51.2966 37.2366 50.6608 37.5 49.9977 37.5H46.6427C45.8027 39.875 44.3752 42 42.4977 43.6825V48.75C42.4977 49.7446 42.1026 50.6984 41.3994 51.4016C40.6961 52.1049 39.7423 52.5 38.7477 52.5C37.7532 52.5 36.7993 52.1049 36.0961 51.4016C35.3928 50.6984 34.9977 49.7446 34.9977 48.75V47.2925C34.1716 47.4309 33.3354 47.5003 32.4977 47.5H22.4977C21.6601 47.5003 20.8239 47.4309 19.9977 47.2925V48.75C19.9977 49.7446 19.6026 50.6984 18.8994 51.4016C18.1961 52.1049 17.2423 52.5 16.2477 52.5C15.2532 52.5 14.2993 52.1049 13.5961 51.4016C12.8928 50.6984 12.4977 49.7446 12.4977 48.75V43.75L12.5002 43.6825C10.2353 41.6576 8.63863 38.9926 7.92158 36.0403C7.20452 33.088 7.40087 29.9875 8.48463 27.1492C9.56839 24.3109 11.4885 21.8687 13.9908 20.1456C16.4931 18.4226 19.4596 17.5 22.4977 17.5H28.7477L39.9977 10H40.0002Z"
+                    stroke="#6B6B6B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Minhas vendas
+        </button>
+        <button class="nav-link perfil" id="v-pills-home-plano-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-home-plano" type="button" role="tab" aria-controls="v-pills-home-plano"
+            aria-selected="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28" viewBox="0 0 48 46"
+                fill="none">
+                <path
+                    d="M23.9999 38.4923L35.4124 45.3948C37.5024 46.6598 40.0599 44.7898 39.5099 42.4248L36.4849 29.4448L46.5774 20.6998C48.4199 19.1048 47.4299 16.0798 45.0099 15.8873L31.7274 14.7598L26.5299 2.49484C25.5949 0.267344 22.4049 0.267344 21.4699 2.49484L16.2724 14.7323L2.98989 15.8598C0.569895 16.0523 -0.420106 19.0773 1.42239 20.6723L11.5149 29.4173L8.48989 42.3973C7.9399 44.7623 10.4974 46.6323 12.5874 45.3673L23.9999 38.4923Z" />
+            </svg>
+            Meu plano
+        </button>
+    </div>
+
+
+
+
+
+
+
+    <div class="accordion accordion-flush menumobile" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button id="fecharaccordion" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Menu
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <h4 class="titleperfil">MENU</h4>
+                        <button class="nav-link perfil active" id="v-pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                            aria-selected="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28"
+                                viewBox="0 0 44 44" fill="none">
+                                <path
+                                    d="M22 22C18.975 22 16.3854 20.9229 14.2313 18.7687C12.0771 16.6146 11 14.025 11 11C11 7.975 12.0771 5.38542 14.2313 3.23125C16.3854 1.07708 18.975 0 22 0C25.025 0 27.6146 1.07708 29.7687 3.23125C31.9229 5.38542 33 7.975 33 11C33 14.025 31.9229 16.6146 29.7687 18.7687C27.6146 20.9229 25.025 22 22 22ZM0 44V36.3C0 34.7417 0.401501 33.3089 1.2045 32.0018C2.00567 30.6964 3.07083 29.7 4.4 29.0125C7.24167 27.5917 10.1292 26.5256 13.0625 25.8143C15.9958 25.1047 18.975 24.75 22 24.75C25.025 24.75 28.0042 25.1047 30.9375 25.8143C33.8708 26.5256 36.7583 27.5917 39.6 29.0125C40.9292 29.7 41.9943 30.6964 42.7955 32.0018C43.5985 33.3089 44 34.7417 44 36.3V44H0Z" />
+                                <!-- fill="#1A47BA" /> -->
+                            </svg>
+                            Meu perfil</button>
+                        <!-- <button class="nav-link perfil" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                        type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 48 46" fill="none">
+                            <path
+                                d="M24 38.4923L35.4125 45.3948C37.5025 46.6598 40.06 44.7898 39.51 42.4248L36.485 29.4448L46.5775 20.6998C48.42 19.1048 47.43 16.0798 45.01 15.8873L31.7275 14.7598L26.53 2.49484C25.595 0.267344 22.405 0.267344 21.47 2.49484L16.2725 14.7323L2.99002 15.8598C0.570017 16.0523 -0.419984 19.0773 1.42252 20.6723L11.515 29.4173L8.49002 42.3973C7.94002 44.7623 10.4975 46.6323 12.5875 45.3673L24 38.4923Z" />
+                        </svg>
+                        Meu plano</button> -->
+                        <button class="nav-link perfil" id="v-pills-messages-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+                            aria-selected="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 42 47"
+                                fill="none">
+                                <path
+                                    d="M3.5 46.75C2.72083 46.75 2.06725 46.486 1.53925 45.958C1.01308 45.4318 0.75 44.7792 0.75 44V2.75C0.75 1.97083 1.01308 1.31725 1.53925 0.78925C2.06725 0.263084 2.72083 0 3.5 0H23.2313C23.8729 0 24.4458 0.20625 24.95 0.61875C25.4542 1.03125 25.775 1.55833 25.9125 2.2L26.6 5.5H39.25C40.0292 5.5 40.6818 5.76308 41.208 6.28925C41.736 6.81725 42 7.47083 42 8.25V30.25C42 31.0292 41.736 31.6818 41.208 32.208C40.6818 32.736 40.0292 33 39.25 33H25.0187C24.3771 33 23.8042 32.7938 23.3 32.3812C22.7958 31.9687 22.475 31.4417 22.3375 30.8L21.65 27.5H6.25V44C6.25 44.7792 5.98692 45.4318 5.46075 45.958C4.93275 46.486 4.27917 46.75 3.5 46.75Z" />
+                            </svg>
+                            Meu anúncios</button>
+                        <!-- <button class="nav-link perfil" id="v-pills-settings-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
+                        aria-selected="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 56 44" fill="none">
+                            <path
+                                d="M50 0H6C2.9475 0 0.5275 2.4475 0.5275 5.5L0.5 38.5C0.5 41.5525 2.9475 44 6 44H50C53.0525 44 55.5 41.5525 55.5 38.5V5.5C55.5 2.4475 53.0525 0 50 0ZM47.25 38.5H8.75C7.2375 38.5 6 37.2625 6 35.75V22H50V35.75C50 37.2625 48.7625 38.5 47.25 38.5ZM50 11H6V5.5H50V11Z" />
+                        </svg>
+                        Pagamento
+                    </button> -->
+
+
+                        <h4 class="titleperfil mt-5">MENU PROFISSIONAL</h4>
+
+                        <button class="nav-link perfil" id="v-pills-home-public-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-home-public" type="button" role="tab"
+                            aria-controls="v-pills-home-public" aria-selected="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28"
+                                viewBox="0 0 44 44" fill="none">
+                                <path
+                                    d="M22 22C18.975 22 16.3854 20.9229 14.2313 18.7687C12.0771 16.6146 11 14.025 11 11C11 7.975 12.0771 5.38542 14.2313 3.23125C16.3854 1.07708 18.975 0 22 0C25.025 0 27.6146 1.07708 29.7687 3.23125C31.9229 5.38542 33 7.975 33 11C33 14.025 31.9229 16.6146 29.7687 18.7687C27.6146 20.9229 25.025 22 22 22ZM0 44V36.3C0 34.7417 0.401501 33.3089 1.2045 32.0018C2.00567 30.6964 3.07083 29.7 4.4 29.0125C7.24167 27.5917 10.1292 26.5256 13.0625 25.8143C15.9958 25.1047 18.975 24.75 22 24.75C25.025 24.75 28.0042 25.1047 30.9375 25.8143C33.8708 26.5256 36.7583 27.5917 39.6 29.0125C40.9292 29.7 41.9943 30.6964 42.7955 32.0018C43.5985 33.3089 44 34.7417 44 36.3V44H0Z" />
+                                <!-- fill="#1A47BA" /> -->
+                            </svg>
+                            Perfil público
+                        </button>
+                        <button class="nav-link perfil" id="v-pills-home-storie-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-home-storie" type="button" role="tab"
+                            aria-controls="v-pills-home-storie" aria-selected="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28"
+                                viewBox="0 0 44 44" fill="none">
+                                <path
+                                    d="M22 22C18.975 22 16.3854 20.9229 14.2313 18.7687C12.0771 16.6146 11 14.025 11 11C11 7.975 12.0771 5.38542 14.2313 3.23125C16.3854 1.07708 18.975 0 22 0C25.025 0 27.6146 1.07708 29.7687 3.23125C31.9229 5.38542 33 7.975 33 11C33 14.025 31.9229 16.6146 29.7687 18.7687C27.6146 20.9229 25.025 22 22 22ZM0 44V36.3C0 34.7417 0.401501 33.3089 1.2045 32.0018C2.00567 30.6964 3.07083 29.7 4.4 29.0125C7.24167 27.5917 10.1292 26.5256 13.0625 25.8143C15.9958 25.1047 18.975 24.75 22 24.75C25.025 24.75 28.0042 25.1047 30.9375 25.8143C33.8708 26.5256 36.7583 27.5917 39.6 29.0125C40.9292 29.7 41.9943 30.6964 42.7955 32.0018C43.5985 33.3089 44 34.7417 44 36.3V44H0Z" />
+                                <!-- fill="#1A47BA" /> -->
+                            </svg>
+                            Stories
+                        </button>
+                        <button class="nav-link perfil" id="v-pills-home-vendas-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-home-vendas" type="button" role="tab"
+                            aria-controls="v-pills-home-vendas" aria-selected="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28"
+                                viewBox="0 0 60 60" fill="none">
+                                <path
+                                    d="M34.2408 22.6031V22.6281V22.6031ZM9.67328 16.0481C8.57678 15.2054 7.73464 14.0759 7.23993 12.7845C6.74523 11.493 6.61723 10.09 6.87007 8.73033C7.12292 7.3707 7.74676 6.10745 8.67266 5.0802C9.59856 4.05295 10.7905 3.30171 12.1166 2.9095C13.4428 2.51729 14.8516 2.49939 16.1873 2.85778C17.523 3.21616 18.7336 3.93688 19.6853 4.94027C20.637 5.94366 21.2927 7.19065 21.58 8.54342C21.8673 9.89618 21.775 11.302 21.3133 12.6056" />
+                                <path
+                                    d="M34.2408 22.6031V22.6281M9.67328 16.0481C8.57678 15.2054 7.73464 14.0759 7.23993 12.7845C6.74523 11.493 6.61723 10.09 6.87007 8.73033C7.12292 7.3707 7.74676 6.10745 8.67266 5.0802C9.59856 4.05295 10.7905 3.30171 12.1166 2.9095C13.4428 2.51729 14.8516 2.49939 16.1873 2.85778C17.523 3.21616 18.7336 3.93688 19.6853 4.94027C20.637 5.94366 21.2927 7.19065 21.58 8.54342C21.8673 9.89618 21.775 11.302 21.3133 12.6056C17.3701 12.6056 12.7407 12.6056 9.67328 16.0481Z"
+                                    stroke="#6B6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M40.0002 10V19.5075C43.0943 21.2978 45.4499 24.1311 46.6452 27.5H49.9977C50.6608 27.5 51.2966 27.7634 51.7655 28.2322C52.2343 28.7011 52.4977 29.337 52.4977 30V35C52.4977 35.663 52.2343 36.2989 51.7655 36.7678C51.2966 37.2366 50.6608 37.5 49.9977 37.5H46.6427C45.8027 39.875 44.3752 42 42.4977 43.6825V48.75C42.4977 49.7446 42.1026 50.6984 41.3994 51.4016C40.6961 52.1049 39.7423 52.5 38.7477 52.5C37.7532 52.5 36.7993 52.1049 36.0961 51.4016C35.3928 50.6984 34.9977 49.7446 34.9977 48.75V47.2925C34.1716 47.4309 33.3354 47.5003 32.4977 47.5H22.4977C21.6601 47.5003 20.8239 47.4309 19.9977 47.2925V48.75C19.9977 49.7446 19.6026 50.6984 18.8994 51.4016C18.1961 52.1049 17.2423 52.5 16.2477 52.5C15.2532 52.5 14.2993 52.1049 13.5961 51.4016C12.8928 50.6984 12.4977 49.7446 12.4977 48.75V43.75L12.5002 43.6825C10.2353 41.6576 8.63863 38.9926 7.92158 36.0403C7.20452 33.088 7.40087 29.9875 8.48463 27.1492C9.56839 24.3109 11.4885 21.8687 13.9908 20.1456C16.4931 18.4226 19.4596 17.5 22.4977 17.5H28.7477L39.9977 10H40.0002Z"
+                                    stroke="#6B6B6B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Minhas vendas
+                        </button>
+                        <button class="nav-link perfil" id="v-pills-home-plano-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-home-plano" type="button" role="tab"
+                            aria-controls="v-pills-home-plano" aria-selected="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="active" width="28" height="28"
+                                viewBox="0 0 48 46" fill="none">
+                                <path
+                                    d="M23.9999 38.4923L35.4124 45.3948C37.5024 46.6598 40.0599 44.7898 39.5099 42.4248L36.4849 29.4448L46.5774 20.6998C48.4199 19.1048 47.4299 16.0798 45.0099 15.8873L31.7274 14.7598L26.5299 2.49484C25.5949 0.267344 22.4049 0.267344 21.4699 2.49484L16.2724 14.7323L2.98989 15.8598C0.569895 16.0523 -0.420106 19.0773 1.42239 20.6723L11.5149 29.4173L8.48989 42.3973C7.9399 44.7623 10.4974 46.6323 12.5874 45.3673L23.9999 38.4923Z" />
+                            </svg>
+                            Meu plano
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+
+            <form method="post">
+                <div class="row mb-5">
+                    <div class="col-md-8">
+                        <h2 class="titulosection">Informações pessoais</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary" style="float: right;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path
+                                    d="M17.1042 7.29655L12.6771 2.92155L14.1354 1.46322C14.5347 1.06391 15.0253 0.864258 15.6073 0.864258C16.1885 0.864258 16.6788 1.06391 17.0781 1.46322L18.5365 2.92155C18.9358 3.32085 19.1441 3.8028 19.1615 4.36738C19.1788 4.93127 18.9878 5.41287 18.5885 5.81217L17.1042 7.29655ZM15.5938 8.83301L4.55208 19.8747H0.125V15.4476L11.1667 4.40592L15.5938 8.83301Z"
+                                    fill="#FFFFFFFF" />
+                            </svg>
+                            Salvar
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input class="form-control" name="nome" type="text" placeholder="Nome" value="{{nome}}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Sobrenome</label>
+                            <input class="form-control" name="sobrenome" type="text" placeholder="Sobrenome"
+                                value="{{sobrenome}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" name="email" type="email" placeholder="Email" value="{{email}}"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label></label>
+                            <span class="verificado">{{status_conta}}</span>
+                            <!-- <span class="verificado">verificado <b><i>V</i></b></span> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>CNPJ</label>
+                            <input class="form-control" name="cpf" type="text" placeholder="CNPJ" value="{{cpf}}"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Data de Nascimento</label>
+                            <input class="form-control" name="data_nascimento" type="date" placeholder="Sobrenome"
+                                required value="{{data_nascimento}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Telefone</label>
+                            <input class="form-control" name="telefone" type="text" id="phone" placeholder="Telefone"
+                                value="{{telefone}}">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <hr class="hrform my-5">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="titulosection">Endereços</h2>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="btn botaoperfil" id="btnendereco" style="float: right;" data-bs-toggle="modal"
+                        data-bs-target="#modal-simple">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M17.1042 7.29655L12.6771 2.92155L14.1354 1.46322C14.5347 1.06391 15.0253 0.864258 15.6073 0.864258C16.1885 0.864258 16.6788 1.06391 17.0781 1.46322L18.5365 2.92155C18.9358 3.32085 19.1441 3.8028 19.1615 4.36738C19.1788 4.93127 18.9878 5.41287 18.5885 5.81217L17.1042 7.29655ZM15.5938 8.83301L4.55208 19.8747H0.125V15.4476L11.1667 4.40592L15.5938 8.83301Z"
+                                fill="#6B6B6B" />
+                        </svg>
+                        Editar
+                    </a>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-center">
+                <div class="boxendereco" id="boxendereco">
+                    <div class="row">
+                        <div class="col-md-1 d-flex">
+                            <input type="radio" name="radio" />
+                        </div>
+                        <div class="col-md-11 p-3">
+                            <h3>Endereço 1 - Principal</h3><br>
+                            <span>
+                                Endereço: {{endereco}}<br>
+                                numero: {{numero}} - {{bairro}}<br>
+                                bairro: {{estado}}<br>
+                                CEP: {{cep}}<br>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                    <!-- Formulário de edição -->
+                <div id="formEndereco" style="display: none;">
+                    <form id="formaddress" method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Cep</label>
+                                    <input class="form-control" name="cep" type="text" placeholder="Nome" value="{{cep}}">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <div class="form-group">
+                                    <label>Estado</label>
+                                    <input class="form-control" name="estado" type="text" placeholder="Nome"
+                                        value="{{estado}}">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <div class="form-group">
+                                    <label>Rua</label>
+                                    <input class="form-control" name="endereco" type="text" placeholder="Nome"
+                                        value="{{endereco}}">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <div class="form-group">
+                                    <label>Número</label>
+                                    <input class="form-control" name="numero" type="text" placeholder="Nome"
+                                        value="{{numero}}">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <div class="form-group">
+                                    <label>Bairro</label>
+                                    <input class="form-control" name="bairro" type="text" placeholder="Nome"
+                                        value="{{bairro}}">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <div class="form-group">
+                                    <label>Complemento</label>
+                                    <input class="form-control" name="complemento" type="text" placeholder="Nome"
+                                        value="{{complemento}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="subtmit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <hr class="hrform my-5">
+
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="titulosection">Conta</h2>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 d-flex align-items-center boxdeleteacc" style="gap: 20px;">
+                    <div class="alerticon">
+                        <img src="{{URL}}/resources/view/account/assets/images/alertconta.png" class="img-responsive">
+                    </div>
+                    <span>
+                        <strong>Excluir minha conta</strong><br>
+                        Seu perfil e seus anúncios serão excluídos de nossa base.<br>
+                        Você pode reativar sua conta ou criar uma nova a qualquer momento.
+                    </span>
+                </div>
+                <div class="col-md-2 d-flex align-items-center">
+                    <a class="btn botaoperfil btndelete" style="float: right;" href="{{URL}}/account/delete">
+                        Excluir conta
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            Lorem ipsum dolor sit amet consectetur. Quis purus purus tellus euismod. Praesent urna sollicitudin vitae
+            velit. Sed aliquam nisl dolor mattis ultricies. Nibh diam ut eget nisl ut.
+
+            Lorem ipsum dolor sit amet consectetur. Quis purus purus tellus euismod. Praesent urna sollicitudin vitae
+            velit. Sed aliquam nisl dolor mattis ultricies. Nibh diam ut eget nisl ut.
+
+
+        </div>
+        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="titulosection">Meus anúncios</h2>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <div class="row">
+                {{anuncios}}
+                {{pagination}}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+
+        </div>
+
+        <!-- PERFIL PUBLICO -->
+        <div class="tab-pane fade" id="v-pills-home-public" role="tabpanel" aria-labelledby="v-pills-home-public-tab">
+            <form method="post" id="form">
+                <div class="row mb-5">
+                    <div class="col-md-8">
+                        <h2 class="titulosection">Informações públicas</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn  btn-primary" style="float: right;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path
+                                    d="M17.1042 7.29655L12.6771 2.92155L14.1354 1.46322C14.5347 1.06391 15.0253 0.864258 15.6073 0.864258C16.1885 0.864258 16.6788 1.06391 17.0781 1.46322L18.5365 2.92155C18.9358 3.32085 19.1441 3.8028 19.1615 4.36738C19.1788 4.93127 18.9878 5.41287 18.5885 5.81217L17.1042 7.29655ZM15.5938 8.83301L4.55208 19.8747H0.125V15.4476L11.1667 4.40592L15.5938 8.83301Z"
+                                    fill="#FFFFFF" />
+                            </svg>
+                            Salvar
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nome da loja</label>
+                            <input class="form-control" name="nome" type="text" placeholder="Nome" value="{{nome_loja}}"
+                                required>
+                            <a class="text-decoration-none"
+                                href="{{URL}}/anuncio/{{nome_url}}"><small>{{nome_url}}</small></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <!-- <input class="form-control" name="cidade" type="text" placeholder="Cidade"
+                                value="{{cidade}}" required> -->
+
+                                <select id="estado" name="estado" class="form-select">
+                                    <option value="" disabled="" selected="">Selecione o estado</option>
+                
+                
+                                </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Cidade</label>
+                            <!-- <input class="form-control" name="estado" type="text" placeholder="Estado"
+                                value="{{estado2}}" required> -->
+
+                                <select id="cidade" name="cidade" class="form-select">
+                                    <option value="" disabled="" selected="">Selecione a cidade</option>
+                                </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Logotipo</label>
+                            <input class="form-control" type="file" name="logotipo" value="{{logotipo}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Banner</label>
+                            <input class="form-control" type="file" name="banner" value="{{banner}}">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="v-pills-home-storie" role="tabpanel" aria-labelledby="v-pills-home-storie-tab">
+
+
+            {{storie}}
+
+
+
+        </div>
+        <div class="tab-pane fade" id="v-pills-home-vendas" role="tabpanel" aria-labelledby="v-pills-home-vendas-tab">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="titulosection">Meus anúncios vendidos</h2>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <div class="row">
+                {{anuncios_vendidos}}
+                {{pagination}}
+            </div>
+        </div>
+
+
+        <div class="tab-pane fade" id="v-pills-home-plano" role="tabpanel" aria-labelledby="v-pills-home-plano-tab">
+            <h2 class="titulosection">Minhas assinaturas</h2>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table id="assinaturas" class="table table-striped" style="width:100%">
+                            <thead style="display: {{display}};">
+                                <tr>
+                                    <th>Plano</th>
+                                    <th>Valor</th>
+                                    <th>Status</th>
+                                    <th>Recorrente</th>
+                                    <th>Data</th>
+                                    <th>Expiração</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{assinaturas}}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-blur fade" id="modal-simple" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar endereço</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form id="formaddress" method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Cep</label>
+                                <input class="form-control" name="cep" type="text" placeholder="Nome" value="{{cep}}">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group">
+                                <label>Estado</label>
+                                <input class="form-control" name="estado" type="text" placeholder="Nome"
+                                    value="{{estado}}">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group">
+                                <label>Rua</label>
+                                <input class="form-control" name="endereco" type="text" placeholder="Nome"
+                                    value="{{endereco}}">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group">
+                                <label>Número</label>
+                                <input class="form-control" name="numero" type="text" placeholder="Nome"
+                                    value="{{numero}}">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group">
+                                <label>Bairro</label>
+                                <input class="form-control" name="bairro" type="text" placeholder="Nome"
+                                    value="{{bairro}}">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group">
+                                <label>Complemento</label>
+                                <input class="form-control" name="complemento" type="text" placeholder="Nome"
+                                    value="{{complemento}}">
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-12 mt-3">
+                        <div class="form-group">
+                            <label>Bairro</label>
+                            <input class="form-control" name="nome" type="text" placeholder="Nome" value="{{nome}}">
+                        </div>
+                    </div> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Fechar</button>
+                        <button type="subtmit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal modal-blur fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar anúncio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form method="post" id="formanuncio">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group text-start">
+                                <label>Título</label>
+                                <input type="text" class="form-control" name="tituloanuncio" id="tituloanuncio" required
+                                    autofocus>
+                            </div>
+
+                            <div class="form-group my-3 text-start">
+                                <label>Descrição</label>
+                                <textarea rows="10" name="descricao" id="descricao"
+                                    placeholder="Cor, tamanho, estado(novo,usado)"></textarea>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group my-3 text-start">
+                                    <label>Categoria</label>
+                                    <!-- <input type="text" class="form-control" name="categoria" placeholder="Categoria" required> -->
+                                    <select name="categoria" id="categoria" class="form-select">
+                                        <!-- <option value="Automóveis">Automóveis</option>
+                                        <option value="Casa e decoração">Casa e decoração</option>
+                                        <option value="Eletrônicos">Eletrônicos</option>
+                                        <option value="Esporte e Lazer">Esporte e Lazer</option>
+                                        <option value="Kids">Kids</option>
+                                        <option value="Moda e Beleza">Moda e Beleza</option> -->
+                                        {{itens_cat}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group my-3 text-start">
+                                    <label>Valor</label>
+                                    <input type="text" class="form-control" name="preco" id="preco"
+                                        placeholder="Valor do anúncio" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-5">
+                            <div class="form-group text-start">
+                                <label>Adicione fotos</label>
+                                <div class="borderdashed88">
+                                    <div class="area-upload">
+                                        <label for="upload-file" class="label-upload">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                            <div class="texto">Clique ou arraste o arquivo</div>
+                                        </label>
+                                        <input type="file" name="file[]" id="upload-file" multiple />
+    
+                                        <div class="lista-uploads">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="form-group my-3 text-start">
+                                <label>Valor</label>
+                                <input type="number" id="preco" class="form-control" name="preco" placeholder="Valor do anúncio"
+                                    required>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group text-start">
+                                <label>Forma de envio*</label>
+                                <input type="text" id="forma_envio" class="form-control" name="forma_envio"
+                                    placeholder="Forma de envio">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group text-start">
+                                <label>CEP*</label>
+                                <input type="text" id="cep" class="form-control" name="cep" placeholder="XXXXX-XXX">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <input name="anuncio_id" type="hidden" id="anuncio_id">
+                    <button type="submit" class="btn btnlogin btn-lg btn-danger mt-5">Salvar Anúncio</button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-imagens" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Imagens do Produto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="conteudo">
+                    <input type="hidden" id="id_anuncio_foto" name="id22" value="">
+                    <h3 class=" mt-3"><b>Fotos do produto</b></h3>
+
+                    <div class="image-upload-container" id="boxfotos">
+                        
+                    </div>
+                    <h5><small id="msgfoto"></small></h5>
+                </div>
+                <!-- <form id="form-fotos" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="col-md-12 form-group">
+                                <label>Imagem do Produto</label>
+                                <input type="file" class="form-control" id="imgproduto" name="imgproduto"
+                                    onchange="carregarImgProduto();" required>
+
+                            </div>
+
+                            <div class="col-md-12 mb-2">
+                                <img src="{{URL}}/publico/lojas/sem-foto.jpg" alt="Carregue sua Imagem"
+                                    id="targetImgProduto" width="100%">
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-7" id="listar-img">
+
+                        </div>
+
+
+
+
+                    </div>
+
+                    <div class="col-md-12" align="right">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Fechar</button>
+                        <input type="hidden" id="id_anuncio_foto" name="id22" value="">
+
+                        <button type="submit" id="btn-fotos" name="btn-fotos" class="btn btn-info">Salvar</button>
+
+                    </div>
+
+
+                    <small>
+                        <div align="center" id="mensagem_fotos" class="">
+
+                        </div>
+                    </small>
+                </form> -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modalDeletarImg" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Imagem</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <p>Deseja realmente Excluir esta Imagem?</p>
+
+                <div align="center" id="mensagem_excluir_img" class="">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btn-cancelar-img">Cancelar</button> -->
+                <button id="btn-cancelar-img" type="button" class="btn me-auto" data-bs-dismiss="modal">Fechar</button>
+                <form method="post" id="formdeletar">
+                    <input type="hidden" name="id_foto" id="id_foto">
+                    <button type="button" id="btn-deletar-img" name="btn-deletar-img"
+                        class="btn btn-danger">Excluir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        const ufSelect = document.getElementById("estado"); // Campo de seleção para o estado
+        const municipioSelect = document.getElementById("cidade"); // Campo de seleção para o município
+    
+        // Função para carregar os estados da API do IBGE
+        async function carregarEstados() {
+            // Faz uma requisição à API do IBGE para obter a lista de estados
+            const estadosResponse = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+            const estadosData = await estadosResponse.json();
+    
+            // Preenche o campo de seleção de estados com os dados da API
+            estadosData.forEach(function (estado) {
+                const option = document.createElement("option");
+                option.value = estado.sigla;
+                option.textContent = estado.nome;
+                ufSelect.appendChild(option);
+            });
+        }
+    
+        carregarEstados();
+    
+        // Função para carregar os municípios com base no estado selecionado
+        async function carregarMunicipios() {
+            //const selectedState = '{{estado}}';
+            const selectedState = ufSelect.value;
+    
+            // Limpa o campo de seleção de municípios
+            municipioSelect.innerHTML = '<option value="" disabled selected>Selecione o município</option>';
+    
+            // Verifica se um estado foi selecionado
+            if (selectedState) {
+                // Faz uma requisição à API do IBGE para obter a lista de municípios do estado selecionado
+                const municipiosResponse = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState}/municipios`);
+                // const municipiosResponse = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState}/municipios`);
+                const municipiosData = await municipiosResponse.json();
+    
+                // MUNICIPIO IBGE = console.log(municipiosData.id)
+                // Preenche o campo de seleção de municípios com os dados da API
+                municipiosData.forEach(function (municipio) {
+                    const option = document.createElement("option");
+                    option.value = municipio.nome;
+                    option.textContent = municipio.nome;
+                    municipioSelect.appendChild(option);
+                });
+            }
+        }
+        //carregarMunicipios();
+    
+        // Adiciona ouvintes de eventos para campos de entrada e seleção
+        ufSelect.addEventListener("change", function () {
+            carregarMunicipios(); // Chama a função para carregar os municípios quando o estado muda
+            // realizarConsulta(); // Chama a função para realizar a consulta automaticamente
+        });
+    </script>
+<script>
+    function load_fotos() {
+        var id_anuncio = $("#id_anuncio_foto").val()
+
+        $.ajax({
+            type: "POST",
+            url: "{{URL}}/anuncio/load_fotos/" + id_anuncio,
+            dataType: "html",
+            success: function (response) {
+                $("#boxfotos").html(response);
+            }
+        });
+    }
+    function myImgRemoveFunctionOne(id_foto_img, id_foto) {
+        document.getElementById(id_foto_img).src = "https://i.ibb.co/ZVFsg37/default.png";
+
+        console.log(id_foto)
+        var id_anuncio = $("#id_anuncio_foto").val()
+
+        $.ajax({
+            type: "POST",
+            url: "{{URL}}/excluir_imagem_anuncio",
+            data: {
+                id_foto: id_foto,
+                id_anuncio: id_anuncio
+            },
+            dataType: "html",
+            success: function (response) {
+                listarImagensProd(id_anuncio)
+            }
+        });
+
+    }
+
+    function showPreviewOne(event, id_foto) {
+        if (event.target.files.length > 0) {
+            let src = URL.createObjectURL(event.target.files[0]);
+            let preview = document.getElementById(id_foto + "-preview");
+            preview.src = src;
+            preview.style.display = "block";
+
+            var data = new FormData();
+
+            data.append('id_anuncio', $("#id_anuncio_foto").val());
+            data.append(id_foto, event.target.files[0]);
+
+            var request = new XMLHttpRequest();
+
+            request.addEventListener('load', function (e) {
+
+                //$(".lista-uploads").attr("style", "position:absolute !important")
+
+
+                console.log(request)
+                // Resposta
+                if (request.status == 200) {
+                    document.getElementById("msgfoto").innerHTML = "<a href=\"#\">Foto(s) enviado com sucesso.</a> <i class=\"fas fa-check\"></i>";
+
+                } else {
+                    document.getElementById("msgfoto").innerHTML = "Erro ao enviar: " + request.response.name;
+
+                }
+            });
+
+            //Resposta em JSON
+            request.responseType = 'json';
+
+            // Caminho
+            request.open('post', '{{URL}}/uploadfotos');
+            request.send(data);
+
+
+        }
+    }
+</script>
+<script>
+    $("#form").submit(function () {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '{{URL}}/account/{{id_loja}}',
+            type: 'POST',
+            data: formData,
+
+            success: function (data) {
+
+                if (data == "success") {
+
+                    window.location.href = '{{URL}}/account/?status=loja_atualizada';
+                } else if (data == "loja_duplicada") {
+
+                    window.location.href = '{{URL}}/account/?status=loja_duplicada';
+                }
+
+            },
+
+            cache: false,
+            contentType: false,
+            processData: false,
+
+        });
+
+    });
+
+    $("#formstorie").submit(function () {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '{{URL}}/inserir_storie/{{id_loja}}',
+            type: 'POST',
+            data: formData,
+
+            success: function (data) {
+
+                if (data == "success") {
+
+                    window.location.href = '{{URL}}/account/?status=storieadd';
+                }
+
+            },
+
+            cache: false,
+            contentType: false,
+            processData: false,
+
+        });
+
+    });
+    $("#formaddress").submit(function () {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '{{URL}}/editar_endereco/{{id_user}}',
+            type: 'POST',
+            data: formData,
+
+            success: function (data) {
+
+                if (data == "success") {
+
+                    window.location.href = '{{URL}}/account/?status=enderecoatt';
+                }
+
+            },
+
+            cache: false,
+            contentType: false,
+            processData: false,
+
+        });
+
+    });
+    $("#formanuncio").submit(function () {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '{{URL}}/editar_anuncio',
+            type: 'POST',
+            data: formData,
+
+            success: function (data) {
+
+                if (data == "success") {
+
+                    window.location.href = '{{URL}}/account/?status=anuncioatt';
+                }
+
+            },
+
+            cache: false,
+            contentType: false,
+            processData: false,
+
+        });
+    });
+    $("#form-fotos").submit(function () {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: "{{URL}}/inserir_imagens_anuncio",
+            type: 'POST',
+            data: formData,
+
+            success: function (mensagem) {
+
+                console.log(mensagem)
+
+                var parsedJson = $.parseJSON(mensagem);
+
+                $('#mensagem').removeClass()
+
+                if (parsedJson.msg == "Salvo com Sucesso!!") {
+
+                    $('#mensagem_fotos').addClass('text-success')
+                    $('#mensagem_fotos').text(parsedJson.msg)
+                    listarImagensProd(parsedJson.id);
+
+                } else {
+
+                    $('#mensagem_fotos').addClass('text-danger')
+                }
+
+                $('#mensagem_fotos').text(parsedJson.msg)
+
+            },
+
+            cache: false,
+            contentType: false,
+            processData: false,
+            xhr: function () { // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                    myXhr.upload.addEventListener('progress', function () {
+                        /* faz alguma coisa durante o progresso do upload */
+                    }, false);
+                }
+                return myXhr;
+            }
+        });
+    });
+    $('#btn-deletar-img').click(function (event) {
+        event.preventDefault();
+        var myModalDel = new bootstrap.Modal(document.getElementById("modalDeletarImg"), {});
+
+
+        $.ajax({
+            url: "{{URL}}/excluir_imagem_anuncio",
+            method: "post",
+            data: $('#formdeletar').serialize(),
+            dataType: "text",
+            success: function (mensagem) {
+
+                var parsedJson = $.parseJSON(mensagem);
+
+                if (parsedJson.msg == "Excluído com Sucesso!!") {
+
+
+                    $('#mensagem_fotos').text(parsedJson.msg)
+                    $('#btn-cancelar-img').click();
+                    //myModalDel.hide();
+                    //$('#modalDeletarImg').modal('hide');
+                    listarImagensProd(parsedJson.id);
+                }
+
+                $('#mensagem_excluir_img').text(parsedJson.msg)
+
+
+
+            },
+
+        })
+    })
+</script>
+<script src="https://d2assessoria.com.br/_cdn/js/jquery-3.4.1.min.js"></script>
+<script>
+    $('button[data-bs-toggle="pill"]').on('shown.bs.tab', function (e) {
+        // alert("ADSADSSAD")
+        $("#fecharaccordion").trigger('click');
+        //e.target -> activated tab
+        //e.relatedTarget -> previous tab
+    });
+    $(document).ready(function () {
+        var url = window.location.href;
+        url = url.split('account/');
+
+        switch (url[1]) {
+            case ('#anuncios'):
+                $('#v-pills-tab button[data-bs-target="#v-pills-messages"]').tab('show');
+                break;
+            case ('#perfil'):
+                $('#v-pills-tab button[data-bs-target="#v-pills-home-public"]').tab('show');
+
+                break;
+            case ('#stories'):
+                $('#v-pills-tab button[data-bs-target="#v-pills-home-storie"]').tab('show');
+
+                break;
+            case ('#vendas'):
+                $('#v-pills-tab button[data-bs-target="#v-pills-home-vendas"]').tab('show');
+
+                break;
+            case ('#meuplano'):
+                $('#v-pills-tab button[data-bs-target="#v-pills-home-plano"]').tab('show');
+
+                break;
+        }
+
+
+    });
+    function editarAnuncio(id) {
+        console.log(id)
+        var myModal = new bootstrap.Modal(document.getElementById("myModal"), {});
+        myModal.show();
+
+        $.ajax({
+            url: '{{URL}}/dados_anuncio/' + id,
+            method: 'GET',
+            // data: {
+            //     id_anuncio: id
+            // },
+
+            success: function (data) {
+
+                var parsedJson = $.parseJSON(data);
+
+                $('#anuncio_id').val(parsedJson.id)
+                $('#tituloanuncio').val(parsedJson.titulo)
+                $('#descricao').val(parsedJson.descricao)
+                $('#categoria').val(parsedJson.categoria)
+                $('#preco').val(parsedJson.preco)
+                $('#forma_envio').val(parsedJson.forma_envio)
+                $('#cep').val(parsedJson.cep)
+
+
+
+            }
+
+        });
+    }
+    function imagensAnuncio(id) {
+        console.log(id)
+        var myModal = new bootstrap.Modal(document.getElementById("modal-imagens"), {});
+        myModal.show();
+        $('#id_anuncio_foto').val(id)
+        listarImagensProd(id)
+
+        // $.ajax({
+        //     url: '{{URL}}/dados_anuncio/'+id,
+        //     method: 'GET',
+
+        //     success: function (data) {
+
+        //         var parsedJson = $.parseJSON(data);
+
+        //         $('#anuncio_id').val(parsedJson.id)
+        //         $('#tituloanuncio').val(parsedJson.titulo)
+        //         $('#descricao').val(parsedJson.descricao)
+        //         $('#categoria').val(parsedJson.categoria)
+        //         $('#preco').val(parsedJson.preco)
+        //         $('#forma_envio').val(parsedJson.forma_envio)
+        //         $('#cep').val(parsedJson.cep)
+
+
+
+        //     }
+
+        // });
+    }
+    function listarImagensProd(id) {
+
+        $.ajax({
+            url: '{{URL}}/listar_imagens_anuncio/' + id,
+            method: "post",
+            dataType: "html",
+            success: function (result) {
+
+                $('#boxfotos').html(result);
+                //$('#listar-img').html(result);
+            }
+        })
+    }
+    function deletarImg(img) {
+
+        document.getElementById('id_foto').value = img;
+        $('#modalDeletarImg').modal('show');
+
+    }
+    function marcarVendido(id) {
+        $.ajax({
+            url: '{{URL}}/marcar_vendido',
+            method: 'POST',
+            data: {
+                anuncio_id: id
+            },
+
+            success: function (data) {
+
+                console.log(data)
+
+                if (data == "success") {
+
+                    window.location.href = '{{URL}}/account/?status=sold';
+                }
+
+
+            }
+
+        });
+    }
+</script>
+<script>
+    let drop_ = document.querySelector('.area-upload #upload-file');
+    drop_.addEventListener('dragenter', function () {
+        document.querySelector('.area-upload .label-upload').classList.add('highlight');
+    });
+    drop_.addEventListener('dragleave', function () {
+        document.querySelector('.area-upload .label-upload').classList.remove('highlight');
+    });
+    drop_.addEventListener('drop', function () {
+        document.querySelector('.area-upload .label-upload').classList.remove('highlight');
+    });
+
+    function validarArquivo(file) {
+        console.log(file);
+        // Tipos permitidos
+        var mime_types = ['image/jpeg', 'image/png', 'application/pdf', 'video/mp4'];
+
+        // Validar os tipos
+        if (mime_types.indexOf(file.type) == -1) {
+            return {
+                "error": "O arquivo " + file.name + " não permitido"
+            };
+        }
+
+        // Apenas 2MB é permitido
+        if (file.size > 65 * 1024 * 1024) {
+            return {
+                "error": file.name + " ultrapassou limite de 65MB"
+            };
+        }
+
+        // Se der tudo certo
+        return {
+            "success": "Enviando: " + file.name
+        };
+    }
+
+    function enviarArquivo(indice, barra) {
+        var data = new FormData();
+        var request = new XMLHttpRequest();
+
+        //Adicionar arquivo
+        data.append('fotosanuncio', document.querySelector('#upload-file').files[indice]);
+
+        // AJAX request finished
+        request.addEventListener('load', function (e) {
+
+            console.log(request)
+            // Resposta
+            if (request.status == 200) {
+                barra.querySelector(".text").innerHTML = "<a href=\"#\">Foto(s) enviado com sucesso.</a> <i class=\"fas fa-check\"></i>";
+                barra.classList.add("complete");
+            } else {
+                barra.querySelector(".text").innerHTML = "Erro ao enviar: " + request.response.name;
+                barra.classList.add("error");
+            }
+        });
+
+        // Calcular e mostrar o progresso
+        request.upload.addEventListener('progress', function (e) {
+            var percent_complete = (e.loaded / e.total) * 100;
+
+            barra.querySelector(".fill").style.minWidth = percent_complete + "%";
+        });
+
+        //Resposta em JSON
+        request.responseType = 'json';
+
+        // Caminho
+        request.open('post', '{{URL}}/uploadfotos');
+        request.send(data);
+    }
+    document.querySelector('#upload-file').addEventListener('change', function () {
+        var files = this.files;
+        for (var i = 0; i < files.length; i++) {
+            var info = validarArquivo(files[i]);
+            //Criar barra
+            var barra = document.createElement("div");
+            var fill = document.createElement("div");
+            var text = document.createElement("div");
+            barra.appendChild(fill);
+            barra.appendChild(text);
+
+            barra.classList.add("barra");
+            fill.classList.add("fill");
+            text.classList.add("text");
+
+            if (info.error == undefined) {
+                text.innerHTML = info.success;
+                enviarArquivo(i, barra); //Enviar
+            } else {
+                text.innerHTML = info.error;
+                barra.classList.add("error");
+            }
+
+            //Adicionar barra
+            document.querySelector('.lista-uploads').appendChild(barra);
+        };
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+<script>
+    const input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+        initialCountry: 'br',
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+        preferredCountries: ["br", "co", "in", "de"],
+    });
+    // usa vírgula como separador decimal, ponto como separador de milhar, sempre com 2 casas decimais
+    const formatter = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    function mask(e) {
+        const input = e.target;
+        // elimina tudo que não é dígito
+        input.value = input.value.replace(/\D+/g, '');
+        if (input.value.length === 0) // se não tem nada preenchido, não tem o que fazer
+            return;
+        // verifica se ultrapassou a quantidade máxima de dígitos (pegar o valor no dataset)
+        const maxDigits = parseInt(input.dataset.maxDigits);
+        if (input.value.length > maxDigits) {
+            // O que fazer nesse caso? Decidi pegar somente os primeiros dígitos
+            input.value = input.value.substring(0, maxDigits);
+        }
+        // lembrando que o valor é a quantidade de centavos, então precisa dividir por 100
+        input.value = formatter.format(parseInt(input.value) / 100);
+    }
+
+    document.querySelector('#preco').addEventListener('input', mask);
+    document.addEventListener("DOMContentLoaded", function () {
+    // Obter os valores do endereço
+    const endereco = "{{endereco}}".trim();
+    const numero = "{{numero}}".trim();
+    const bairro = "{{bairro}}".trim();
+    const cep = "{{cep}}".trim();
+
+    // Selecionar elementos
+    const boxEndereco = document.getElementById("boxendereco");
+    const formEndereco = document.getElementById("formEndereco");
+    const btnEndereco = document.getElementById("btnendereco");
+
+    // Verificar se os campos de endereço estão vazios
+    if (!endereco || !numero || !bairro || !cep) {
+        // Ocultar a boxendereco
+        boxEndereco.style.display = "none";
+
+        // Exibir o formulário de endereço
+        formEndereco.style.display = "block";
+
+        // Ocultar o botão de endereço
+        btnEndereco.style.display = "none";
+    }
+});
+
+</script>

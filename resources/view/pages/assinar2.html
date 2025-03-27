@@ -1,0 +1,1383 @@
+<style>
+    /* .boxassinar {
+
+        background: #FAFAFA;
+
+        box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+
+        border-radius: 7px;
+
+        padding: 45px;
+
+    }
+
+
+
+    .boxresumo {
+
+        background: #FAFAFA;
+
+        border-radius: 7px;
+
+        min-height: 450px;
+
+        padding: 45px;
+
+    }
+
+
+
+    main {
+
+        margin-top: 100px;
+
+    }
+
+
+
+    #regForm {
+
+        margin: 0px auto;
+
+        border-radius: 10px;
+
+    }
+
+
+
+    h1 {
+
+        text-align: center
+
+    }
+
+
+
+    input.invalid {
+
+        background-color: #ffdddd
+
+    }
+
+
+
+    .tab {
+
+        display: none
+
+    }
+
+
+
+    #prevBtn {
+
+        background-color: #bbbbbb
+
+    }
+
+
+
+    .step {
+
+        height: 15px;
+
+        width: 15px;
+
+        margin: 0 2px;
+
+        background-color: #bbbbbb;
+
+        border: none;
+
+        border-radius: 50%;
+
+        display: flex;
+
+        opacity: 0.5;
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+
+
+    .step.active {
+
+        opacity: 1;
+
+        background-color: #4CAF50
+
+    }
+
+
+
+    .step.finish {
+
+        background-color: #4CAF50
+
+    }
+
+
+
+    .all-steps {
+
+        text-align: center;
+
+        margin-bottom: 30px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        padding: 10px 40px;
+
+    }
+
+
+
+    .thanks-message {
+
+        display: none
+
+    }
+
+
+
+    .container input[type="radio"] {
+
+        position: absolute;
+
+        opacity: 1;
+
+        cursor: pointer;
+
+    }
+
+
+
+    .checkmark {
+
+        position: absolute;
+
+        top: 0;
+
+        left: 0;
+
+        height: 25px;
+
+        width: 25px;
+
+        background-color: #eee;
+
+        border-radius: 50%;
+
+    }
+
+
+
+
+
+
+
+    .container:hover input~.checkmark {
+
+        background-color: #ccc;
+
+    }
+
+
+
+
+
+
+
+    .container input:checked~.checkmark {
+
+        background-color: #2196F3;
+
+    }
+
+
+
+
+
+    .checkmark:after {
+
+        content: "";
+
+        position: absolute;
+
+        display: none;
+
+    }
+
+
+
+    .nextBtn {
+
+        width: 100%;
+
+        background: #fb1990;
+
+        box-shadow: 0px 5px 8px rgb(0 0 0 / 30%);
+
+        border-radius: 8px;
+
+        color: #fff;
+
+    }
+
+
+
+    .buttoncupom {
+
+        width: 40%;
+
+        background: #fb1990;
+
+        box-shadow: 0px 5px 8px rgb(0 0 0 / 30%);
+
+        border-radius: 8px;
+
+        color: #fff;
+
+    }
+
+
+
+    .prevBtn {
+
+        background: #F2F2F2;
+
+        box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.25);
+
+        border-radius: 8px;
+
+        width: 100%;
+
+    }
+
+
+
+
+
+    .container input:checked~.checkmark:after {
+
+        display: block;
+
+    }
+
+
+
+
+
+
+
+    .container .checkmark:after {
+
+        top: 9px;
+
+        left: 9px;
+
+        width: 8px;
+
+        height: 8px;
+
+        border-radius: 50%;
+
+        background: white;
+
+    }
+
+
+
+    hr.hrsteps {
+
+        background-color: #bbbbbb;
+
+        height: 2px;
+
+        width: 35%;
+
+        top: 10;
+
+        position: absolute;
+
+        left: 21%;
+
+    }
+
+
+
+    span.titleplan {
+
+        padding-left: 10px;
+
+    }
+
+
+
+    .cupom.d-flex {
+
+        gap: 10px;
+
+    } */
+
+
+
+    .img-band {
+
+        padding-right: 2px;
+
+    }
+
+
+
+    .select-qnt-parcelas {
+
+        display: none;
+
+    }
+
+    @media screen and (max-width:768px) {
+        h1.display-4 {
+            margin-top: 50px;
+        }
+
+        main {
+            margin-bottom: -60px;
+        }
+    }
+</style>
+
+<div class="container">
+
+    <div class="row">
+
+
+
+
+
+
+
+        <div class="row order-md-1">
+
+            <h1 class="display-4">Finalizar a Compra</h1>
+
+
+
+
+
+            <form name="formPagamento" class="needs-validation was-validated" action="{{URL}}/pagamento" method="POST"
+                id="formPagamento">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="hidden" name="plano" id="plano" value="{{PLANO}}">
+                        <input type="hidden" name="encryptedCard" id="encryptedCard">
+                        <input type="hidden" name="cardBin" id="cardBin">
+
+                        <h4 class="hideLogin">Dados de Login</h4>
+
+                        <div class="row mb-3 hideLogin">
+                            <div class="custom-control custom-radio">
+
+                                <input type="radio" name="tipo_conta" class="custom-control-input" value="novo" required
+                                    checked onclick="pagseguroClass.TipoConta();">
+
+                                <label class="custom-control-label" for="novo">Criar nova conta.</label>
+
+                            </div>
+
+                            <div class="custom-control custom-radio">
+
+                                <input type="radio" name="tipo_conta" class="custom-control-input" value="existente"
+                                    onclick="pagseguroClass.TipoConta();" required>
+
+                                <label class="custom-control-label" for="">Já possuo conta.</label>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mb-3 email">
+
+                            <label>E-mail</label>
+
+                            <input type="email" name="email" id="email" placeholder="E-mail" value="{{USER_EMAIL}}"
+                                class="form-control" required>
+
+                        </div>
+
+                        <div class="mb-3 hideLogin">
+
+                            <label>Senha</label>
+
+                            <input type="password" name="senha" id="senha" placeholder="Senha" value=""
+                                class="form-control" required>
+
+                        </div>
+
+                        <div class="mb-3 senhaRepetir hideLogin">
+
+                            <label>Repetir Senha</label>
+
+                            <input type="password" name="senha_repetir" id="senha_repetir" placeholder="Senha" value=""
+                                class="form-control" required>
+
+                        </div>
+
+                        <div class="hideComprador">
+
+                            <h4 class="mb-3">Dados do Comprador</h4>
+
+
+
+                            <div class="mb-3">
+
+                                <label>Nome</label>
+
+                                <input type="text" name="senderName" id="senderName" placeholder="Nome completo"
+                                    value="{{USER_NOME}}" class="form-control" required>
+
+                            </div>
+
+
+
+                            <div class="mb-3">
+
+                                <label>CPF</label>
+
+                                <input type="text" name="senderCPF" id="senderCPF" placeholder="CPF sem traço"
+                                    value="{{USER_CPF}}" class="form-control" required>
+
+                            </div>
+
+
+
+                            <div class="row">
+
+                                <div class="col-md-3 mb-3">
+
+                                    <label>DDD</label>
+
+                                    <input type="number" name="senderAreaCode" id="senderAreaCode" placeholder="DDD"
+                                        value="{{USER_DDD}}" max-length="2" min-length="2" class="form-control"
+                                        required>
+
+                                </div>
+
+                                <div class="col-md-9 mb-3">
+
+                                    <label>Telefone</label>
+
+                                    <input type="number" name="senderPhone" id="senderPhone"
+                                        placeholder="Somente número" value="{{USER_TELEFONE}}" class="form-control"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="hideConta">
+
+                            <h4 class="mb-3">Endereço de Entrega</h4>
+
+                            <div class="mb-3">
+
+                                <label>CEP</label>
+
+                                <input type="text" name="shippingAddressPostalCode" class="form-control"
+                                    id="shippingAddressPostalCode" placeholder="CEP sem traço" value="{{USER_CEP}}"
+                                    required>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-9 mb-3">
+
+                                    <label>Logradouro</label>
+
+                                    <input type="text" name="shippingAddressStreet" class="form-control"
+                                        id="shippingAddressStreet" placeholder="Av. Rua" value="{{USER_ENDERECO}}"
+                                        required>
+
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+
+                                    <label>Número</label>
+
+                                    <input type="text" name="shippingAddressNumber" class="form-control"
+                                        id="shippingAddressNumber" placeholder="Número" value="{{USER_NUMERO}}"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="mb-3">
+
+                                <label>Complemento</label>
+
+                                <input type="text" name="shippingAddressComplement" class="form-control"
+                                    id="shippingAddressComplement" placeholder="Complemento"
+                                    value="{{USER_COMPLEMENTO}}">
+
+                            </div>
+
+
+
+                            <div class="row">
+
+                                <div class="col-md-5 mb-3">
+
+                                    <label>Bairro</label>
+
+                                    <input type="text" name="shippingAddressDistrict" class="form-control"
+                                        id="shippingAddressDistrict" placeholder="Bairro" value="{{USER_BAIRRO}}"
+                                        required>
+
+                                </div>
+
+                                <div class="col-md-5 mb-3">
+
+                                    <label>Cidade</label>
+
+                                    <input type="text" name="shippingAddressCity" class="form-control"
+                                        id="shippingAddressCity" placeholder="Cidade" value="{{USER_CIDADE}}" required>
+
+                                </div>
+
+                                <div class="col-md-2 mb-3">
+
+                                    <label>Estado</label>
+
+                                    <input type="text" class="form-control" name="shippingAddressState"
+                                        id="shippingAddressState" value="{{USER_ESTADO}}" required>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="col-md-4 order-md-2 mb-4">
+
+                        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                            <div class="col-md-12">
+                                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                                    <div class="card-header py-3 text-white bg-primary border-primary">
+                                        <h4 class="my-0 fw-normal">{{plano_nome}}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <h1 class="card-title pricing-card-title">R$ {{plano_valor_formatado}}<small
+                                                class="text-muted fw-light">/mês</small></h1>
+                                        <ul class="list-unstyled mt-3 mb-4">
+                                            {{plano_descricao}}
+                                        </ul>
+                                        <ul class="list-unstyled mt-3 mb-4">
+                                            {{plano_features}}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-cols-1">
+                            <div class="boxpayment">
+                                <h4 class="mb-3">Escolha forma de pagamento</h4>
+
+
+
+                                <div class="custom-control custom-radio">
+
+                                    <input type="radio" name="paymentMethod" class="custom-control-input" value="pix"
+                                        checked onclick="pagseguroClass.Metodo();">
+
+                                    <label class="custom-control-label" for="pix">PIX</label>
+
+                                </div>
+
+
+                                <div class="custom-control custom-radio">
+
+                                    <input type="radio" name="paymentMethod" class="custom-control-input"
+                                        value="creditCard" onclick="pagseguroClass.Metodo();">
+
+                                    <label class="custom-control-label" for="creditCard">Cartão de Crédito</label>
+
+                                </div>
+
+
+
+                                <div class="custom-control custom-radio mb-3">
+
+                                    <input type="radio" name="paymentMethod" class="custom-control-input" value="boleto"
+                                        onclick="pagseguroClass.Metodo();">
+
+                                    <label class="custom-control-label" for="boleto">Boleto</label>
+
+                                </div>
+
+
+
+                                <div class="mb-3 creditCard">
+
+                                    <label class="creditCard">Número do cartão</label>
+
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" id="numCartao" required>
+
+
+
+                                    </div>
+
+                                    <small id="numCartao" class="form-text text-muted">
+
+                                        Preencha para ver o parcelamento
+
+                                    </small>
+
+                                </div>
+
+
+
+                                <!--<div class="mb-3 creditCard">
+        
+                                    <label class="creditCard">Quantidades de Parcelas</label>
+                    
+                                    <select name="qntParcelas" id="qntParcelas" class="form-control reditCard" required>
+                                    </select>
+                    
+                                </div>-->
+
+
+
+                                <div class="mb-3 creditCard">
+
+                                    <label class="creditCard">Nome do titular</label>
+
+                                    <input type="text" name="creditCardHolderName" class="form-control"
+                                        id="creditCardHolderName" required placeholder="Nome igual ao escrito no cartão"
+                                        value="Jose Comprador">
+
+                                    <small id="creditCardHolderName" class="form-text text-muted">
+
+                                        Como está gravado no cartão
+
+                                    </small>
+
+                                </div>
+
+
+
+                                <div class="row creditCard">
+
+                                    <div class="col-md-6 mb-3 creditCard">
+
+                                        <label class="creditCard">Mês de Validade</label>
+
+                                        <input type="text" name="mesValidade" id="mesValidade" maxlength="2" value="12"
+                                            required class="form-control creditCard">
+
+                                    </div>
+
+                                    <div class="col-md-6 mb-3 creditCard">
+
+                                        <label class="creditCard">Ano de Validade</label>
+
+                                        <input type="text" name="anoValidade" id="anoValidade" maxlength="4"
+                                            value="2030" required class="form-control creditCard">
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="mb-3 creditCard">
+
+                                    <label class="creditCard">CVV do cartão</label>
+
+                                    <input type="text" name="numCartao" class="form-control creditCard" id="cvvCartao"
+                                        maxlength="3" required value="123">
+
+                                    <small id="cvvCartao" class="form-text text-muted creditCard">
+
+                                        Código de 3 digitos impresso no verso do cartão
+
+                                    </small>
+
+                                </div>
+
+                                <div class="mb-3 creditCard">
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="recorrente" type="checkbox" value="S"
+                                            id="recorrente" checked>
+                                        <label class="form-check-label" for="recorrente">
+                                            Ativar pagamento recorrente
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <input class="btn btn-primary" type="submit" name="btnComprar" id="btnComprar" value="Comprar">
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </form>
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- <div class="row">
+
+        <div class="col-md-8">
+
+            <div class="boxassinar">
+
+                <form id="regForm" method="post">
+
+                    <hr class="hrsteps" id="linhasteps">
+
+                    <div class="all-steps" id="all-steps">
+
+
+
+                        <span class="step"><br>
+
+                            <p>Identificação</p>
+
+                        </span>
+
+                        <span class="step"><br>
+
+                            <p>Revisão</p>
+
+                        </span>
+
+                        <span class="step">
+
+                            <br>
+
+                            <p>Pagamento</p>
+
+                        </span>
+
+                    </div>
+
+                    <div class="tab">
+
+                        <h3 class="my-5">Suas informações</h3>
+
+                        <div class="row my-2">
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label class="control-label">Nome</label>
+
+                                    <input maxlength="100" type="text" name="nome" required="required" class="form-control"
+
+                                        placeholder="Ex: João" />
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label class="control-label">Sobrenome</label>
+
+                                    <input maxlength="100" type="text" name="sobrenome" required="required" class="form-control"
+
+                                        placeholder="Ex: da Silva" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row my-2">
+
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+
+                                    <label class="control-label">Email</label>
+
+                                    <input type="email" required="required" name="email" class="form-control"
+
+                                        placeholder="email@exemplo.com.br" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row my-2">
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label class="control-label">CPF</label>
+
+                                    <input type="text" required="required" name="cpf" class="form-control"
+
+                                        placeholder="XXX.XXX.XXX-XX" />
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label class="control-label">Data de Nascimento</label>
+
+                                    <input type="date" required="required" name="data_nascimento" class="form-control" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row my-2">
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label class="control-label">Telefone</label>
+
+                                    <input type="tel" required="required" name="telefone" class="form-control"
+
+                                        placeholder="XXX.XXX.XXX-XX" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="tab">
+
+                        <h3 class="my-5">Produtos</h3>
+
+                        <div class="row d-flex align-items-center">
+
+                            <div class="col-md-1">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20"
+
+                                    fill="none">
+
+                                    <path
+
+                                        d="M2.28125 1.3125C1.93315 1.3125 1.59931 1.45078 1.35317 1.69692C1.10703 1.94306 0.96875 2.2769 0.96875 2.625V3.9375C0.96875 4.2856 1.10703 4.61944 1.35317 4.86558C1.59931 5.11172 1.93315 5.25 2.28125 5.25H2.9375V17.0625C2.9375 17.7587 3.21406 18.4264 3.70634 18.9187C4.19863 19.4109 4.86631 19.6875 5.5625 19.6875H13.4375C14.1337 19.6875 14.8014 19.4109 15.2937 18.9187C15.7859 18.4264 16.0625 17.7587 16.0625 17.0625V5.25H16.7188C17.0668 5.25 17.4007 5.11172 17.6468 4.86558C17.893 4.61944 18.0312 4.2856 18.0312 3.9375V2.625C18.0312 2.2769 17.893 1.94306 17.6468 1.69692C17.4007 1.45078 17.0668 1.3125 16.7188 1.3125H12.125C12.125 0.964403 11.9867 0.630564 11.7406 0.384422C11.4944 0.138281 11.1606 0 10.8125 0L8.1875 0C7.8394 0 7.50556 0.138281 7.25942 0.384422C7.01328 0.630564 6.875 0.964403 6.875 1.3125H2.28125ZM6.21875 6.5625C6.3928 6.5625 6.55972 6.63164 6.68279 6.75471C6.80586 6.87778 6.875 7.0447 6.875 7.21875V16.4062C6.875 16.5803 6.80586 16.7472 6.68279 16.8703C6.55972 16.9934 6.3928 17.0625 6.21875 17.0625C6.0447 17.0625 5.87778 16.9934 5.75471 16.8703C5.63164 16.7472 5.5625 16.5803 5.5625 16.4062V7.21875C5.5625 7.0447 5.63164 6.87778 5.75471 6.75471C5.87778 6.63164 6.0447 6.5625 6.21875 6.5625ZM9.5 6.5625C9.67405 6.5625 9.84097 6.63164 9.96404 6.75471C10.0871 6.87778 10.1562 7.0447 10.1562 7.21875V16.4062C10.1562 16.5803 10.0871 16.7472 9.96404 16.8703C9.84097 16.9934 9.67405 17.0625 9.5 17.0625C9.32595 17.0625 9.15903 16.9934 9.03596 16.8703C8.91289 16.7472 8.84375 16.5803 8.84375 16.4062V7.21875C8.84375 7.0447 8.91289 6.87778 9.03596 6.75471C9.15903 6.63164 9.32595 6.5625 9.5 6.5625ZM13.4375 7.21875V16.4062C13.4375 16.5803 13.3684 16.7472 13.2453 16.8703C13.1222 16.9934 12.9553 17.0625 12.7812 17.0625C12.6072 17.0625 12.4403 16.9934 12.3172 16.8703C12.1941 16.7472 12.125 16.5803 12.125 16.4062V7.21875C12.125 7.0447 12.1941 6.87778 12.3172 6.75471C12.4403 6.63164 12.6072 6.5625 12.7812 6.5625C12.9553 6.5625 13.1222 6.63164 13.2453 6.75471C13.3684 6.87778 13.4375 7.0447 13.4375 7.21875Z"
+
+                                        fill="#6B6B6B" />
+
+                                </svg>
+
+                            </div>
+
+                            <div class="col-md-9">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" viewBox="0 0 76 76"
+
+                                    fill="none">
+
+                                    <rect width="76" height="76" rx="10" fill="#D9D9D9" />
+
+                                </svg>
+
+                                <span class="titleplan">
+
+                                    {{descricao}}
+
+                                </span>
+
+                            </div>
+
+                            <div class="col-md-2">
+
+                                <span class="priceplan">R${{valor}}</span>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="tab">
+
+                        <h3 class="my-5">Pagamento</h3>
+
+                        <div class="row my-3">
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label class="control-label">Número do cartão</label>
+
+                                    <input type="text" required="required" name="cardnumber" class="form-control"
+
+                                        placeholder="3764 8888 888484849" />
+
+                                </div>
+
+
+
+                                <div class="form-group my-3">
+
+                                    <label class="control-label">Nome impresso no cartão</label>
+
+                                    <input type="text" required="required" name="cardname" class="form-control"
+
+                                        placeholder="Ex: João" />
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label class="control-label">CPF do titular</label>
+
+                                    <input type="text" required="required" name="cardcpf" class="form-control"
+
+                                        placeholder="XXX.XXX.XXX-XX" />
+
+                                </div>
+
+                                <div class="form-group my-3">
+
+                                    <label class="control-label">Validade</label>
+
+                                    <input type="text" required="required" card="cardvalidade" class="form-control"
+
+                                        placeholder="XXX.XXX.XXX-XX" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row my-3">
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label class="control-label">CVV</label>
+
+                                    <input type="text" required="required" name="cardcvv" class="form-control" placeholder="XXX" />
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="control-label">Número de parcelas</label>
+
+                                <select class="form-select">
+
+                                    <option>1x</option>
+
+                                    <option>2x</option>
+
+                                    <option>3x</option>
+
+                                    <option>4x</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="thanks-message text-center" id="text-message">
+
+                        <img src="https://i.imgur.com/O18mJ1K.png" width="100" class="mb-4">
+
+                        <h3>Thanks for your Donation!</h3>
+
+                        <span>
+
+                            Your donation has been entered! We will contact you
+
+                            shortly!
+
+                        </span>
+
+                    </div>
+
+                    <div style="display:flex;justify-content: center;" class="mt-5" id="nextprevious">
+
+                        <div style="float:right;    width: 40%;">
+
+                            <button type="button" class="btn btn-lg nextBtn" id="nextBtn"
+
+                                onclick="nextPrev(1)">Continuar</button>
+
+                            <button type="button" class="btn btn-lg prevBtn mt-2" id="prevBtn"
+
+                                onclick="nextPrev(-1)">Voltar
+
+                                as compras</button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="boxresumo">
+
+                <h2 class="titlecard text-start">Resumo da compra</h2>
+
+                <div class="row mt-5">
+
+                    <div class="col-md-6">
+
+                        <span class="titleplan">Assinatura</span><br>
+
+                        <span class="titleplan">Cupom aplicado</span>
+
+                    </div>
+
+                    <div class="col-md-6 text-end">
+
+                        <span>R$49,00</span><br>
+
+                        <span></span>
+
+                    </div>
+
+                </div>
+
+                <hr style="border: 2px solid #252525;">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <span><strong>TOTAL</strong></span>
+
+                    </div>
+
+                    <div class="col-md-6 text-end">
+
+                        <span>R$49,00</span>
+
+                    </div>
+
+                </div>
+
+                <div class="row mt-5">
+
+                    <form method="post">
+
+                        <label>POSSUI UM CUPOM?</label>
+
+                        <div class="cupom d-flex">
+
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" placeholder="Adicione o código">
+
+                            </div>
+
+                            <button class="btn btn-sm buttoncupom">Adicionar</button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div> -->
+
+</div>
+
+
+
+
+
+<div class="container mt-5">
+
+    <div class="row d-flex justify-content-center align-items-center">
+
+        <div class="col-md-6">
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"
+    integrity="sha512-eYSzo+20ajZMRsjxB6L7eyqo5kuXuS2+wEbbOkpaur+sA2shQameiJiWEzCIDwJqaB0a4a6tCuEvCOBHUg3Skg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
+" rel="stylesheet">
+
+<script src="https://assets.pagseguro.com.br/checkout-sdk-js/rc/dist/browser/pagseguro.min.js"></script>
+
+
+<script>
+    var pagseguro = pagseguro || {};
+    pagseguro.session = '{{PAGSEGURO_SESSION}}';
+    pagseguro.public_key = '{{PAGSEGURO_PUBLICKEY}}';
+    pagseguro.env = '{{PAGSEGURO_ENV}}';
+    url = '{{URL}}';
+    valorPlano = parseFloat('{{plano_valor}}');
+    logado = '{{logado}}';
+</script>
+<script src="{{URL}}/resources/view/pages/assets/js/checkout.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script>
+
+    //your javascript goes here
+
+    var currentTab = 0;
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+
+
+
+
+        showTab(currentTab);
+
+
+
+    });
+
+
+
+    function showTab(n) {
+
+        var x = document.getElementsByClassName("tab");
+
+        x[n].style.display = "block";
+
+        console.log(x.length)
+
+        if (n == 0) {
+
+            document.getElementById("prevBtn").style.display = "none";
+
+        } else {
+
+            document.getElementById("prevBtn").style.display = "inline";
+
+        }
+
+        if (n == (x.length - 1)) {
+
+            document.getElementById("nextBtn").innerHTML = "Enviar";
+
+            document.getElementById("nextBtn").setAttribute("type", "submit");
+
+            // $("#nextBtn").attr("type", "submit");
+
+        } else {
+
+            document.getElementById("nextBtn").innerHTML = "Continuar";
+
+        }
+
+        fixStepIndicator(n)
+
+    }
+
+
+
+    function nextPrev(n) {
+
+        var x = document.getElementsByClassName("tab");
+
+        if (n == 1 && !validateForm()) return false;
+
+        x[currentTab].style.display = "none";
+
+        currentTab = currentTab + n;
+
+        if (currentTab >= x.length) {
+
+            // document.getElementById("regForm").submit();
+
+            // return false;
+
+            //alert("sdf");
+
+            document.getElementById("nextprevious").style.display = "none";
+
+            document.getElementById("all-steps").style.display = "none";
+
+            document.getElementById("linhasteps").style.display = "none";
+
+            // document.getElementById("register").style.display = "none";
+
+            document.getElementById("text-message").style.display = "block";
+
+
+
+
+
+
+
+
+
+        }
+
+        showTab(currentTab);
+
+    }
+
+
+
+    function validateForm() {
+
+        var x, y, i, valid = true;
+
+        x = document.getElementsByClassName("tab");
+
+        y = x[currentTab].getElementsByTagName("input");
+
+        for (i = 0; i < y.length; i++) {
+
+            if (y[i].value == "") {
+
+                y[i].className += " invalid";
+
+                valid = false;
+
+            }
+
+        }
+
+        if (valid) { document.getElementsByClassName("step")[currentTab].className += " finish"; }
+
+        return valid;
+
+    }
+
+
+
+    function fixStepIndicator(n) {
+
+        var i, x = document.getElementsByClassName("step");
+
+        for (i = 0; i < x.length; i++) { x[i].className = x[i].className.replace(" active", ""); }
+
+        x[n].className += " active";
+
+    }
+
+</script> -->

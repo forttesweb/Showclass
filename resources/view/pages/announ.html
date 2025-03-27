@@ -1,0 +1,2087 @@
+<style>
+    body {
+        background-color: #fff;
+    }
+
+    .boxthumb {
+        display: flex;
+        flex-direction: column;
+        width: 135px;
+        gap: 15px;
+    }
+
+    /* #container {
+        width: 480px;
+        height: auto;
+        margin: 150px auto;
+        background-color: #ddd;
+    }
+
+    .principal {
+        width: 480px;
+        height: 270px;
+        overflow: hidden;
+    }
+
+    label img {
+        opacity: .3;
+        width: 120px;
+        float: left;
+        cursor: pointer;
+        transition: all .4s;
+    }
+
+    .slide {
+        display: flex;
+        width: 400%;
+        transition: all .8s ease-in-out;
+    }
+
+    input[name="grupo"] {
+        display: none;
+    }
+
+
+    #foto2:checked~.principal .slide {
+        margin-left: -100%;
+    }
+
+    #foto3:checked~.principal .slide {
+        margin-left: -200%;
+    }
+
+    #foto4:checked~.principal .slide {
+        margin-left: -300%;
+    }
+
+    input[name="grupo"]:checked+label img {
+        opacity: .9;
+    }
+
+    input[name="grupo"]:checked+label img {
+        opacity: .9;
+    } */
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .over-visible {
+        overflow: visible;
+    }
+
+    .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        background: white;
+    }
+
+    .synch-carousels {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .synch-carousels>* {
+        width: 100%;
+    }
+
+    .synch-carousels .right {
+        order: -1;
+    }
+
+    .synch-carousels .left {
+        overflow: hidden;
+    }
+
+    .synch-carousels .gallery {
+        display: none;
+    }
+
+    .synch-carousels .slick-slide {
+        outline: none;
+    }
+
+    .synch-carousels .slick-vertical .slick-slide {
+        border: none;
+    }
+
+    .synch-carousels .gallery .slick-list {
+        height: auto !important;
+        margin: 0 -20px;
+    }
+
+    .synch-carousels .gallery .slick-slide {
+        cursor: pointer;
+    }
+
+    .synch-carousels .gallery .slick-slide {
+        margin: 0 20px;
+    }
+
+    .synch-carousels .nav-arrows {
+        display: flex;
+        position: absolute;
+        bottom: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .synch-carousels .nav-arrows svg {
+        fill: white;
+    }
+
+    .synch-carousels .arrow-left {
+        margin-right: 35px;
+    }
+
+    .synch-carousels .photos-counter {
+        position: absolute;
+        top: 10px;
+        right: 0;
+        padding: 0 20px;
+        color: white;
+        background: #292929;
+    }
+
+    @media screen and (min-width: 480px) {
+        .synch-carousels .right {
+            margin-bottom: 20px;
+        }
+
+        .synch-carousels .gallery {
+            display: block;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .synch-carousels .right {
+            position: relative;
+            width: calc(100% - 120px);
+            margin-bottom: 0;
+            order: 2;
+        }
+
+        .synch-carousels .left {
+            width: 102px;
+        }
+
+        .synch-carousels .gallery .slick-slide {
+            margin: 0 0 20px 0;
+        }
+
+        .synch-carousels .gallery .slick-list {
+            margin: 0;
+        }
+    }
+
+    @media screen and (max-width:768px) {
+        .gallery2 {
+            height: 500px !important;
+            max-width: 100%;
+            max-height: 280px;
+            margin: 0px auto;
+        }
+
+        .imgmain {
+            width: 100%;
+            height: 500px !important;
+            max-width: 100%;
+            max-height: 280px;
+            margin: 0px auto;
+            object-fit: contain;
+        }
+
+        .tituloanuncio2 {
+            margin-top: 20px;
+            color: #000;
+        }
+    }
+
+    .gallery2 {
+        height: 500px !important;
+    }
+
+    .imgmain {
+        width: 100%;
+        height: 500px !important;
+        object-fit: contain;
+    }
+
+    .img-thumbnail {
+        max-width: 100px;
+        height: 100px;
+        width: 100px;
+        object-fit: cover;
+    }
+
+    .result-container {
+        width: 85%;
+        height: 14px;
+        background-color: #ccc;
+        vertical-align: middle;
+        display: inline-block;
+        position: relative;
+        top: -4px;
+    }
+
+    .rate-stars {
+        width: 100%;
+        height: 14px;
+        background: url({{URL}}/resources/view/pages/assets/images/zero-star-rating.png) no-repeat;
+        background-size: contain;
+        position: absolute;
+    }
+
+    .rate-bg {
+        height: 13px;
+        background-color: #ffbe10;
+        position: absolute;
+    }
+
+    /* Rate Star Ends*/
+
+    /* Display rate count */
+    .reviewCount,
+    .reviewScore {
+        font-size: 12px;
+        color: #666666;
+        margin-left: 5px;
+    }
+
+    .reviewScore {
+        font-weight: 600;
+    }
+
+    .result-container2 {
+        width: 100%;
+        height: 15px;
+        vertical-align: middle;
+        display: inline-block;
+        position: relative;
+        top: -4px;
+    }
+
+    .rate-bg2 {
+        height: 12px;
+        background-color: #ffbe10;
+        position: absolute;
+    }
+
+    .rate-stars2 {
+        width: 100%;
+        height: 12px;
+        background: url(https://showclass.mkwebdesigner.com/resources/view/pages/assets/images/zero-star-rating.png) no-repeat;
+        background-size: contain;
+        position: absolute;
+    }
+
+    .backchat {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1060;
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        outline: 0;
+        background-color: red;
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal.show .modal-dialog {
+        width: 350px;
+        height: 500px;
+    }
+
+    .modal-content {
+        height: 500px;
+    }
+
+    .message-box {
+        /* -webkit-box-flex: 0; */
+        /* -webkit-flex: 0 1 40px; */
+        -ms-flex: 0 1 40px;
+        /* flex: 0 1 40px; */
+        width: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        position: relative;
+        border-radius: 10px;
+        color: #ffffff !important;
+    }
+
+    .message.new {
+        color: #ffffff !important;
+    }
+
+    .message.message-personal.new {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+
+    .modal-dialog {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        box-shadow: rgb(159, 159, 159) 0px 0px 3px;
+        z-index: 999;
+        position: absolute;
+        right: 0px;
+        margin: 0.5rem;
+        bottom: 130px;
+    }
+
+    div#messages_area {
+        min-height: 200px !important;
+        max-height: 400px;
+    }
+
+    .modal-footer {
+        background-color: #fff;
+        height: 95px;
+        padding: 0;
+    }
+
+    form#chat_form {
+        width: 100%;
+        height: 100%;
+        /* display: flex; */
+        /* align-items: center; */
+    }
+
+    div#chat_area {
+        height: 355px !important;
+        /* overflow-x: hidden;
+        overflow-y: scroll; */
+    }
+
+    #wrapper {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+    }
+
+    #remaining {
+        flex-grow: 1;
+    }
+
+    #messages {
+        height: 200px;
+        background: whitesmoke;
+        overflow: auto;
+    }
+
+    #chat-room-frm {
+        margin-top: 10px;
+    }
+
+    #user_list {
+        height: 450px;
+        overflow-y: auto;
+    }
+
+    #messages_area {
+        height: 38vh;
+        overflow-y: auto;
+        /* background-color: #e6e6e6; */
+        /* background-color: #EDE6DE; */
+        overflow-x: hidden;
+    }
+
+    /* #messages_area {
+        height: 75vh;
+        overflow-y: auto;
+    } */
+    textarea#note {
+        width: 100%;
+        box-sizing: border-box;
+        display: block;
+        max-width: 100%;
+        line-height: 1.5;
+        border: none;
+        font: 16px Tahoma, cursive;
+        transition: box-shadow 0.5s ease;
+        font-smoothing: subpixel-antialiased;
+        background: transparent;
+        color: #000;
+        font-family: "Poppins";
+    }
+
+    body.modal-open {
+        overflow-y: scroll !important;
+        /* opacity: 0; */
+    }
+
+    .modal {
+        position: initial !important;
+        width: 19%;
+        height: 67%;
+        overflow: unset !important;
+    }
+
+    .boxmodalchat {
+        position: fixed;
+        bottom: 0 !important;
+        right: 0 !important;
+        z-index: 1060;
+        width: 19%;
+        height: 67%;
+        overflow: unset !important;
+        outline: 0;
+    }
+
+    .modal-footer>* {
+        margin: 0;
+    }
+
+    .part-items-detalhes-icones.section-items .item {
+        align-items: center;
+        color: #3c3c3c;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    .part-items-detalhes-icones.section-items .item .icon {
+        font-size: 1.8rem;
+        margin-right: 10px;
+        vertical-align: middle;
+        width: 38px;
+    }
+
+    .part-items-detalhes-icones.section-items .item .detalhes .campo {
+        color: #9a9a9a;
+        font-size: 14px;
+    }
+
+    .part-items-detalhes-icones.section-items .item .detalhes .valor {
+        color: #3c3c3c;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+
+    /* ICONES */
+    .icon-410:before {
+        content: "\f102"
+    }
+
+    .icon-30alerta:before {
+        content: "\f101"
+    }
+
+    .icon-ad-car:before {
+        content: "\f103"
+    }
+
+    .icon-ad-payment:before {
+        content: "\f104"
+    }
+
+    .icon-ad-plan:before {
+        content: "\f105"
+    }
+
+    .icon-admin-stock:before {
+        content: "\f106"
+    }
+
+    .icon-adplanopf:before {
+        content: "\f107"
+    }
+
+    .icon-adplanopj:before {
+        content: "\f108"
+    }
+
+    .icon-adremove:before {
+        content: "\f109"
+    }
+
+    .icon-advertise:before {
+        content: "\f10a"
+    }
+
+    .icon-alert:before {
+        content: "\f10b"
+    }
+
+    .icon-arrow-back:before {
+        content: "\f10c"
+    }
+
+    .icon-arrow-down:before {
+        content: "\f10d"
+    }
+
+    .icon-arrow-left:before {
+        content: "\f10e"
+    }
+
+    .icon-arrow-next:before {
+        content: "\f10f"
+    }
+
+    .icon-arrow-right:before {
+        content: "\f110"
+    }
+
+    .icon-arrow-up:before {
+        content: "\f111"
+    }
+
+    .icon-bell:before {
+        content: "\f112"
+    }
+
+    .icon-bin:before {
+        content: "\f113"
+    }
+
+    .icon-bugle:before {
+        content: "\f114"
+    }
+
+    .icon-calendar-o:before {
+        content: "\f115"
+    }
+
+    .icon-calendar:before {
+        content: "\f116"
+    }
+
+    .icon-car-check:before {
+        content: "\f117"
+    }
+
+    .icon-car-remove:before {
+        content: "\f118"
+    }
+
+    .icon-caret-left:before {
+        content: "\f119"
+    }
+
+    .icon-caret-right:before {
+        content: "\f11a"
+    }
+
+    .icon-cell:before {
+        content: "\f11b"
+    }
+
+    .icon-change-stock:before {
+        content: "\f11c"
+    }
+
+    .icon-check:before {
+        content: "\f11d"
+    }
+
+    .icon-claro-alt:before {
+        content: "\f11e"
+    }
+
+    .icon-claro:before {
+        content: "\f11f"
+    }
+
+    .icon-clip:before {
+        content: "\f120"
+    }
+
+    .icon-color:before {
+        content: "\f121"
+    }
+
+    .icon-comments:before {
+        content: "\f122"
+    }
+
+    .icon-compare_vazado:before {
+        content: "\f123"
+    }
+
+    .icon-compare:before {
+        content: "\f124"
+    }
+
+    .icon-consult:before {
+        content: "\f125"
+    }
+
+    .icon-custobeneficio:before {
+        content: "\f126"
+    }
+
+    .icon-delivery_car:before {
+        content: "\f127"
+    }
+
+    .icon-delivery:before {
+        content: "\f128"
+    }
+
+    .icon-destaquead:before {
+        content: "\f129"
+    }
+
+    .icon-discount:before {
+        content: "\f12a"
+    }
+
+    .icon-doors:before {
+        content: "\f12b"
+    }
+
+    .icon-email-pro:before {
+        content: "\f12c"
+    }
+
+    .icon-facebook-alt:before {
+        content: "\f12d"
+    }
+
+    .icon-featured-ad:before {
+        content: "\f12e"
+    }
+
+    .icon-featured-smart:before {
+        content: "\f12f"
+    }
+
+    .icon-file-o:before {
+        content: "\f130"
+    }
+
+    .icon-file:before {
+        content: "\f131"
+    }
+
+    .icon-filter:before {
+        content: "\f132"
+    }
+
+    .icon-financiamento:before {
+        content: "\f133"
+    }
+
+    .icon-financie:before {
+        content: "\f134"
+    }
+
+    .icon-financin:before {
+        content: "\f135"
+    }
+
+    .icon-fuel:before {
+        content: "\f136"
+    }
+
+    .icon-gavel:before {
+        content: "\f137"
+    }
+
+    .icon-gearbox:before {
+        content: "\f138"
+    }
+
+    .icon-gearshift:before {
+        content: "\f139"
+    }
+
+    .icon-globe:before {
+        content: "\f13a"
+    }
+
+    .icon-heart_vazado:before {
+        content: "\f13b"
+    }
+
+    .icon-heart:before {
+        content: "\f13c"
+    }
+
+    .icon-info:before {
+        content: "\f13d"
+    }
+
+    .icon-irregularity:before {
+        content: "\f13e"
+    }
+
+    .icon-mail-white:before {
+        content: "\f13f"
+    }
+
+    .icon-mail:before {
+        content: "\f140"
+    }
+
+    .icon-map-pointer:before {
+        content: "\f141"
+    }
+
+    .icon-money:before {
+        content: "\f142"
+    }
+
+    .icon-multicars:before {
+        content: "\f143"
+    }
+
+    .icon-nextel-alt:before {
+        content: "\f144"
+    }
+
+    .icon-nextel:before {
+        content: "\f145"
+    }
+
+    .icon-oi-alt:before {
+        content: "\f146"
+    }
+
+    .icon-oi:before {
+        content: "\f147"
+    }
+
+    .icon-pesquisa:before {
+        content: "\f148"
+    }
+
+    .icon-phone-alt:before {
+        content: "\f149"
+    }
+
+    .icon-phone-salles:before {
+        content: "\f14a"
+    }
+
+    .icon-phone:before {
+        content: "\f14b"
+    }
+
+    .icon-photos:before {
+        content: "\f14c"
+    }
+
+    .icon-pin:before {
+        content: "\f14d"
+    }
+
+    .icon-plan-list:before {
+        content: "\f14e"
+    }
+
+    .icon-plan-private:before {
+        content: "\f14f"
+    }
+
+    .icon-plan-reseller:before {
+        content: "\f150"
+    }
+
+    .icon-plate:before {
+        content: "\f151"
+    }
+
+    .icon-print:before {
+        content: "\f152"
+    }
+
+    .icon-propostaefetivas:before {
+        content: "\f153"
+    }
+
+    .icon-publicoalvo:before {
+        content: "\f154"
+    }
+
+    .icon-report:before {
+        content: "\f155"
+    }
+
+    .icon-revenda:before {
+        content: "\f156"
+    }
+
+    .icon-school:before {
+        content: "\f157"
+    }
+
+    .icon-seguranca:before {
+        content: "\f158"
+    }
+
+    .icon-seller-online:before {
+        content: "\f159"
+    }
+
+    .icon-seller:before {
+        content: "\f15a"
+    }
+
+    .icon-share:before {
+        content: "\f15b"
+    }
+
+    .icon-sm-email:before {
+        content: "\f15c"
+    }
+
+    .icon-sm-facebook:before {
+        content: "\f15d"
+    }
+
+    .icon-sm-googleplus:before {
+        content: "\f15e"
+    }
+
+    .icon-sm-instagram:before {
+        content: "\f15f"
+    }
+
+    .icon-sm-twitter:before {
+        content: "\f160"
+    }
+
+    .icon-sm-whatsapp:before {
+        content: "\f161"
+    }
+
+    .icon-sm-whatsapp2:before {
+        content: "\f162"
+    }
+
+    .icon-sm-youtube:before {
+        content: "\f163"
+    }
+
+    .icon-sold:before {
+        content: "\f164"
+    }
+
+    .icon-sualogoaqui:before {
+        content: "\f165"
+    }
+
+    .icon-swap:before {
+        content: "\f166"
+    }
+
+    .icon-tim-alt:before {
+        content: "\f167"
+    }
+
+    .icon-tim:before {
+        content: "\f168"
+    }
+
+    .icon-time:before {
+        content: "\f169"
+    }
+
+    .icon-trocaestoque:before {
+        content: "\f16a"
+    }
+
+    .icon-twitter-alt:before {
+        content: "\f16b"
+    }
+
+    .icon-type-bus:before {
+        content: "\f16c"
+    }
+
+    .icon-type-car:before {
+        content: "\f16d"
+    }
+
+    .icon-type-moto:before {
+        content: "\f16e"
+    }
+
+    .icon-type-truck:before {
+        content: "\f16f"
+    }
+
+    .icon-user-avatar:before {
+        content: "\f170"
+    }
+
+    .icon-user:before {
+        content: "\f171"
+    }
+
+    .icon-veiculo-preparando:before {
+        content: "\f172"
+    }
+
+    .icon-velocity:before {
+        content: "\f173"
+    }
+
+    .icon-video:before {
+        content: "\f174"
+    }
+
+    .icon-view-grid:before {
+        content: "\f175"
+    }
+
+    .icon-view-list:before {
+        content: "\f176"
+    }
+
+    .icon-vivo-alt:before {
+        content: "\f177"
+    }
+
+    .icon-vivo:before {
+        content: "\f178"
+    }
+
+    .icon-website:before {
+        content: "\f179"
+    }
+
+    .icon-whatsapp-alt:before {
+        content: "\f17a"
+    }
+
+    .icon-whatsapp:before {
+        content: "\f17b"
+    }
+
+    .icon-wheelchair-solid:before {
+        content: "\f17c"
+    }
+
+    .lista-acessorios {
+        -moz-column-count: 4;
+        -moz-column-width: auto;
+        columns: 4;
+        padding-left: 0px;
+    }
+
+    .lista-acessorios .acessorio {
+        line-height: 25px;
+        list-style: none;
+        width: 100%;
+    }
+
+    .lista-acessorios .acessorio span {
+        -webkit-box-decoration-break: clone;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    img.card-img-top.p-2.fotoanuncio {
+        width: 100%;
+        height: 150px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin: -1px 0 0 0px;
+        -o-object-fit: cover;
+        object-fit: cover;
+        padding: 0 !important;
+    }
+
+    h5.card-title.anuncio {
+        height: 50px;
+        font-size: 16px;
+        line-height: 1.3em;
+        margin-bottom: 5px;
+        font-weight: 900;
+    }
+
+    p.card-text.preco {
+        font-size: 23px;
+        font-weight: 700;
+        font-size: 15px;
+        font-weight: 700;
+        color: #191f23;
+        margin-bottom: 10px;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    textarea.form-control {
+        min-height: calc(1.5em + (0.75rem + 2px));
+        background: #fafafa;
+        border: 1px solid #f2f2f2;
+        box-shadow: 0px 5px 6px rgb(0 0 0 / 25%);
+        border-radius: 8px;
+        /* height: 48px; */
+    }
+
+    label.form-label {
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+
+    .cardform {
+        flex-shrink: 0;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 100px;
+        height: -webkit-fit-content;
+        height: -moz-fit-content;
+        height: fit-content;
+    }
+</style>
+<link href="{{URL}}/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+<link href="{{URL}}/resources/view/pages/assets/css/starability-all.css" rel="stylesheet" type="text/css" />
+<link href="{{URL}}/js/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{URL}}/js/parsley/parsley.css" />
+<div class="container mt-5">
+    {{status}}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Categoria</a></li>
+            <li class="breadcrumb-item"><a href="{{URL}}/busca?term={{categoria}}">{{categoria}}</a></li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="synch-carousels">
+
+                        <div class="left child">
+                            <div class="gallery">
+                                {{fotos}}
+                                <!-- <div class="item">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery1.jpg" alt=""
+                                        class="img-thumbnail">
+                                </div>
+                                <div class="item">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery2.jpg" alt=""
+                                        class="img-thumbnail">
+                                </div>
+                                <div class="item">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery3.jpg" alt=""
+                                        class="img-thumbnail">
+                                </div>
+                                <div class="item">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery4.jpg" alt=""
+                                        class="img-thumbnail">
+                                </div>
+                                <div class="item">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery5.jpg" alt=""
+                                        class="img-thumbnail">
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="right child">
+                            <div class="gallery2">
+                                {{fotosmain}}
+                                <!-- <div class="item">
+                                    <img class="imgmain"
+                                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery1.jpg" alt="" />
+                                </div>
+                                <div class="item">
+                                    <img class="imgmain"
+                                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery2.jpg" alt="" />
+                                </div>
+                                <div class="item">
+                                    <img class="imgmain"
+                                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery3.jpg" alt="" />
+                                </div>
+                                <div class="item">
+                                    <img class="imgmain"
+                                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery4.jpg" alt="" />
+                                </div>
+                                <div class="item">
+                                    <img class="imgmain"
+                                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/gallery5.jpg" alt="" />
+                                </div> -->
+                            </div>
+                            <!-- <div class="nav-arrows">
+                                <button class="arrow-left">
+                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                                        clip-rule="evenodd">
+                                        <path
+                                            d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" />
+                                    </svg>
+                                </button>
+                                <button class="arrow-right">
+                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                                        clip-rule="evenodd">
+                                        <path
+                                            d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z" />
+                                    </svg>
+                                </button>
+                            </div> -->
+                            <div class="photos-counter">
+                                <span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-8">
+                    <img src="{{URL}}/resources/view/pages/assets/images/anuncio4.png" width="500px" height="500px">
+                </div> -->
+            </div>
+
+            <div class="boxtitulo mt-5">
+                <h3 class="tituloanuncio2">{{titulo}}</h3>
+                <div class="d-flex align-items-center">
+                    <div style="width:91px;">
+                        <div class="result-container">
+                            <a href="#reviews">
+                                <div class="rate-bg" style="width:{{totalrate}}%"></div>
+                                <div class="rate-stars"></div>
+                            </a>
+
+                        </div>
+                    </div>
+                    ({{totalcoment}})
+                </div>
+                <p class="card-text preco">
+                    <strong>R$ {{preco}}</strong>
+                </p>
+
+                <p>
+                    <!-- <span>Nome do anunciante: <strong>{{nome_anunciante}}</strong></span><br> -->
+                    <span>
+                        Nome da loja: <strong>
+                            <a href="{{URL}}/anuncio/{{nome_url}}" class="">{{nome_loja}}</a></strong>
+                    </span>
+                    <Br>
+                    <span>
+                        Telefone Anunciante: <strong>
+                            <a href="tel:{{telefone_anunciante}}" class="">{{telefone_anunciante}}</a></strong>
+                    </span>
+                    <br>
+                    <span>
+                        Localização:
+                        <strong>{{cidade_anunciante}}</strong>
+                    </span>
+                </p>
+
+
+                <!-- <a href="#" class="mt-3">
+                    <img src="{{URL}}/resources/view/pages/assets/images/opcoespagamento.png" width="230px">
+                </a> -->
+
+
+                <!-- <a class="btn btn-lg btn-primary buttonadd" href="#">Adicionar ao carrinho -></a> -->
+                <!-- <a class="btn btn-lg btn-primary buttonchat select_user" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal2" href="#">
+                    Chat com vendedor
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
+                        <path
+                            d="M17.2157 4.25C9.42407 4.25 3.04907 9.32167 3.04907 15.5833C3.08464 17.0888 3.45229 18.5679 4.12575 19.9148C4.79922 21.2617 5.76186 22.4433 6.94491 23.375C6.94491 24.225 6.34991 26.4492 3.04907 29.75C6.40657 29.5942 9.62241 28.3333 12.2149 26.2083C13.8299 26.6758 15.5299 26.9167 17.2157 26.9167C25.0074 26.9167 31.3824 21.845 31.3824 15.5833C31.3824 9.32167 25.0074 4.25 17.2157 4.25ZM17.2157 24.0833C10.9541 24.0833 5.88241 20.2725 5.88241 15.5833C5.88241 10.8942 10.9541 7.08333 17.2157 7.08333C23.4774 7.08333 28.5491 10.8942 28.5491 15.5833C28.5491 20.2725 23.4774 24.0833 17.2157 24.0833Z"
+                            fill="#6B6B6B" />
+                    </svg>
+                </a> -->
+            </div>
+
+            <div class="row mt-5">
+                <h5><b>Detalhes do item:</b></h5>
+                <div class="col-md-12">
+                    <div class="part-items-detalhes-icones row col-print-6 section-items mt-2 mt-md-3">
+                        <div class="col-6 col-md-4 d-flex item" title="Quilometragem">
+                            <i class="icon icon-velocity"></i>
+                            <span class="detalhes">
+                                <div class="campo d-none d-md-block">Quilometragem</div>
+                                <span class="valor"><span title="Kilometragem do veículo">{{kilometragem}}</span></span>
+                            </span>
+                        </div>
+                        <div class="col-6 col-md-4 d-flex item" title="Câmbio">
+                            <i class="icon icon-gearbox"></i>
+                            <span class="detalhes">
+                                <div class="campo d-none d-md-block">Câmbio</div>
+                                <span class="valor"><span title="Tipo de transmissão">{{cambio}}</span></span>
+                            </span>
+                        </div>
+                        <div class="col-6 col-md-4 d-flex item" title="Ano - Modelo">
+                            <i class="icon icon-calendar"></i>
+                            <span class="detalhes">
+                                <div class="campo d-none d-md-block">Ano - Modelo</div>
+                                <span class="valor"><span title="Ano/modelo" itemprop="modelDate"
+                                        content="2020">{{anomodelo}}</span></span>
+                            </span>
+                        </div>
+                        <div class="col-6 col-md-4 d-flex item" title="Portas">
+                            <i class="icon icon-doors"></i>
+                            <span class="detalhes">
+                                <div class="campo d-none d-md-block">Portas</div>
+                                <span class="valor"><span title="Portas">{{portas}}</span></span>
+                            </span>
+                        </div>
+                        <div class="col-6 col-md-4 d-flex item" title="Combustível">
+                            <i class="icon icon-fuel"></i>
+                            <span class="detalhes">
+                                <div class="campo d-none d-md-block">Combustível</div>
+                                <span class="valor"><span title="Tipo de combustível"
+                                        itemprop="fuelType">{{combustivel}}</span></span>
+                            </span>
+                        </div>
+                        <div class="col-6 col-md-4 d-flex item" title="Placa">
+                            <i class="icon icon-plate"></i>
+                            <span class="detalhes">
+                                <div class="campo d-none d-md-block">Placa</div>
+                                <span class="valor"><span title="Final da placa">{{placa}}</span></span>
+                            </span>
+                        </div>
+                        <!-- <div class="col-6 col-md-4 d-flex item" title="Troca?">
+                            <i class="icon icon-swap"></i>
+                            <span class="detalhes">
+                                <div class="campo d-none d-md-block">Troca?</div>
+                                <span class="valor"><span title="Aceita troca?">Não Aceita Troca</span></span>
+                            </span>
+                        </div> -->
+                        <div class="col-6 col-md-4 d-flex item" title="cor">
+                            <i class="icon icon-color"></i>
+                            <span class="detalhes">
+                                <div class="campo d-none d-md-block">Cor</div>
+                                <span class="valor">{{cor}}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-3" style="height:1px;">
+                <div class="col-md-12 mt-3">
+                    <h5><b>Acessórios:</b></h5>
+
+                    <div class="mt-3" style="    display: flex;justify-content: space-between;">
+
+
+                        <ul class="list-styled lista-acessorios">
+                            {{opcionais}}
+
+                            <!-- <li class="acessorio">
+                                <span class="description-print">Ar Condicionado</span>
+                            </li>
+                            <li class="acessorio">
+                                <span class="description-print">Ar Quente</span>
+                            </li>
+                            <li class="acessorio">
+                                <span class="description-print">Câmbio Manual</span>
+                            </li>
+                            <li class="acessorio">
+                                <span class="description-print">Direção Hidráulica</span>
+                            </li>
+                            <li class="acessorio">
+                                <span class="description-print">Travas Elétricas</span>
+                            </li>
+                            <li class="acessorio">
+                                <span class="description-print">Vidros Elétricos</span>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="card cardform">
+                <div class="card-body">
+                    <div id="contact" class="contact"><!---->
+                        <h3 class="talk-to-seller">
+                            Fale com o vendedor
+                        </h3>
+                        <form id="formcontato" novalidate="novalidate" class="">
+                            <div class="form-group">
+                                <label for="fullName" class="form-label">Nome completo</label> <!---->
+                                <input id="fullName" name="fullName" autocomplete="off" required tabindex="0"
+                                    type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Celular</label>
+                                <input id="phone" name="phone" autocomplete="off" required tabindex="0"
+                                    type="tel" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input id="email" name="email" autocomplete="off" required tabindex="0"
+                                    type="email" class="form-control">
+                            </div>
+                            <textarea placeholder="Digite uma mensagem..." name="message"
+                                class="form-control mt-3">Olá, vi seu veículo no ShowClass e tenho interesse. Aguardo seu contato!</textarea>
+
+                            <button type="submit" class="btn btn-primary mt-3 w-100">
+                                Enviar mensagem
+                            </button>
+                            <span class="error-message" style="display:none;">
+                                Erro ao
+                                enviar a mensagem.Tente novamente.
+                            </span>
+                            <span class="error-message" style="display:none;">* Os campos em vermelho são obrigatórios
+                            </span>
+                            <span class="text-success" id="success-message" style="display:none;">Mensagem enviada com
+                                sucesso! Aguarde contato do vendedor :)</span>
+                        </form>
+
+                        <h3 class="text-center">
+                            <b id="mensagemcadastrando" style="display: none;">Aguarde...</b>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+
+            <textarea disabled readonly id="note">{{descricao}}</textarea>
+        </div>
+    </div>
+</div>
+<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+<script>
+    autosize(document.getElementById("note"));
+</script>
+<!-- <div class="container">
+    <hr style="height:1px;">
+</div> -->
+
+<div class="container py-5">
+    {{form_review}}
+</div>
+
+<div class="container py-5">
+    <div class="row d-flex flex-column" id="reviews">
+        <h5 style="font-weight: 800;">Avaliações</h5>
+        {{avaliacoes}}
+    </div>
+</div>
+
+<section class="relacionados py-5" style="background-color: #f5f7fa;">
+    <div class="container">
+        <h3 class="mb-3">CONFIRA OUTRAS SUGESTÕES:</h3>
+        <div class="row">
+            {{itens_rela}}
+        </div>
+    </div>
+</section>
+
+
+<div class="bg"></div>
+
+<div class="boxmodalchat">
+    <div class="modal fade" id="exampleModal2" data-bs-backdrop="false" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title nick" id="exampleModalLabel">{{titulo}}</h5></br>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <small style="padding-left: 15px;"><b>Conversando com: <span class="text-danger"
+                            id="chat_user_name"></span></b></small>
+                <div class="modal-body">
+                    <input type="hidden" name="login_user_id" id="login_user_id" value="{{id_user}}" />
+
+                    <input type="hidden" name="id_anuncio" id="id_anuncio" value="{{id_anuncio}}" />
+
+                    <input type="hidden" name="is_active_chat" id="is_active_chat" value="No" />
+                    <div id="chat_area"></div>
+                    <!-- <div class="chat">
+                        <div class="chat-title">
+                            <h1>Nome do vendedor</h1>
+                            <h2 class="nick">Anúncio</h2>
+                            <figure class="avatar">
+                                <img
+                                    src="https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png" />
+                            </figure>
+                        </div>
+                        <div class="messages">
+                            <div class="messages-content"></div>
+                        </div>
+                        <div class="message-box">
+                            <textarea type="text" class="message-input" placeholder="Digite sua mensagem..."></textarea>
+                            <button type="submit" class="message-submit">Enviar</button>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="modal-footer" id="footerform">
+                    <form id="chat_form" method="POST" data-parsley-errors-container="#validation_error">
+                        <div class="input-group mb-3" style="height:7vh">
+                            <textarea class="form-control" id="chat_message" name="chat_message"
+                                placeholder="Escreva sua mensagem" data-parsley-maxlength="1000" required></textarea>
+                            <div class="input-group-append">
+                                <button type="submit" name="send" id="send" class="btn btn-primary"
+                                    style="height: 100% !important;">
+                                    <i class="fa fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                        <div id="validation_error"></div>
+                        <br />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title nick" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body messages">
+                <div class="messages-content"></div>
+                <!-- <div class="chat">
+                    <div class="chat-title">
+                        <h1>Nome do vendedor</h1>
+                        <h2 class="nick">Anúncio</h2>
+                        <figure class="avatar">
+                            <img
+                                src="https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png" />
+                        </figure>
+                    </div>
+                    <div class="messages">
+                        <div class="messages-content"></div>
+                    </div>
+                    <div class="message-box">
+                        <textarea type="text" class="message-input" placeholder="Digite sua mensagem..."></textarea>
+                        <button type="submit" class="message-submit">Enviar</button>
+                    </div>
+                </div> -->
+            </div>
+            <div class="modal-footer">
+                <div class="message-box">
+                    <textarea type="text" class="message-input" placeholder="Digite sua mensagem..."></textarea>
+                    <button type="submit" class="message-submit">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="backchat">
+    <div class="chat">
+        <div class="chat-title">
+            <h1>Nome do vendedor</h1>
+            <h2 class="nick">Anúncio</h2>
+            <figure class="avatar">
+                <img
+                    src="https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png" />
+            </figure>
+        </div>
+        <div class="messages">
+            <div class="messages-content"></div>
+        </div>
+        <div class="message-box">
+            <textarea type="text" class="message-input" placeholder="Digite sua mensagem..."></textarea>
+            <button type="submit" class="message-submit">Enviar</button>
+        </div>
+    </div>
+</div> -->
+
+
+<script>
+    $("#formcontato").submit(function () {
+
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        //var formData = new FormData(document.getElementById("formcontato"));
+
+        var fullname = $("#fullName").val();
+        var phone = $("#phone").val();
+        var email = $("#email").val();
+
+        console.log(fullname)
+
+        if (fullname == null || fullname == "" || fullname == undefined) {
+
+            $("#fullName").attr("style", "border:1px solid red")
+            return
+        }
+        if (phone == null || phone == "" || phone == undefined) {
+
+            $("#phone").attr("style", "border:1px solid red")
+            return
+        }
+        if (email == null || email == "" || email == undefined) {
+
+            $("#email").attr("style", "border:1px solid red")
+            return
+        }
+
+        $.ajax({
+            method: "POST",
+            url: "{{URL}}/contatoloja/{{nome_url}}",
+            data: formData,
+            beforeSend: function () {
+                $("#mensagemcadastrando").show()
+            },
+            success: function (response) {
+                $("#mensagemcadastrando").hide()
+                $("#success-message").show()
+
+                var mensagemwpp = 'Olá, vi seu veículo no ShowClass e tenho interesse. Aguardo seu contato!';
+
+                setTimeout(() => {
+                    redirectToWhatsApp()
+                }, 1000);
+
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+        });
+    })
+
+    function formatPhoneNumber(phoneNumber) {
+        // Remove caracteres não numéricos
+        var cleaned = phoneNumber.replace(/\D/g, '');
+
+        // Adiciona o código do país se não estiver presente
+        if (!cleaned.startsWith('55')) {
+            cleaned = '55' + cleaned;
+        }
+
+        return cleaned;
+    }
+
+    function redirectToWhatsApp() {
+        // Número de telefone (substitua com o número desejado, incluindo o código do país)
+        var phoneNumber = '{{telefone_anunciante}}';
+
+        // Formata o número para o padrão do WhatsApp
+        var formattedPhoneNumber = formatPhoneNumber(phoneNumber);
+
+        // Mensagem que será enviada no WhatsApp
+        var message = encodeURIComponent('Olá, vi seu anúncio no ShowClass e tenho interesse. Aguardo seu contato!');
+
+        // Cria o link para a API do WhatsApp
+        var whatsappLink = 'https://api.whatsapp.com/send?phone=' + formattedPhoneNumber + '&text=' + message;
+
+        // Redireciona para o link do WhatsApp
+        //window.location.href = whatsappLink;
+        window.open(whatsappLink, '_blank');
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script
+    src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+<!-- 
+<script src="{{URL}}/js/socket.js"></script> -->
+
+
+<style>
+    #messages {
+        height: 200px;
+        overflow-y: scroll;
+    }
+</style>
+
+
+
+<!-- <div id="messages"></div>
+<form>
+    <input type="text" id="message" placeholder="Digite sua mensagem">
+    <button type="submit">Enviar</button>
+</form> -->
+<!-- <script>
+    var ws = new WebSocket('wss://45.90.220.128:8080');
+    ws.onmessage = function (event) {
+        var messages = document.getElementById('messages');
+        var message = document.createElement('div');
+        message.innerText = event.data;
+        messages.appendChild(message);
+    };
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var input = document.getElementById('message');
+        var message = input.value;
+        input.value = '';
+        ws.send(message);
+    });
+</script> -->
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+
+<script>
+    const $left = $(".left");
+    const $gl = $(".gallery");
+    const $gl2 = $(".gallery2");
+    const $photosCounterFirstSpan = $(".photos-counter span:nth-child(1)");
+
+    $gl2.on("init", (event, slick) => {
+        $photosCounterFirstSpan.text(`${slick.currentSlide + 1}/`);
+        $(".photos-counter span:nth-child(2)").text(slick.slideCount);
+    });
+
+    $gl.slick({
+        rows: 0,
+        slidesToShow: 4,
+        arrows: false,
+        draggable: false,
+        useTransform: false,
+        mobileFirst: true,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 1023,
+                settings: {
+                    slidesToShow: 1,
+                    vertical: true
+                }
+            }
+        ]
+    });
+
+    $gl2.slick({
+        rows: 0,
+        useTransform: false,
+        prevArrow: ".arrow-left",
+        nextArrow: ".arrow-right",
+        fade: true,
+        asNavFor: $gl
+    });
+
+    function handleCarouselsHeight() {
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+            const gl2H = $(".gallery2").height();
+            $left.css("height", gl2H);
+        } else {
+            $left.css("height", "auto");
+        }
+    }
+
+    $(window).on("load", () => {
+        handleCarouselsHeight();
+        setTimeout(() => {
+            $(".loading").fadeOut();
+            $("body").addClass("over-visible");
+        }, 300);
+    });
+
+    $(window).on(
+        "resize",
+        _.debounce(() => {
+            handleCarouselsHeight();
+            /*You might need this code in your projects*/
+            //$gl1.slick("resize");
+            //$gl2.slick("resize");
+        }, 200)
+    );
+
+    $(".gallery .item").on("click", function () {
+        const index = $(this).attr("data-slick-index");
+        $gl2.slick("slickGoTo", index);
+    });
+
+    $gl2.on("afterChange", (event, slick, currentSlide) => {
+        $photosCounterFirstSpan.text(`${slick.currentSlide + 1}/`);
+    });
+    $('#exampleModal2').on('shown.bs.modal', function (e) {
+        $('body').removeClass('modal-open');
+        $('#myCustomElement').addClass('modal-open');
+    })
+</script>
+
+<script>
+    // $('#review').submit(function (e) {
+    //     e.preventDefault();
+    //     review('review')
+    // });
+
+    // function review(review) {
+
+    //     data = $('#' + review).serialize();
+    //     console.log(data);
+
+    //     $.ajax({
+    //         url: `{{URL}}/avaliar_loja`,
+    //         data: data,
+    //         method: 'post',
+    //         success: function (data) {
+    //             if (data) {
+    //                 // aviso_usuario(data.MSG, 'success', 'Sucesso!');
+    //                 setTimeout(() => {
+    //                     window.location.reload;
+    //                     // window.location = `<?= baseURL ?>sistema`;
+    //                 }, 1500);
+    //             } else if (data.TYPE != "SUCCESS") {
+    //                 aviso_usuario(data.MSG, 'error', 'Acesso')
+    //             }
+    //         }
+    //     })
+    // }
+</script>
+
+
+
+
+
+
+
+
+<script src="{{URL}}/js/jquery/jquery.min.js"></script>
+<script src="{{URL}}/js/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{URL}}/js/jquery-easing/jquery.easing.min.js"></script>
+
+<script type="text/javascript" src="{{URL}}/js/parsley/dist/parsley.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        make_chat_area('{{nome_loja}}');
+
+        var receiver_userid = '';
+
+
+
+        // var conn = new WebSocket('ws://localhost:8080');
+        // var conn = new WebSocket('wss://showclass.com.br:8085?token={{token}}');
+
+        // conn.onopen = function (event) {
+        //     console.log('Connection Established');
+        // };
+
+        conn.onmessage = function (event) {
+            var data = JSON.parse(event.data);
+            console.log(data)
+            if (data.status_type == 'Online') {
+                $('#userstatus_' + data.user_id_status).html('<i class="fa fa-circle text-success"></i>');
+            }
+            else if (data.status_type == 'Offline') {
+                $('#userstatus_' + data.user_id_status).html('<i class="fa fa-circle text-danger"></i>');
+            }
+            else {
+
+                var row_class = '';
+                var background_class = '';
+
+                if (data.from == 'Me') {
+                    row_class = 'row justify-content-end';
+                    background_class = 'alert-primary';
+                }
+                else {
+                    row_class = 'row justify-content-start';
+
+                    background_class = 'alert-success';
+                }
+
+                if (receiver_userid == data.userId || data.from == 'Me') {
+                    if ($('#is_active_chat').val() == 'Yes') {
+                        var html_data = `
+						<div class="`+ row_class + `">
+							<div class="col-sm-10">
+								<div class="shadow-sm alert `+ background_class + `">
+									`+ data.msg + `<br />
+									<div class="text-right">
+										<small><i>`+ data.datetime + `</i></small>
+									</div>
+								</div>
+							</div>
+						</div>
+						`;
+
+                        $('#messages_area').append(html_data);
+
+                        $('#messages_area').scrollTop($('#messages_area')[0].scrollHeight);
+
+                        $('#chat_message').val("");
+                    }
+                }
+                else {
+                    var count_chat = $('#userid' + data.userId).text();
+
+                    if (count_chat == '') {
+                        count_chat = 0;
+                    }
+
+                    count_chat++;
+
+                    $('#userid_' + data.userId).html('<span class="badge badge-danger badge-pill">' + count_chat + '</span>');
+                }
+            }
+        };
+
+        conn.onclose = function (event) {
+            console.log('connection close');
+        };
+
+        function make_chat_area(user_name) {
+            var html = `
+					<div class="row">
+						<div class="col col-sm-6">
+							
+						</div>
+						
+					</div>
+				<div class="" id="messages_area">
+
+				</div>
+
+			
+			`;
+
+            $('#chat_user_name').append(user_name)
+
+            $('#chat_area').html(html);
+
+            $('#chat_form').parsley();
+        }
+
+        $(document).on('click', '.select_user', function () {
+
+            receiver_userid = '{{id_user_store}}';
+
+            id_anuncio = '{{id_anuncio}}';
+
+            nome_loja = '{{nome_loja}}';
+
+            var from_user_id = '{{id_user}}';
+
+            if (from_user_id == "") {
+                $('#messages_area').html('<div style="text-align:center;"><h4>Você precisa estar logado para usar o chat !</h4></div> </br> <a href="{{URL}}/account/login">Clique aqui para fazer login</a>');
+                $('#footerform').attr('style', 'display:none;');
+            } else {
+                var receiver_user_name = $('#list_user_name_' + receiver_userid).text();
+                console.log(receiver_user_name)
+                $('.select_user.active').removeClass('active');
+
+                $(this).addClass('active');
+
+                // make_chat_area(nome_loja);
+
+                $('#is_active_chat').val('Yes');
+
+                $.ajax({
+                    url: "{{URL}}/fetch_chat",
+                    method: "POST",
+                    data: { action: 'fetch_chat', to_user_id: receiver_userid, from_user_id: from_user_id, id_anuncio: id_anuncio },
+                    dataType: "JSON",
+                    success: function (data) {
+                        if (data.length > 0) {
+                            var html_data = '';
+
+                            for (var count = 0; count < data.length; count++) {
+                                var row_class = '';
+                                var background_class = '';
+                                var user_name = '';
+
+                                if (data[count].from_user_id == from_user_id) {
+                                    row_class = 'row justify-content-end';
+
+
+                                    background_class = 'alert-primary';
+
+                                    user_name = 'Me';
+                                }
+                                else {
+                                    row_class = 'row justify-content-start';
+
+                                    background_class = 'alert-success';
+
+                                    user_name = data[count].from_user_name;
+                                }
+
+                                html_data += `
+							<div class="`+ row_class + `">
+								<div class="col-sm-10">
+									<div class="shadow alert `+ background_class + `">
+										`+ data[count].chat_message + `<br />
+										<div class="text-right">
+											<small><i>`+ data[count].timestamp + `</i></small>
+										</div>
+									</div>
+								</div>
+							</div>
+							`;
+                            }
+
+                            $('#userid_' + receiver_userid).html('');
+
+                            $('#messages_area').html(html_data);
+
+                            $('#messages_area').scrollTop($('#messages_area')[0].scrollHeight);
+                        }
+                    }
+                })
+            }
+
+
+
+        });
+
+        $(document).on('click', '#close_chat_area', function () {
+
+            $('#chat_area').html('');
+
+            $('.select_user.active').removeClass('active');
+
+            $('#is_active_chat').val('No');
+
+            receiver_userid = '';
+
+        });
+
+        $(document).on('submit', '#chat_form', function (event) {
+
+            event.preventDefault();
+
+            if ($('#chat_form').parsley().isValid()) {
+                var user_id = parseInt($('#login_user_id').val());
+
+                var id_anuncio = parseInt($('#id_anuncio').val());
+
+                // var id_anuncio = '{{id_anuncio}}';
+
+                console.log(id_anuncio)
+
+                var message = $('#chat_message').val();
+
+                var data = {
+                    userId: user_id,
+                    msg: message,
+                    receiver_userid: receiver_userid,
+                    id_anuncio: id_anuncio,
+                    command: 'private'
+                };
+
+                conn.send(JSON.stringify(data));
+            }
+
+        });
+
+        $('#logout').click(function () {
+
+            user_id = $('#login_user_id').val();
+
+            $.ajax({
+                url: "action.php",
+                method: "POST",
+                data: { user_id: user_id, action: 'leave' },
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    if (response.status == 1) {
+                        conn.close();
+
+                        location = 'index.php';
+                    }
+                }
+            })
+
+        });
+
+    })
+</script>

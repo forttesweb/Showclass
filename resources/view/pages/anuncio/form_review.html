@@ -1,0 +1,37 @@
+<form id="review" method="post" action="{{URL}}/avaliar_loja">
+    <div class="row align-items-center">
+        <div class="col-md-12">
+            <h5 style="font-weight: 800;">Avalie o anunciante</h5>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <textarea class="form-control" rows="5" name="comentario"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12 py-4">
+            <div class="starability-basic">
+                <input type="hidden" name="anuncio" value="{{anuncio}}">
+                <input type="hidden" name="id_user" value="{{id_user}}">
+                <input type="hidden" name="id_loja" value="{{id_loja}}">
+                <input type="hidden" name="nome_loja" value="{{nome_loja}}">
+                <input type="radio" id="rate5" name="rating" value="1" required />
+                <label for="rate5" title="Muito ruim">5 stars</label>
+
+                <input type="radio" id="rate4" name="rating" value="2" />
+                <label for="rate4" title="Ruim">4 stars</label>
+
+                <input type="radio" id="rate3" name="rating" value="3" />
+                <label for="rate3" title="Bom">3 stars</label>
+
+                <input type="radio" id="rate2" name="rating" value="4" />
+                <label for="rate2" title="Muito bom">2 stars</label>
+
+                <input type="radio" id="rate1" name="rating" value="5" />
+                <label for="rate1" title="Incrível">1 star</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </div>
+</form>

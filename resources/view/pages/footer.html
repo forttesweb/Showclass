@@ -1,0 +1,165 @@
+<footer class="container">
+    <div class="footer-row first-row">
+      <span class="footer-option selected" id="categorias" onclick="showItems('categorias')">Categorias Principais</span>
+      <span class="footer-option" id="pesquisas" onclick="showItems('pesquisas')">Pesquisas Populares</span>
+      <span class="footer-option" id="links" onclick="showItems('links')">Links Úteis</span>
+    </div>
+
+    <div class="footer-row second-row" id="secondRowContent">
+      <!-- Aqui os itens serão mostrados -->
+    </div>
+
+    <!-- Linha separadora -->
+    <div style="border-bottom: 1px solid #ddd; width: 100%;"></div>
+
+    <div class="footer-row third-row">
+      <div class="first-column">
+        <div class="links">
+          <a href="{{URL}}/ajuda">Ajuda</a>
+          <a href="{{URL}}/sobre">Sobre Nós</a>
+          <a href="{{URL}}/perguntas-frequentes">Perguntas frequentes</a>
+          <a href="#">Termos de Uso</a>
+          <a href="{{URL}}/politica-de-privacidade">Politica de Privacidade</a>
+            <a href="{{URL}}/planos">Plano Profissional</a>
+
+        </div>
+        <div class="copyright">
+          &copy; 2024 ShowClass. Todos os direitos reservados.
+        </div>
+      </div>
+      <div class="second-column">
+        <!-- Links para ícones de redes sociais (use emojis para simular ícones) -->
+        
+            <img class="socialimg" src="{{URL}}/resources/view/pages/assets/images/facebook.png">
+        
+        
+            <img class="socialimg" src="{{URL}}/resources/view/pages/assets/images/instagram.png">
+        
+        
+        
+            <img class="socialimg" src="{{URL}}/resources/view/pages/assets/images/twitter.png">
+        
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Função para dividir os itens em colunas a cada 4 itens
+    function createColumns(items) {
+      let columns = '';
+      for (let i = 0; i < items.length; i += 4) {
+        const group = items.slice(i, i + 4);
+        columns += '<ul class="column">';
+        group.forEach(item => {
+          columns += `<li>${item}</li>`;
+        });
+        columns += '</ul>';
+      }
+      return columns;
+    }
+
+    // Função para exibir os itens e marcar a categoria selecionada
+    function showItems(category) {
+      const secondRowContent = document.getElementById("secondRowContent");
+      const categorias = document.getElementById("categorias");
+      const pesquisas = document.getElementById("pesquisas");
+      const links = document.getElementById("links");
+
+      // Remover a classe 'selected' de todas as opções
+      categorias.classList.remove("selected");
+      pesquisas.classList.remove("selected");
+      links.classList.remove("selected");
+
+      // Definir o conteúdo da segunda linha com base na categoria
+      let items = [];
+
+      if (category === 'categorias') {
+        items = [
+          'Eletrônicos', 'Roupas', 'Livros', 'Jogos', 
+          'Computadores', 'Celulares', 'Tablets', 'Smartwatches',
+          'Fones de ouvido', 'Smart TVs', 'Home Theater', 'Câmeras',
+          'Drones', 'Consoles', 'Acessórios para Games', 'Vestíveis'
+        ];
+        categorias.classList.add("selected");
+      } else if (category === 'pesquisas') {
+        items = [
+          'Melhores celulares de 2024', 'Novos lançamentos de filmes', 'Promoções de eletrônicos', 'Receitas populares',
+          'Dicas de economia', 'Tecnologia para o futuro', 'Como ganhar com vendas online', 'Melhores livros de negócios',
+          'Trilhas para iniciantes em TI', 'Promoções de verão', 'Livros de ficção recomendados', 'Como ser mais produtivo'
+        ];
+        pesquisas.classList.add("selected");
+      } else if (category === 'links') {
+        items = [
+          'Contato', 'Sobre Nós', 'Termos de Serviço', 'Política de Privacidade',
+          'Ajuda', 'Trabalhe Conosco', 'Envio e Devolução', 'Blog',
+          'Mapa do Site', 'Suporte Técnico'
+        ];
+        links.classList.add("selected");
+      }
+
+      // Gerar colunas dinamicamente
+      secondRowContent.innerHTML = createColumns(items);
+    }
+
+    // Inicializa a página com "Categorias Principais" selecionado e exibido
+    document.addEventListener("DOMContentLoaded", function() {
+      showItems('categorias');
+    });
+  </script>
+
+
+<script>
+  const ufSelect = document.getElementById("uf"); // Campo de seleção para o estado
+  const municipioSelect = document.getElementById("filtro-municipio"); // Campo de seleção para o município
+
+  // Função para carregar os estados da API do IBGE
+  async function carregarEstados() {
+      // Faz uma requisição à API do IBGE para obter a lista de estados
+      const estadosResponse = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+      const estadosData = await estadosResponse.json();
+      estadosData.sort((a, b) => a.nome.localeCompare(b.nome));
+
+      // Preenche o campo de seleção de estados com os dados da API
+      estadosData.forEach(function (estado) {
+          const option = document.createElement("option");
+          option.value = estado.sigla;
+          option.textContent = estado.nome;
+          ufSelect.appendChild(option);
+      });
+  }
+
+  carregarEstados();
+
+  // Função para carregar os municípios com base no estado selecionado
+  async function carregarMunicipios() {
+      //const selectedState = '{{estado}}';
+      const selectedState = ufSelect.value;
+
+      // Limpa o campo de seleção de municípios
+      municipioSelect.innerHTML = '<option value="" disabled selected>Selecione o município</option>';
+
+      // Verifica se um estado foi selecionado
+      if (selectedState) {
+          // Faz uma requisição à API do IBGE para obter a lista de municípios do estado selecionado
+          const municipiosResponse = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState}/municipios`);
+          // const municipiosResponse = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState}/municipios`);
+          const municipiosData = await municipiosResponse.json();
+
+          // MUNICIPIO IBGE = console.log(municipiosData.id)
+          // Preenche o campo de seleção de municípios com os dados da API
+          municipiosData.forEach(function (municipio) {
+              const option = document.createElement("option");
+              option.value = municipio.nome;
+              option.textContent = municipio.nome;
+              municipioSelect.appendChild(option);
+          });
+      }
+  }
+  //carregarMunicipios();
+
+  // Adiciona ouvintes de eventos para campos de entrada e seleção
+  ufSelect.addEventListener("change", function () {
+      carregarMunicipios(); // Chama a função para carregar os municípios quando o estado muda
+      // realizarConsulta(); // Chama a função para realizar a consulta automaticamente
+  });
+</script>

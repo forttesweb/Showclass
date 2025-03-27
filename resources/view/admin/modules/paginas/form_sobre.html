@@ -1,0 +1,178 @@
+<!-- Page header -->
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                    Página
+                </div>
+                <h2 class="page-title">
+                    {{title}}
+                </h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                    <!-- <span class="d-none d-sm-inline">
+                        <a href="#" class="btn">
+                            New view
+                        </a>
+                    </span> -->
+                    <a href="https://showclass.com.br/admin/paginas" class="btn btn-primary d-none d-sm-inline-block">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>
+                        Voltar
+                    </a>
+                    <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
+                        data-bs-target="#modal-report" aria-label="Create new report">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <hr>
+
+<a href="{{URL}}/admin/paginas">
+    <button type="button" class="btn btn-warning">Voltar</button>
+</a>
+
+<hr> -->
+
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="card card-lg">
+                    <div class="card-body markdown">
+                        {{status}}
+                        <form method="post">
+
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" name="nome" class="form-control" value="{{nome}}" required>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label>Seção 1</label>
+                                <input type="text" class="form-control" value="{{titlesect1}}" name="titlesect1"
+                                    required>
+                                <textarea rows="15" class="ckeditor" id="editor1"
+                                    name="contentsect1">{{contentsect1}}</textarea>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label>Seção 2</label>
+                                <input type="text" class="form-control" value="{{titlesect2}}" name="titlesect2"
+                                    required>
+                                <textarea rows="15" class="ckeditor" id="editor2"
+                                    name="contentsect2">{{contentsect2}}</textarea>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label>Seção 3</label>
+                                <input type="text" class="form-control" value="{{titlesect3}}" name="titlesect3"
+                                    required>
+                                <textarea rows="15" class="ckeditor" id="editor3"
+                                    name="contentsect3">{{contentsect3}}</textarea>
+                            </div>
+
+
+                            <div class="form-group my-5">
+                                <button type="subtmit" class="btn btn-success">Enviar</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+<script src="{{URL}}/resources/view/pages/assets/js/ckeditor/plugins/N1ED-editor/plugin.js"></script>
+<!-- <script src="{{URL}}/resources/view/pages/assets/js/grapesjs-preset-webpage.min.js"></script>
+    <link rel="stylesheet" href="{{URL}}/resources/view/pages/assets/css/grapesjs-preset-webpage.min.css" /> -->
+<!-- <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script> -->
+<script>
+    // CKEDITOR.ClassicEditor
+    //     .create( document.querySelector( '#editor' ) )
+    //     .catch( error => {
+    //         console.error( error );
+    //     } );
+    CKEDITOR.replace('editor1');
+    CKEDITOR.replace("editor1", {
+        extraPlugins: "N1ED-editor",
+        apiKey: "tuJayqV8",
+        skin: "n1theme",
+        removePlugins: "iframe"
+    });
+
+    CKEDITOR.replace('editor2');
+    CKEDITOR.replace("editor2", {
+        extraPlugins: "N1ED-editor",
+        apiKey: "tuJayqV8",
+        skin: "n1theme",
+        removePlugins: "iframe"
+    });
+
+    CKEDITOR.replace('editor3');
+    CKEDITOR.replace("editor3", {
+        extraPlugins: "N1ED-editor",
+        apiKey: "tuJayqV8",
+        skin: "n1theme",
+        removePlugins: "iframe"
+    });
+
+</script>
+
+<!-- <script type="text/javascript">
+    const editor = grapesjs.init({
+        container: "#editor",
+        fromElement: true,
+        width: "auto",
+        storageManager: false,
+        storageManager: {
+            type: 'remote',
+            stepsBeforeSave: 3,
+            contentTypeJson: true,
+            storeComponents: true,
+            storeStyles: true,
+            storeHtml: true,
+            storeCss: true,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            id: 'mycustom-',
+            urlStore: `/pages/${location.pathname.split('/')[2]}/content`,
+            urlLoad: `/pages/${location.pathname.split('/')[2]}/content`,
+        },
+        plugins: ["gjs-preset-webpage"],
+        pluginsOpts: {
+            "gjs-preset-webpage": {},
+        },
+    });
+</script> -->

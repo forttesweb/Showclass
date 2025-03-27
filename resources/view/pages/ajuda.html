@@ -1,0 +1,115 @@
+<!-- <h1>Sobre {{name}}</h1>
+Olá mundo:)
+
+<hr>
+{{description}}
+<br>
+<br>
+{{site}} -->
+<style>
+    /* .imglateral {
+    width: 23%;
+    position: absolute;
+    right: 0;
+    bottom: -98%;
+} */
+    img.imglateral {
+        width: 550px;
+        /* position: absolute; */
+        right: 0;
+        bottom: -98%;
+    }
+
+    .contornotexto {
+        shape-outside: ellipse(399px 396px at 293% 50%);
+        width: 137px;
+        /* height: 500px; */
+        float: right;
+        opacity: 1;
+    }
+
+    @media (max-width:1680px) {
+        .contornotexto {
+            shape-outside: ellipse(399px 396px at 156% 50%);
+            width: 257px;
+            /* height: 500px; */
+            float: right;
+            opacity: 1;
+        }
+    }
+
+    @media (max-width:1440px) {
+        .contornotexto {
+            shape-outside: ellipse(399px 396px at 109% 50%);
+            width: 368px;
+            /* height: 500px; */
+            float: right;
+            opacity: 1;
+        }
+    }
+    textarea.form-control {
+    background: #fafafa;
+    border: 1px solid #f2f2f2;
+    box-shadow: 0px 5px 6px rgb(0 0 0 / 25%);
+    border-radius: 8px;
+    /* height: 48px; */
+}
+</style>
+<div class="container-fluid p-0">
+    <div class="banner about">
+
+    </div>
+</div>
+<section class="about mt-5">
+    <div class="container">
+        <div class="row">
+            <h1 class="titulosection">{{titlesect1}}</h1>
+            <div class="col-md-12">
+                {{contentsect1}}
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="nome" class="form-control" placeholder="Insira seu nome">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control" placeholder="Insira seu e-mail">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="tel" name="telefone" class="form-control" placeholder="Insira seu telefone">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="assunto" class="form-control" placeholder="Insira o assunto">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="mensagem" id="" cols="30" rows="10" placeholder="Escreva a sua mensagem aqui"></textarea>
+                                </div>
+                            </div>
+
+                                <button type="submit" class="btn btn-primary mt-3">Enviar mensagem</button>
+                        </form>
+                    </div>
+                    <!-- <div class="col-md-2">
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

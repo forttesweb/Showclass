@@ -1,0 +1,17 @@
+<tr>
+    <td>{{id}}</td>
+    <td>{{titulo}}</td>
+    <td>{{descricao}}</td>
+    <td>R$ {{valor}}</td>
+    <td>
+        <a href="#" onclick="verTask('{{id}}')">
+            <button type="button" class="btn btn-info">Recursos</button>
+        </a>
+        <a href="{{URL}}/admin-panel/planos/{{id}}/edit">
+            <button type="button" class="btn btn-primary">Editar</button>
+        </a>
+        <a href="{{URL}}/admin-panel/planos/{{id}}/delete">
+            <button type="button" class="btn btn-danger">Excluir</button>
+        </a>
+    </td>
+</tr>

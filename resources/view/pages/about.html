@@ -1,0 +1,183 @@
+<!-- <h1>Sobre {{name}}</h1>
+Olá mundo:)
+
+<hr>
+{{description}}
+<br>
+<br>
+{{site}} -->
+<style>
+    /* .imglateral {
+    width: 23%;
+    position: absolute;
+    right: 0;
+    bottom: -98%;
+} */
+    img.imglateral {
+        width: 550px;
+        /* position: absolute; */
+        right: 0;
+        bottom: -98%;
+    }
+
+    .contornotexto {
+        shape-outside: ellipse(399px 396px at 293% 50%);
+        width: 137px;
+        /* height: 500px; */
+        float: right;
+        opacity: 1;
+    }
+
+    @media (max-width:1680px) {
+        .contornotexto {
+            shape-outside: ellipse(399px 396px at 156% 50%);
+            width: 257px;
+            /* height: 500px; */
+            float: right;
+            opacity: 1;
+        }
+    }
+
+    @media (max-width:1440px) {
+        .contornotexto {
+            shape-outside: ellipse(399px 396px at 109% 50%);
+            width: 368px;
+            /* height: 500px; */
+            float: right;
+            opacity: 1;
+        }
+    }
+
+    @media (max-width:768px) {
+        img.img-responsive {
+            max-width: 100%;
+        }
+
+        img.imglateral {
+            display: none;
+        }
+    }
+
+    .card-header.p-0 img {
+        max-width: 100%;
+    }
+
+    .card {
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        border-radius: 10px !important;
+        border: none;
+    }
+
+    .card-header.p-0 {
+        border: none;
+        padding-bottom: 10px !important;
+        background-color: #f2f2f2;
+    }
+
+    .car-body {
+        border: none !important;
+        border-radius: 0px 0px 10px 10px !important;
+        background-color: #F2F2F2 !important;
+        padding: 20px;
+    }
+</style>
+<div class="container-fluid p-0">
+    <div class="banner about">
+
+    </div>
+</div>
+<section class="about mt-5">
+    <div class="container">
+        <div class="row">
+            <h1 class="titulosection">{{titlesect1}}</h1>
+            {{contentsect1}}
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card" style="border-radius: 10px 10px 0px 0px;">
+                    <div class="card-header p-0">
+                        <img class="img-responsive" src="{{URL}}/resources/view/pages/assets/images/bgmissao.png">
+                    </div>
+                    <div class="car-body">
+                        <span>Lorem ipsum dolor sit amet consectetur. Quis purus purus tellus euismod. Praesent urna
+                            sollicitudin vitae velit. Sed aliquam nisl dolor mattis ultricies. Nibh diam ut eget nisl
+                            ut.
+
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="border-radius: 10px 10px 0px 0px;">
+                    <div class="card-header p-0">
+                        <img class="img-responsive" src="{{URL}}/resources/view/pages/assets/images/bgvisao.png">
+                    </div>
+                    <div class="car-body">
+                        <span>Lorem ipsum dolor sit amet consectetur. Quis purus purus tellus euismod. Praesent urna
+                            sollicitudin vitae velit. Sed aliquam nisl dolor mattis ultricies. Nibh diam ut eget nisl
+                            ut.
+
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="border-radius: 10px 10px 0px 0px;">
+                    <div class="card-header p-0">
+                        <img class="image-responsive" src="{{URL}}/resources/view/pages/assets/images/bgvalores.png">
+                    </div>
+                    <div class="car-body">
+                        <span>Lorem ipsum dolor sit amet consectetur. Quis purus purus tellus euismod. Praesent urna
+                            sollicitudin vitae velit. Sed aliquam nisl dolor mattis ultricies. Nibh diam ut eget nisl
+                            ut.
+
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about mt-5">
+    <div class="container">
+        <div class="row">
+            <h1 class="titulosection">{{titlesect2}}</h1>
+            <div class="col-md-12">
+                <!-- <p>
+
+                    Lorem ipsum dolor sit amet consectetur. Eros nulla habitant nunc nullam condimentum. Egestas massa
+                    ut a
+                    elementum facilisis arcu. Magna sem ornare consequat felis mus vestibulum vivamus. Cum mattis cras
+                    orci
+                    tincidunt tellus orci tempus neque mi.
+                </p> -->
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="contornotexto">
+                            <img class="imglateral" src="{{URL}}/resources/view/pages/assets/images/imgabout.png">
+                        </div>
+                        {{contentsect2}}
+
+                    </div>
+                    <!-- <div class="col-md-2">
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about mt-5">
+    <div class="container">
+        <div class="row">
+            <h1 class="titulosection">{{titlesect3}}</h1>
+            {{contentsect3}}
+        </div>
+    </div>
+</section>

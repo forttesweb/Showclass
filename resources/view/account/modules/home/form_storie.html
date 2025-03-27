@@ -1,0 +1,52 @@
+<form method="post" id="formstorie">
+    <div class="row mb-5">
+        <div class="col-md-8">
+            <h2 class="titulosection">Adicionar Storie</h2>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary" style="float: right;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path
+                        d="M17.1042 7.29655L12.6771 2.92155L14.1354 1.46322C14.5347 1.06391 15.0253 0.864258 15.6073 0.864258C16.1885 0.864258 16.6788 1.06391 17.0781 1.46322L18.5365 2.92155C18.9358 3.32085 19.1441 3.8028 19.1615 4.36738C19.1788 4.93127 18.9878 5.41287 18.5885 5.81217L17.1042 7.29655ZM15.5938 8.83301L4.55208 19.8747H0.125V15.4476L11.1667 4.40592L15.5938 8.83301Z"
+                        fill="#FFFFFF" />
+                </svg>
+                Salvar
+            </button>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Banner</label>
+                <input class="form-control" type="file" name="banner" required>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-light table-striped">
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th style="width:200px">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{itens}}
+            </tbody>
+        </table>
+
+        
+    </div>
+</div>
+{{pagination}}
+
+<!-- {{itens}} -->
+<!-- 
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h2 class="titulosection">Seus Stories</h2>
+        {{stories_table}}
+    </div>
+</div> -->

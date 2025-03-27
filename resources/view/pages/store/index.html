@@ -1,0 +1,367 @@
+<style>
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+        background-color: transparent;
+        border-bottom: 4px solid #1A47BA;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        color: #000000 !important;
+        font-weight: 700;
+    }
+
+    .nav-link {
+        color: #6B6B6B !important;
+    }
+
+    .boxbtn {
+        text-align: center;
+    }
+
+    .card.home {
+        height: auto;
+    }
+
+    a.btn.btn-outline-primary.mt-2 {
+        border: 0.8px solid #1A47BA;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    a.btn.btn-outline-secondary.mt-2 {
+        border: 0.8px solid #6B6B6B;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .imgperfis {
+        /* width: 100px; */
+        /* height: 100px; */
+        border-radius: 50%;
+        /* border: 3px solid pink; */
+        background: #1A47BA;
+        border: 3px solid transparent;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    img.card-img-top.p-2.fotoanuncio {
+        width: 100%;
+        height: 190px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin: -1px 0 0 0px;
+        -o-object-fit: cover;
+        object-fit: cover;
+        padding: 0 !important;
+    }
+
+    h5.card-title.anuncio {
+        height: 50px;
+        font-size: 16px;
+        line-height: 1.3em;
+        margin-bottom: 5px;
+        font-weight: 900;
+    }
+</style>
+<!-- <div class="boxsearch d-flex align-items-center">
+    <form class="w-100 mx-auto" action="/busca">
+        <div class="row">
+            <div class="col-md-10">
+                <input name="term" type="text" class="form-control homesearch" placeholder="O que você está procurando?"
+                    aria-label="Search">
+                    
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-lg btn-primary buttonbusca" href="#">Buscar</button>
+            </div>
+        </div>
+        
+    </form>
+</div> -->
+<div class="container marketing">
+    {{status}}
+    <div class="row mt-5">
+        <div class="banner text-center">
+            <!-- <img src="{{URL}}/resources/view/pages/assets/images/bannerloja.jpg" class="img-responsive" width="100%" height="280px"> -->
+            <img src="{{URL}}/publico/lojas/{{banner}}" class="img-responsive" width="100%" height="280px">
+        </div>
+    </div>
+    <div class="row d-flex align-items-center my-5">
+        <div class="col-md-2">
+            <div class="logoloja">
+                <a stlye="cursor:pointer" data-id="{{id_user}}" id="verstories" class="{{verstories}}">
+                    <!-- <img src="{{URL}}/resources/view/pages/assets/images/logoloja.png" class="img-responsive"> -->
+                    <img style="border-radius: 50%;" src="{{URL}}/publico/lojas/{{logotipo}}"
+                        class="img-responsive {{classstories}}" width="150px" height="150px">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="infostore">
+                <h1 class="titulosection">{{nome_loja}} <small style="font-size:12px;display: contents;">{{btnseguir}}
+                        {{btndeixarseguir}}</small></h1>
+                {{cidade}} - {{estado}}<br>
+                <small>{{bairro}} - {{rua}}</small><br>
+                <small>{{telefone}}</small><br>
+                <!-- <a href="#" class="btn btn-outline-primary mt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16" fill="none">
+                        <path
+                            d="M6.94997 0C3.31094 0 0.350043 2.8712 0.350043 6.396C0.326118 11.552 6.69918 15.8272 6.94997 16C6.94997 16 13.5738 11.552 13.5499 6.4C13.5499 2.8712 10.589 0 6.94997 0ZM6.94997 9.6C5.12674 9.6 3.65001 8.168 3.65001 6.4C3.65001 4.632 5.12674 3.2 6.94997 3.2C8.77321 3.2 10.2499 4.632 10.2499 6.4C10.2499 8.168 8.77321 9.6 6.94997 9.6Z"
+                            fill="#1A47BA" />
+                    </svg>
+                    Vendedor próximo
+                </a> -->
+                <a href="#" class="btn btn-outline-secondary mt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="15" viewBox="0 0 19 15" fill="none">
+                        <path
+                            d="M3.14286 13.5357L1 4.53571L5.5 8L9.46428 1L13 8L17.6071 4.53571L15.5714 13.5357H3.14286Z"
+                            stroke="#919191" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Anunciante Premium
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                    role="tab" aria-controls="home" aria-selected="true">À venda</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                    role="tab" aria-controls="profile" aria-selected="false">Vendidos</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+                    role="tab" aria-controls="contact" aria-selected="false">Seguidores</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="seguindo-tab" data-bs-toggle="tab" data-bs-target="#seguindo" type="button"
+                    role="tab" aria-controls="seguindo" aria-selected="false">Seguindo</button>
+            </li>
+        </ul>
+        <div class="tab-content p-0" id="myTabContent">
+            <div class="tab-pane fade show active pt-5" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row">
+                    {{itens}}
+                </div>
+            </div>
+            <div class="tab-pane fade pt-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row">
+                    {{itensvendidos}}
+                </div>
+            </div>
+            <div class="tab-pane fade pt-5" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="row">
+                    {{seguidores}}
+                </div>
+            </div>
+            <div class="tab-pane fade pt-5" id="seguindo" role="tabpanel" aria-labelledby="seguindo-tab">
+                <div class="row">
+                    <!-- <h1><strong>EM DESENVOLVIMENTO!!</strong></h1> -->
+                    {{seguindo}}
+                </div>
+            </div>
+        </div>
+
+        {{pagination}}
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div> -->
+            <div class="modal-body">
+
+                <div data-slide="slidestories" class="slidestories">
+                    <div class="slide-items" id="itensslide">
+                        <!-- {{itens_slide}} -->
+                        <!-- <img class="imgslides" src="{{URL}}/resources/view/pages/assets/images/img1.jpg" alt="Img 1">
+                    <img class="imgslides" src="{{URL}}/resources/view/pages/assets/images/img2.jpg" alt="Img 2">
+                    <img class="imgslides" src="{{URL}}/resources/view/pages/assets/images/img3.jpg" alt="Img 3">
+                    <img class="imgslides" src="{{URL}}/resources/view/pages/assets/images/img4.jpg" alt="Img 4"> -->
+                    </div>
+                    <nav class="slide-nav">
+
+                        <div class="slide-thumb"></div>
+                        <!-- <a class="storename" id="storename">
+                        <img class="imgstore" id="imgstore">
+                        <h3 class="modal-title" id="staticBackdropLabel"></h3>
+                    </a> -->
+                        <button class="slide-prev">
+                            <svg class="svgslider" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                <path
+                                    d="m12.718 4.707-1.413-1.415L2.585 12l8.72 8.707 1.413-1.415L6.417 13H20v-2H6.416l6.302-6.293z" />
+                            </svg>
+                        </button>
+                        <button class="slide-next">
+                            <svg class="svgslider" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                <path
+                                    d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z" />
+                            </svg>
+                        </button>
+
+                    </nav>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+        </div> -->
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="{{URL}}/resources/view/pages/assets/js/slide-stories.js"></script>
+<script>
+    var instan = new SlideStories('slidestories');
+
+    $(document).on('click', '.verstories', function () {
+        var id = $(this).attr("data-id");
+        console.log(id)
+        $('#staticBackdrop').modal('show');
+
+        // const instancia = new SlideStories('slidestories');
+
+        $.ajax({
+            url: '{{URL}}/ver_stories/',
+            cache: false,
+            method: "POST",
+            dataType: "json",
+            data: {
+                id: id
+            },
+            success: function (data) {
+                let daft = data;
+                $("#itensslide").find('img').remove();
+                $("#itensslide").find('span').remove();
+                console.log(data)
+
+                $("#staticBackdropLabel").html(data.nome);
+                $("#imgstore").attr("src", "{{URL}}/publico/lojas/" + data.logotipo);
+                $("#storename").attr("href", "{{URL}}/anuncio/" + data.url);
+
+                $(daft.imagens).each(function (i, data) {
+                    console.log(data)
+                    $("#itensslide").append(data);
+
+
+
+                    // options = options + '<option value="' + data.id_membro + '">' + data.nome_completo + '</option>'
+
+
+                });
+                // SlideStories('slides').init();
+                instan.init();
+                // $("[name=escolhermembroheader]").empty();
+
+
+                // 
+            }
+        });
+
+        // $.get("{{URL}}/ver_stories", {
+        //     id: 2,
+        // })
+        //     .done(function (product) {
+
+        //         data = $.parseJSON(product);
+        //         if (data) {
+
+
+        //             $('#id_documento').val(data.id_documento);
+        //             $('#familia').val(data.id_familia);
+        //             $('#nome').val(data.nome);
+        //             $('#categoria').val(data.categoria);
+
+        //             $('#data_documento').val(data.data_documento);
+
+        //             $('#arquivo').val(data.arquivo);
+
+
+        //             $("#saverecords").val('Save Records');
+
+        //         }
+
+        //     });
+
+    });
+    $(document).ready(function () {
+        $('#staticBackdrop').on('hidden.bs.modal', function () {
+            instan.init();
+            // $(this).find('form').trigger('reset');
+            $("#itensslide").find('img').remove();
+            $(".slide-thumb").find('span').remove();
+
+        });
+    });
+    // $("#staticBackdrop").on("hide.bs.modal", function () {
+    //     $("#itensslide").empty();
+    // });
+</script>
+<script>
+    function seguirLoja(id_seguidor, id_loja) {
+        var url_atual = window.location.href;
+        console.log(url_atual)
+        $.ajax({
+            url: '{{URL}}/seguir_loja',
+            method: 'POST',
+            data: {
+                id_seguidor: id_seguidor,
+                id_loja: id_loja
+            },
+
+            success: function (data) {
+
+                if (data == "success") {
+
+                    window.location.href = url_atual + '/?status=seguindo';
+                }
+
+
+            }
+
+        });
+    }
+    function deixarDeSeguir(id_seguidor, id_loja) {
+        var url_atual = window.location.href;
+        console.log(url_atual)
+        $.ajax({
+            url: '{{URL}}/deixar_seguir',
+            method: 'POST',
+            data: {
+                id_seguidor: id_seguidor,
+                id_loja: id_loja
+            },
+
+            success: function (data) {
+
+                if (data == "success") {
+
+                    window.location.href = url_atual + '/?status=removido';
+                }
+
+
+            }
+
+        });
+    }
+</script>

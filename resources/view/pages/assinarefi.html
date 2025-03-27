@@ -1,0 +1,531 @@
+<div class="page-body">
+    <div class="container-xl">
+        <h3>Inserir dados</h3>
+        <div class="row row-cards">
+            {{status}}
+            <form class="wizard horizontal pb-3 form-cartao" method="post" id="form-info">
+                <div class="row">
+
+                    <div class="col-6">
+                        <div class="card p-3">
+                            <div class="row">
+                                <h5 style="margin-top:0px;">Dados do dono do cartão</h5>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="customer-name">Nome: </label>
+                                        <input type="text" id="customer-name" name="customer-name" class="form-control"
+                                            placeholder="Nome do cliente" value="{{nome_cliente}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="customer-cpf">CPF:
+                                            <!-- <br><strong class="ex">Ex: 11122233388 (sem ponto e traço)</strong> -->
+                                        </label>
+                                        <input type="text" id="customer-cpf" name="customer-cpf" class="form-control"
+                                            placeholder="CPF" required value="{{USER_CPF}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group my-3">
+                                        <label for="customer-email">E-mail: </label>
+                                        <input type="email" id="customer-email" name="customer-email"
+                                            class="form-control" placeholder="E-mail" value="{{email_cliente}}"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group my-3">
+                                        <label for="customer-phone_number">Telefone:
+                                            <!-- <br><strong class="ex">Ex: 5144916523 (sem formatação)</strong> -->
+                                        </label>
+                                        <input type="text" id="customer-phone_number" name="customer-phone_number"
+                                            class="form-control" placeholder="Telefone" required value="{{USER_TELEFONE}}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group my-3">
+                                        <label for="customer-birth">Data de Nascimento:
+                                            <!-- <br><strong class="ex">Ex: 15/01/1991</strong> -->
+                                        </label>
+                                        <input type="text" id="customer-birth" name="customer-birth"
+                                            class="form-control" placeholder="Data de nascimento" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card p-3 mt-5">
+                            <h4 class="mb-3">Informação do cartão
+                                <!-- <code>
+                                    <a target="_blank" href="https://www.4devs.com.br/gerador_de_numero_cartao_credito">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                                            <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                                            <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                                        </svg>cartão fictício
+                                    </a>
+                                </code> -->
+                            </h4>
+                            <div class="row gy-3">
+                                <div class="col-md-7">
+                                    <label for="numeroCartao" class="form-label">Número do cartão
+                                        <code data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="(String - 'XXXXXXXXXXXXXXXX')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                            </svg>
+                                        </code>
+                                    </label>
+                                    <input type="text" class="form-control" name="numeroCartao" id="numeroCartao">
+                                </div>
+
+                                <div class="col-md-5">
+                                    <!-- Bandeira será preenchida dinamicamente de acordo com o número do cartão informado -->
+                                    <label for="bandeira" class="form-label">Bandeira
+                                        <code data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="(String - 'visa', 'mastercard', 'amex', 'elo', 'hipercard') Obtida a partir do número do cartão"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                              </svg>
+                            </code>
+                                    </label>
+                                    <img id="imgbandeira" width="50px">
+                                    <input type="hidden" class="form-control" name="bandeira" id="bandeira" readonly>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="mesVencimento" class="form-label">Mês de vencimento
+                                        <code data-bs-toggle="tooltip" data-bs-placement="top" title="(String - 'MM')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg>
+                        </code>
+                                    </label>
+                                    <select class="form-select" name="mesVencimento" id="mesVencimento">
+                                        <option selected>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                        <option>05</option>
+                                        <option>06</option>
+                                        <option>07</option>
+                                        <option>08</option>
+                                        <option>09</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="anoVencimento" class="form-label">Ano de vencimento
+                                        <code data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="(String - 'YYYY')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                                </code>
+                                    </label>
+                                    <select class="form-select" name="anoVencimento" id="anoVencimento">
+                                        <option>2023</option>
+                                        <option>2024</option>
+                                        <option selected>2025</option>
+                                        <option>2026</option>
+                                        <option>2027</option>
+                                        <option>2028</option>
+                                        <option>2029</option>
+                                        <option>2030</option>
+                                        <option>2031</option>
+                                        <option>2032</option>
+                                        <option>2033</option>
+                                        <option>2034</option>
+                                        <option>2035</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="cvv" class="form-label">CVV
+                                        <code data-bs-toggle="tooltip" data-bs-placement="top" title="(String - '123')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                                </code>
+                                    </label>
+                                    <input type="text" class="form-control" name="cvv" id="cvv">
+                                </div>
+                                
+                            </div>
+                            <input type="hidden" class="form-control" name="plano" value="{{plano_nome}}" id="plano">
+
+                            <a class="btn btn-primary mt-3" id="gerarPaymentToken"
+                                onclick="gerarPaymentTokens()">Assinar</a>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card p-3">
+                            <div class="card-header py-3 text-white bg-primary border-primary">
+                                <h4 class="my-0 fw-normal">{{plano_nome}}</h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">R$ {{plano_valor_formatado}}<small
+                                        class="text-muted fw-light">/mês</small></h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    {{plano_descricao}}
+                                </ul>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    {{plano_features}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Um momento.</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Estamos processando a requisição <img src="{{URL}}/public/images/ajax-loader.gif">.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="myModalResultCard" tabindex="-1" aria-labelledby="myModalResultCardLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalResultCardLabel">Informações da assinatura</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--div responsável por exibir o resultado da emissão do boleto-->
+                <div>
+                    <div class="panel panel-success">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <strong>Dados da Assinatura</strong>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#ID</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-geral-card">
+                                    </tbody>
+                                </table>
+                                <strong>Dados do Plano</strong>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#Plano</th>
+                                            <th>Intervalo de cobrança (Mensal)</th>
+                                            <th>Valor Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-info-card">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    onclick="window.location.href = '../pagamentos'">Fechar</button>
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/efipay/js-payment-token-efi/dist/payment-token-efi.min.js"></script>
+
+<!-- <script src="{{URL}}/public/dist/js/payment-token-efi.min.js"></script> -->
+
+<script src="{{URL}}/publico/dist/js/payment-token.js"></script>
+
+<!-- <script src="{{URL}}/public/dist/js/script-cartao.js"></script> -->
+
+<script src="{{URL}}/publico/dist/js/wizard.js"></script>
+
+<script>
+    $('#accordion').on('hidden.bs.collapse', function () {
+        // do something…
+        alert("ASDASDASD")
+    })
+    $(document).ready(function () {
+        $("#customer-cpf").mask("000.000.000-00");
+        $("#customer-birth").mask('00/00/0000');
+        $("#customer-phone_number").mask('(00) 00000-0000');
+    })
+
+    document.addEventListener('DOMContentLoaded', () => { // Aguarda o carregamento da página para iniciar os scripts
+
+        // Configuração
+        var inputIdentificadorConta = document.getElementById("identificadorConta");
+        var inputValorTotal = document.getElementById("valorTotal");
+        // Dados cartão
+        var inputNumeroCartao = document.getElementById("numeroCartao");
+        var inputBandeira = document.getElementById("bandeira");
+        var inputMesVencimento = document.getElementById("mesVencimento");
+        var inputAnoVencimento = document.getElementById("anoVencimento");
+        var inputCvv = document.getElementById("cvv");
+        // Resultados
+        var inputParcelas = document.getElementById("opcoesParcelamento");
+        var inputPaymentToken = document.getElementById("paymentToken");
+        var inputmascaraCartao = document.getElementById("mascaraCartao");
+        // Botão de acionamento
+        var btnGerarToken = document.getElementById("gerarPaymentToken");
+
+
+        inputNumeroCartao.addEventListener("input", function () {
+
+            /*
+            * Identifica a bandeira a partir do número do cartão
+            * @params { numeroCartao }
+            */
+            if (inputNumeroCartao.value.length >= 15) {
+                try {
+                    EfiJs.CreditCard
+                        .debugger(true)
+                        .setCardNumber(inputNumeroCartao.value)
+                        .verifyCardBrand()
+                        .then(bandeira => {
+
+                            switch (bandeira) {
+                                case 'mastercard':
+                                    $("#imgbandeira").attr("src", "{{URL}}/publico/images/logomaster.webp")
+                                    break;
+
+                                case 'visa':
+                                    $("#imgbandeira").attr("src", "{{URL}}/publico/images/logovisa.webp")
+                                    break;
+                            }
+                            inputBandeira.value = bandeira;
+
+                            //buscarParcelamemto(bandeira); // aciona a função para buscar as opções de parcelamento
+                        });
+                } catch (error) {
+                    alert(`Erro ao obter a bandeira!\n\nCódigo: ${error.code}\nNome: ${error.error}\nMensagem: ${error.error_description}`);
+                    console.warn(`Algo deu errado ao verificar a bandeira.\n ${error}`);
+                }
+            }
+            /*
+            * FIM - Identifica a bandeira a partir do número do cartão
+            */
+        });
+
+
+        // function buscarParcelamemto(bandeira) {
+
+        //     /*
+        //     * Retorna as informações de parcelamento
+        //     * @params { identificadorConta, ambiente, bandeira, valorTotal }
+        //     */
+        //     try {
+        //         EfiJs.CreditCard
+        //             .debugger(false)
+        //             .setAccount("25d324d9f98854d31087cd5e39a4de71")
+        //             .setEnvironment('sandbox') // 'production' or 'sandbox'
+        //             .setBrand(bandeira)
+        //             .setTotal(parseInt(inputValorTotal.value))
+        //             .getInstallments()
+        //             .then(arrayParcelas => {
+        //                 let opcoes = '<option value="0">Escolha como deseja pagar</option>';
+
+        //                 for (let index = 0; index < arrayParcelas.installments.length; index++) {
+        //                     opcoes += `<option value="${arrayParcelas.installments[index].installment}">${arrayParcelas.installments[index].installment} x de R$${arrayParcelas.installments[index].currency} ${arrayParcelas.installments[index].has_interest === false ? "sem juros" : ""}</option>`;
+        //                 }
+        //                 inputParcelas.innerHTML = opcoes;
+        //             }).catch(err => {
+        //                 alert(`Erro ao buscar as parcelas!\n\nCódigo: ${err.code}\nNome: ${err.error}\nMensagem: ${err.error_description}`);
+        //                 throw new Error(`Something went wrong in verifyCardBrand(.\n ${error}`);
+        //             });
+        //     } catch (error) {
+        //         alert(`Erro ao buscar as parcelas!\n\nCódigo: ${error.code}\nNome: ${error.error}\nMensagem: ${error.error_description}`);
+        //         throw new Error(`Something went wrong.\n ${error}`);
+        //     }
+
+        //     /*
+        //      * FIM - Retorna as informações de parcelamento
+        //      */
+        // }
+
+
+
+
+        // inputValorTotal.addEventListener("input", function () {
+        //     if (inputIdentificadorConta.value.length === 32 && inputNumeroCartao.value.length >= 16 && inputValorTotal.value.length >= 3) {
+        //         buscarParcelamemto(inputBandeira.value);
+        //     }
+        // });
+
+        // inputIdentificadorConta.addEventListener("input", function () {
+        //     if (inputIdentificadorConta.value.length === 32 && inputNumeroCartao.value.length >= 16) {
+        //         buscarParcelamemto(inputBandeira.value);
+        //     }
+        // });
+
+        // inputParcelas.addEventListener("change", function () {
+        //     btnGerarToken.classList.remove('disabled');
+        // });
+    });
+
+    // btnGerarToken.addEventListener("click", function () {
+    function gerarPaymentTokens() {
+        document.getElementById("gerarPaymentToken").classList.add('disabled');
+
+        document.getElementById("gerarPaymentToken").innerHTML = '<div class="spinner-border spinner-border-sm text-info" role="status"> <span class="visually-hidden">Loading...</span></div>';
+
+        $("#myModal").modal('show');
+
+        /*
+        * Retorna o payment_token e card_mask
+        * @params { identificadorConta, ambiente, {bandeira, numeroCartao, cvv, mesVencimento, anoVencimento, reuse} }
+        */
+        try {
+            EfiJs.CreditCard
+                .debugger(false)
+                .setAccount("680e3e0f97cb418f0ec4dd0a5681b101")
+                //.setAccount("25d324d9f98854d31087cd5e39a4de71")AQUI É O MEU (GUILHERME)
+                .setEnvironment('production') // 'production' or 'sandbox'
+                .setCreditCardData({
+                    brand: document.getElementById("bandeira").value,
+                    number: document.getElementById("numeroCartao").value,
+                    cvv: document.getElementById("cvv").value,
+                    expirationMonth: document.getElementById("mesVencimento").value,
+                    expirationYear: document.getElementById("anoVencimento").value,
+                    reuse: false
+                })
+                .getPaymentToken()
+                .then(dados => {
+                    let payment_token = dados.payment_token;
+                    let card_mask = dados.card_mask;
+
+                    document.getElementById("paymentToken").value = payment_token;
+                    document.getElementById("mascaraCartao").value = card_mask;
+
+                    document.getElementById("gerarPaymentToken").classList.remove('btn-primary');
+                    document.getElementById("gerarPaymentToken").classList.add('btn-success');
+                    document.getElementById("gerarPaymentToken").innerHTML = 'Gerar novamente';
+                    document.getElementById("gerarPaymentToken").classList.remove('disabled');
+
+                    gerarPagamento();
+
+                }).catch(err => {
+                    alert(`Erro ao buscar ao gerar o payment_token!\n\nCódigo: ${err.code}\nNome: ${err.error}\nMensagem: ${err.error_description}`);
+                    document.getElementById("gerarPaymentToken").innerHTML = 'Assinar';
+                    document.getElementById("gerarPaymentToken").classList.remove('disabled');
+                    throw new Error(`Something went wrong in verifyCardBrand(.\n ${error}`);
+                });
+        } catch (error) {
+            alert(`Erro ao buscar ao gerar o payment_token!\n\nCódigo: ${error.code}\nNome: ${error.error}\nMensagem: ${error.error_description}`);
+            document.getElementById("gerarPaymentToken").innerHTML = 'Assinar';
+            document.getElementById("gerarPaymentToken").classList.remove('disabled');
+            throw new Error(`Something went wrong.\n ${error}`);
+        }
+        /*
+         * FIM - Retorna o payment_token e card_mask
+         */
+    };
+
+
+    function gerarPagamento() {
+
+        $.ajax({
+            url: '{{URL}}/pages/pagamentos/new',
+            type: 'POST',
+            data: $("#form-info").serialize(),
+            beforeSend: function () {
+                $("#myModal").modal('hide');
+            },
+            success: function (results) {
+
+
+                var parsedJson = $.parseJSON(results);
+
+                console.log(parsedJson)
+
+                if (parsedJson.code == 200) {
+                    $('#myModalResultCard').modal('show');
+                    var result = parsedJson.data;
+                    var $htmlGeral = "<td>" + result.subscription_id + "</td><td style='color:grey'><b>" + result.status_pag + "</b></td>";
+                    // var $htmlGeral = "<td>" + result.subscription_id + "</td><td>" + result.status + "</td>";
+                    var $htmlInfo = "<td>" + result.plan.id + "</td><td>Mensal</td><td>" + result.valor_total + "</td>";
+
+                    document.getElementById('table-geral-card').innerHTML = $htmlGeral;
+                    document.getElementById('table-info-card').innerHTML = $htmlInfo;
+                }
+                else {
+                    $("#myModal").modal('hide');
+                    alert("Code: " + parsedJson.code + '\n' + 'Property: ' + parsedJson.error_description.property + '\n' + 'Message: ' + parsedJson.error_description.message)
+                }
+                console.log(data);
+
+                // Você pode usar o token para autenticar solicitações subsequentes à API
+                // Por exemplo, inclua o token no cabeçalho 'Authorization'
+            },
+            error: function (error) {
+                $("#myModal").modal('hide');
+                var msg = JSON.stringify(error);
+                alert("Ocorreu um erro - Mensagem: \n" + msg);
+            }
+        });
+    }
+
+    // var boton = document.getElementById("setStep");
+
+    // boton.onclick = function () {
+    //     setStep(wizard)
+    //     console.log("Se ha hecho clic en el botón");
+    // };
+
+
+    // function setStep(wizard) {
+    //     $html = `<div class="card card-body m-4 wizard-step" data-id="patata" data-title="Adrii"> <label class="question"> Embedded step </label> <input type="text" maxlength="100" name="patata" class="form-control required" placeholder="Embedded step"> </div>`;
+
+    //     const wz = document.querySelector(wizard.wz_class);
+    //     const wz_content = wz.querySelector(wizard.wz_content);
+
+    //     let target = wz_content.querySelector(`${wizard.wz_step}[data-step="8"]`)
+
+    //     target.insertAdjacentHTML('beforebegin', $html);
+
+    //     wizard.update();
+    // }
+</script>

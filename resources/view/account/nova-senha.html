@@ -1,0 +1,41 @@
+<style>
+    button.btn.btnlogin.btn-lg {
+        color: #fff;
+    }
+</style>
+<div class="d-flex justify-content-center login">
+
+    <div class="card text-center cardlogin" style="width: 500px;">
+
+        <div class="card-body">
+
+
+            <h2 class="text-dark">Insira sua nova senha !</h2>
+
+            <br>
+            <br>
+            {{status}}
+
+            <form method="post">
+
+                <div class="form-group text-start">
+                    <label>Nova senha</label>
+                    <input type="password" class="form-control" name="senha" placeholder="Nova senha" required
+                        autofocus>
+                        <input type="hidden" name="email" value="{{email}}">
+                </div>
+
+                <button type="submit" class="btn btnlogin btn-lg mt-5">Enviar</button>
+
+            </form>
+
+            <hr class="hrform">
+
+
+            <br>
+
+
+        </div>
+    </div>
+
+</div>

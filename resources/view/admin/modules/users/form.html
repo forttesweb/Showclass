@@ -1,0 +1,64 @@
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    {{title}}
+                </h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <div class="d-flex">
+                    <!-- <input type="search" class="form-control d-inline-block w-9 me-3" placeholder="Pesquisar morador…"> -->
+                    <a href="{{URL}}/admin-panel/users" class="btn btn-info">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 5l0 14"></path>
+                            <path d="M5 12l14 0"></path>
+                        </svg>
+                        Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <div class="card-header">
+                <h4 class="card-title">{{nome}}</h4>
+            </div>
+            <div class="card-body">
+                {{status}}
+                <form method="post">
+
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" name="nome" class="form-control" value="{{nome}}" required>
+                    </div>
+
+                    <div class="form-group my-3">
+                        <label>E-mail</label>
+                        <input type="email" name="email" class="form-control" value="{{email}}" required>
+                    </div>
+
+                    <div class="form-group my-3">
+                        <label>Senha</label>
+                        <input type="password" name="senha" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="subtmit" class="btn btn-success">Enviar</button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

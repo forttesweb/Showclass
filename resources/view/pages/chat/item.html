@@ -1,0 +1,15 @@
+<a class='list-group-item list-group-item-action select_user' style='cursor:pointer' data-anuncio='{{id_anuncio}}' data-userid='{{user_id}}'>
+    <img src="{{URL}}/publico/lojas/{{foto}}" class='img-fluid rounded-circle img-thumbnail' style="width:50px;height:50px;" />
+    <span class='ml-1'>
+        <strong>
+            <span id='list_user_name_{{user_id}}'>
+                {{user_name}}
+                
+                <small>{{titulo}}</small>
+            </span>
+            
+            <span id='userid_{{user_id}}'>{{total_unread_message}}</span>
+        </strong>
+    </span>
+    <span class='mt-2 float-right' id='userstatus_{{user_id}}'>{{icon}}</span>
+</a>

@@ -1,0 +1,77 @@
+<!-- <h1>Sobre {{name}}</h1>
+Olá mundo:)
+
+<hr>
+{{description}}
+<br>
+<br>
+{{site}} -->
+<style>
+    /* .imglateral {
+    width: 23%;
+    position: absolute;
+    right: 0;
+    bottom: -98%;
+} */
+    img.imglateral {
+        width: 550px;
+        /* position: absolute; */
+        right: 0;
+        bottom: -98%;
+    }
+
+    .contornotexto {
+        shape-outside: ellipse(399px 396px at 293% 50%);
+        width: 137px;
+        /* height: 500px; */
+        float: right;
+        opacity: 1;
+    }
+
+    @media (max-width:1680px) {
+        .contornotexto {
+            shape-outside: ellipse(399px 396px at 156% 50%);
+            width: 257px;
+            /* height: 500px; */
+            float: right;
+            opacity: 1;
+        }
+    }
+
+    @media (max-width:1440px) {
+        .contornotexto {
+            shape-outside: ellipse(399px 396px at 109% 50%);
+            width: 368px;
+            /* height: 500px; */
+            float: right;
+            opacity: 1;
+        }
+    }
+</style>
+<div class="container-fluid p-0">
+    <div class="banner about">
+
+    </div>
+</div>
+<section class="about mt-5">
+    <div class="container">
+        <div class="row">
+            <h1 class="titulosection">{{titlesect1}}</h1>
+            <div class="col-md-12">
+                {{contentsect1}}
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="accordion" id="accordionExample">
+                            {{itens_faq}}
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-2">
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

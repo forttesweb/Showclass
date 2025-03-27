@@ -1,0 +1,527 @@
+<div class="container containeranunciar">
+    <div id="preloader-wrapper">
+        <div id="preloader"></div>
+        <div class="preloader-section section-left"></div>
+        <div class="preloader-section section-right"></div>
+    </div>
+    <div class="row g-0 justify-content-center">
+        <form method="POST" name="form_dadosVeiculo" class="needs-validation forms" role="form" id="form_dadosVeiculo"
+            data-gtm-form-interact-id="0">
+            {{status}}
+            <h3 class="text-center"><b>Informações do veículo</b></h3>
+            <input type="hidden" name="tipoVeiculo" class="form-control" value="1">
+            <input type="hidden" name="tipo_veic" class="form-control" value="{{tipo_veic}}">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="placa">Placa</label>
+                        <input type="text" name="placa" id="placa" placeholder="ab*1**4" minlength="7"
+                            class="form-control" value="{{placa}}" autocomplete="off" maxlength="7">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Categoria</label>
+                        <select name="categoria" id="categoria" class="form-select">
+                            {{itens_cat}}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="idMarca">Marca</label>
+                        <select name="idMarca" id="idMarca" required="" class="form-select">
+                        </select>
+                        <input type="hidden" class="form-control" name="nome_marca" id="nome_marca"
+                            value="{{nome_marca}}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="modeloCarro">Modelo</label>
+                        <select name="modeloCarro" id="idModelo" required="" class="form-select">
+                            <option>Selecione o modelo</option>
+                        </select>
+                        <input type="hidden" class="form-control" name="nome_modelo" id="nome_modelo"
+                            value="{{nome_modelo}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="anoFabricacao">Ano Fabricação</label>
+                        <select name="anoFabricacao" id="anoFabricacao" required="" class="form-select">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="anoModelo">Ano Modelo</label>
+                        <select name="anoModelo" id="anoModelo" required="" class="form-select">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="versao">Versão</label>
+                        <input type="text" name="versao" id="versao" placeholder="Digite a versão" class="form-control"
+                            value="{{versao}}" autocomplete="off" maxlength="50">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="motor">Motor</label>
+                        <select name="motor" required="" id="motor" class="form-select">
+                            <option value="">Selecione</option>
+                            <option value="37">0.8</option>
+                            <option value="1">1.0</option>
+                            <option value="52">1.1</option>
+                            <option value="3">1.2</option>
+                            <option value="4">1.3</option>
+                            <option value="5">1.4</option>
+                            <option value="6">1.5</option>
+                            <option value="2">1.6</option>
+                            <option value="7">1.7</option>
+                            <option value="8">1.8</option>
+                            <option value="9">1.9</option>
+                            <option value="10">2.0</option>
+                            <option value="11">2.1</option>
+                            <option value="12">2.2</option>
+                            <option value="13">2.3</option>
+                            <option value="14">2.4</option>
+                            <option value="15">2.5</option>
+                            <option value="16">2.6</option>
+                            <option value="17">2.7</option>
+                            <option value="18">2.8</option>
+                            <option value="19">2.9</option>
+                            <option value="20">3.0</option>
+                            <option value="33">3.1</option>
+                            <option value="21">3.2</option>
+                            <option value="22">3.3</option>
+                            <option value="23">3.4</option>
+                            <option value="24">3.5</option>
+                            <option value="25">3.6</option>
+                            <option value="26">3.7</option>
+                            <option value="27">3.8</option>
+                            <option value="28">3.9</option>
+                            <option value="29">4.0</option>
+                            <option value="30">4.1</option>
+                            <option value="31">4.2</option>
+                            <option value="39">4.3</option>
+                            <option value="32">4.4</option>
+                            <option value="53">4.5</option>
+                            <option value="43">4.6</option>
+                            <option value="44">4.7</option>
+                            <option value="42">4.8</option>
+                            <option value="34">4.9</option>
+                            <option value="35">5.0</option>
+                            <option value="45">5.1</option>
+                            <option value="36">5.2</option>
+                            <option value="46">5.3</option>
+                            <option value="49">5.4</option>
+                            <option value="54">5.5</option>
+                            <option value="41">5.7</option>
+                            <option value="38">5.9</option>
+                            <option value="51">6.1</option>
+                            <option value="47">6.2</option>
+                            <option value="48">6.3</option>
+                            <option value="57">6.4</option>
+                            <option value="56">6.5</option>
+                            <option value="50">6.7</option>
+                            <option value="55">7.7</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="idValvula">Válvula</label>
+                        <select name="idValvula" id="idValvula" data-init-plugin="select2" class="form-select">
+                            <option value="">Selecione</option>
+                            <option value="10">6</option>
+                            <option value="3">8</option>
+                            <option value="4">12</option>
+                            <option value="1">16</option>
+                            <option value="2">20</option>
+                            <option value="5">24</option>
+                            <option value="6">30</option>
+                            <option value="7">32</option>
+                            <option value="9">40</option>
+                            <option value="8">48</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="cambio">Câmbio</label>
+                        <select name="cambio" id="cambio" required="required" class="form-select">
+                            <option value="">Selecione</option>
+                            <option value="Automático">Automático</option>
+                            <option value="Automatizado">Automatizado</option>
+                            <option value="Manual">Manual</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="cor">Cor</label>
+                        <select name="cor" id="cor" required="" class="form-select">
+                            <option value="">Selecione</option>
+                            <option value="Amarelo">Amarelo</option>
+                            <option value="Azul">Azul</option>
+                            <option value="Bege">Bege</option>
+                            <option value="Branco">Branco</option>
+                            <option value="Bronze">Bronze</option>
+                            <option value="Cinza">Cinza</option>
+                            <option value="Dourado">Dourado</option>
+                            <option value="Laranja">Laranja</option>
+                            <option value="Marrom">Marrom</option>
+                            <option value="Prata">Prata</option>
+                            <option value="Preto">Preto</option>
+                            <option value="Rosa">Rosa</option>
+                            <option value="Roxo">Roxo</option>
+                            <option value="Verde">Verde</option>
+                            <option value="Vermelho">Vermelho</option>
+                            <option value="Vinho">Vinho</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="portas">Portas</label>
+                        <select name="portas" id="portas" required="" class="form-select">
+                            <option value="">Selecione</option>
+                            <option value="1">1 Porta</option>
+                            <option value="2">2 Portas</option>
+                            <option value="3">3 Portas</option>
+                            <option value="4">4 Portas</option>
+                            <option value="5">5 Portas</option>
+                            <option value="6">6 Portas</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="combustivel">Combustível</label>
+                        <select name="combustivel" id="combustivel" required="" class="form-select">
+                            <option value="">Selecione</option>
+                            <option value="Álcool">Álcool</option>
+                            <option value="Álcool + Kit Gás">Álcool + Kit Gás</option>
+                            <option value="Bi-Combustível">Bi-Combustível (Flex)</option>
+                            <option value="Bi-Combustível + Kit Gás">Bi-Combustível + Kit Gás</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Elétrico">Elétrico</option>
+                            <option value="Gasolina">Gasolina</option>
+                            <option value="Gasolina + Kit Gás">Gasolina + Kit Gás</option>
+                            <option value="Híbrido(combustão + eletrico)">Híbrido(combustão + eletrico)
+                            </option>
+                            <option value="Kit Gás">Kit Gás</option>
+                            <option value="Tetra Fuel">Tetra Fuel</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="kilometragem">KM</label>
+                        <input type="text" name="kilometragem" data-mask="000.000.000.000.000"
+                            data-mask-options="{&quot;reverse&quot;:true}" placeholder="52.000" value="{{kilometragem}}"
+                            autocomplete="off" maxlength="19" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Preço (R$)</label>
+                        <input type="text" name="valor" required="" id="valor" placeholder="Ex: 48.000,00"
+                            value="{{valor}}" autocomplete="off" maxlength="22" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="form-group">
+                        <b>
+                            Certo, agora fale sobre os diferenciais do seu carro, ou as observações que
+                            desejar.
+                            Não é obrigatório, ok?
+                        </b>
+
+                        <div class="mt-2">
+                            <textarea name="observacoes" maxlength="700" class="form-control" style="height:100px;"
+                                placeholder="Utilize este espaço para informar mais detalhes do veículo, seu histórico ou itens que não foram contemplados nas etapas anteriores.">{{observacoes}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-3">
+                    <button class="btn btn-primary" type="submit">Salvar alterações</button>
+                    <a class="btn btn-secondary" href="{{URL}}/account/#anuncios">Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#categoria").val('{{categoria}}')
+        $("#motor").val('{{motor}}')
+        $("#idValvula").val('{{idValvula}}')
+        $("#cambio").val('{{cambio}}')
+        $("#cor").val('{{cor}}')
+        $("#portas").val('{{portas}}')
+        $("#combustivel").val('{{combustivel}}')
+    })
+</script>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        var tipo_auto = '{{tipo_veic}}';
+
+        var tp_veic = tipo_auto
+
+        $("input[name='tipo_veic']").change(function () {
+            tp_veic = $(this).val()
+            $("#idMarca").html('');
+            $("#idModelo").html('');
+            $("#anoFabricacao").html('');
+            $("#anoModelo").html('');
+
+            carregaMarcas($(this).val())
+        })
+
+
+
+        // Função para fazer a solicitação à API
+        async function carregaMarcas(tipo_auto) {
+            try {
+                // Token de autorização
+                const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NsdXN0ZXIuYXBpZ3JhdGlzLmNvbS9hcGkvdjIvbG9naW4iLCJpYXQiOjE2OTk2MjI3OTcsImV4cCI6MTczMTE1ODc5NywibmJmIjoxNjk5NjIyNzk3LCJqdGkiOiJwcnRvRWgxcFY3a3RGMGhxIiwic3ViIjoiNDU4MCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Fr8QonqZ73prpB_IkasqtpxsRGzyO0Hgj7eQXMhMPEY';
+
+                const requestBody = {
+                    codigoTabelaReferencia: 303,
+                    codigoTipoVeiculo: 1
+                };
+
+                // Configuração da solicitação
+                const requestOptions = {
+                    method: 'get',
+                };
+
+                // Faz a solicitação à sua API
+                const response = await fetch(`https://parallelum.com.br/fipe/api/v2/${tipo_auto}/brands`, requestOptions);
+                const data2 = await response.json();
+
+                const data = data2
+                // Obtendo referência para o elemento select
+                var selectElement = document.getElementById("idMarca");
+
+                // Iterando sobre o array JSON e adicionando opções ao select
+                data.forEach(item => {
+                    var option = document.createElement("option");
+                    option.value = item.code;
+                    option.text = item.name;
+                    selectElement.add(option);
+                });
+
+                selectElement.value = '{{cod_marca}}'
+
+                fetchModels('{{cod_marca}}');
+                // $("#idMarca").val()
+            } catch (error) {
+                console.error('Erro ao obter dados da API:', error);
+            }
+        }
+
+        // Chama a função ao carregar a página
+        carregaMarcas(tipo_auto);
+
+        // Função para fazer a solicitação à API
+        async function fetchJsonData(url, options, callback) {
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                callback(data);
+            } catch (error) {
+                console.error('Erro ao obter dados da API:', error);
+            }
+        }
+
+        // Função para preencher o select de modelos
+        function populateModelSelect(models) {
+            var selectElement = document.getElementById("idModelo");
+
+            // Limpa opções existentes, se houver
+            selectElement.innerHTML = '';
+
+            const dataModelos = models
+
+            // Iterando sobre os modelos e adicionando opções ao select
+            dataModelos.forEach(model => {
+                var option = document.createElement("option");
+                //option.id = model.code;
+                option.value = model.code;
+                option.text = model.name;
+                selectElement.add(option);
+            });
+
+            selectElement.value = '{{cod_modelo}}'
+
+            fetchAnoModelo('{{cod_modelo}}');
+        }
+        // Função para preencher o select de modelos
+        function populateAnoModelSelect(models) {
+            var selectElement = document.getElementById("anoModelo");
+            var selectFab = document.getElementById("anoFabricacao");
+
+            // Limpa opções existentes, se houver
+            selectElement.innerHTML = '';
+
+            const dataModelos = models
+
+            // Iterando sobre os modelos e adicionando opções ao select
+            dataModelos.forEach(model => {
+                var option = document.createElement("option");
+                option.value = model.code;
+                option.text = model.name;
+                selectElement.add(option);
+
+                var option = document.createElement("option");
+                option.value = model.code;
+                option.text = model.code;
+                selectFab.add(option);
+            });
+
+            selectFab.value = '{{ano_fab}}'
+            selectElement.value = '{{ano_modelo}}'
+
+        }
+
+        // Função para fazer a solicitação de modelos
+        function fetchModels(codigoMarca) {
+            const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NsdXN0ZXIuYXBpZ3JhdGlzLmNvbS9hcGkvdjIvbG9naW4iLCJpYXQiOjE2OTk2MjI3OTcsImV4cCI6MTczMTE1ODc5NywibmJmIjoxNjk5NjIyNzk3LCJqdGkiOiJwcnRvRWgxcFY3a3RGMGhxIiwic3ViIjoiNDU4MCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Fr8QonqZ73prpB_IkasqtpxsRGzyO0Hgj7eQXMhMPEY';
+
+            // Corpo da solicitação
+            // const requestBody = {
+            //     codigoTabelaReferencia: 303,
+            //     codigoTipoVeiculo: 1,
+            //     codigoMarca: codigoMarca
+            // };
+
+            // Configuração da solicitação
+            const requestOptions = {
+                method: 'GET',
+                // headers: {
+                //     'Authorization': `Bearer ${token}`,
+                //     'Content-Type': 'application/json',
+                //     'DeviceToken': 'db10dc21-998a-4976-a486-84b166535ed5'
+                // },
+                // body: JSON.stringify(requestBody)
+            };
+
+            // URL do endpoint
+            const apiUrl = `https://parallelum.com.br/fipe/api/v2/${tp_veic}/brands/${codigoMarca}/models`;
+
+            // Faz a solicitação à API para obter modelos
+            fetchJsonData(apiUrl, requestOptions, populateModelSelect);
+        }
+
+        // Função para fazer a solicitação de modelos
+        function fetchAnoModelo(codigoModelo) {
+            // const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NsdXN0ZXIuYXBpZ3JhdGlzLmNvbS9hcGkvdjIvbG9naW4iLCJpYXQiOjE2OTk2MjI3OTcsImV4cCI6MTczMTE1ODc5NywibmJmIjoxNjk5NjIyNzk3LCJqdGkiOiJwcnRvRWgxcFY3a3RGMGhxIiwic3ViIjoiNDU4MCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Fr8QonqZ73prpB_IkasqtpxsRGzyO0Hgj7eQXMhMPEY';
+
+            // // Corpo da solicitação
+            // const requestBody = {
+            //     codigoTabelaReferencia: 303,
+            //     codigoTipoVeiculo: 1,
+            //     codigoMarca: document.getElementById("idMarca").value,
+            //     codigoModelo: codigoModelo
+            // };
+            var codigoMarca = document.getElementById("idMarca").value
+
+            if (codigoMarca == "" || codigoMarca == undefined) {
+                codigoMarca = '{{cod_marca}}'
+            }
+            console.log("MAQRCA = " + codigoMarca)
+            // Configuração da solicitação
+            const requestOptions = {
+                method: 'GET',
+                // headers: {
+                //     'Authorization': `Bearer ${token}`,
+                //     'Content-Type': 'application/json',
+                //     'DeviceToken': 'db10dc21-998a-4976-a486-84b166535ed5'
+                // },
+                // body: JSON.stringify(requestBody)
+            };
+
+            // URL do endpoint
+            const apiUrl = `https://parallelum.com.br/fipe/api/v2/${tp_veic}/brands/${codigoMarca}/models/${codigoModelo}/years`;
+
+            // Faz a solicitação à API para obter modelos
+            fetchJsonData(apiUrl, requestOptions, populateAnoModelSelect);
+        }
+
+        // Adiciona um evento onchange ao select de marcas
+        var marcaSelect = document.getElementById("idMarca");
+        marcaSelect.addEventListener("change", function () {
+            // Obtém o valor selecionado no select de marcas
+            var codigoMarca = marcaSelect.value;
+            console.log(codigoMarca)
+
+            var selectedOption = marcaSelect.options[marcaSelect.selectedIndex];
+            var nomeModelo = selectedOption.text;
+
+            $("#nome_marca").val(nomeModelo)
+            // Faz a solicitação à API para obter modelos com base na marca selecionada
+            fetchModels(codigoMarca);
+        });
+
+        var modeloSelect = document.getElementById("idModelo");
+        modeloSelect.addEventListener("change", function () {
+            $("#anoModelo").html('');
+            $("#anoFabricacao").html('');
+
+            // Obtém o valor selecionado no select de marcas
+
+            var selectedOption = modeloSelect.options[modeloSelect.selectedIndex];
+            var nomeModelo = selectedOption.text;
+
+            $("#nome_modelo").val(nomeModelo)
+            // Obter o ID do option selecionado
+            var selectedOption = this.selectedOptions[0];
+            var selectedOptionId = selectedOption.id;
+
+            var codigoModelo = modeloSelect.value;
+
+            // Faz a solicitação à API para obter modelos com base na marca selecionada
+            fetchAnoModelo(codigoModelo);
+        });
+        console.log('{{cod_modelo}}')
+        fetchAnoModelo('{{cod_modelo}}');
+
+
+
+
+    })
+
+
+</script>
